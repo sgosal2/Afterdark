@@ -5,7 +5,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-
+//This is how you commit and push in Eclipse.
 public class AudioPlayer {
 	private ArrayList<MediaPlayer> players;
 	private static AudioPlayer somePlayer;
