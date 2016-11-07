@@ -1,3 +1,5 @@
+// Maximo Macchi
+
 import java.util.ArrayList;
 
 import acm.graphics.GObject;
