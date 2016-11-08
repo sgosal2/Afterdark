@@ -1,4 +1,4 @@
-// Maximo Macchi
+// Maximo Macchi v2
 
 import java.net.URL;
 import java.util.ArrayList;
