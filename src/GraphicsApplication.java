@@ -1,4 +1,7 @@
 /*
+ * Ali Noorani
+ * This is my comment on this file and my first commit.
+ * 
  * File: GraphicsApplication
  * -------------------------
  * File for subclassing off of to generate the entire

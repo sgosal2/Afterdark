@@ -1,3 +1,8 @@
+//GButton.java
+//Provided by Osvaldo Jimenez
+//Added on 11/3/16
+//File maintained by Jack Thias
+
 import java.awt.Color;
 import java.awt.Font;
 

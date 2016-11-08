@@ -9,6 +9,11 @@
  * and using showContents and hideContents
  */
 
+//GraphicsPane.java
+//Provided by Osvaldo Jimenez
+//Added on 11/3/17
+//Maintained by Jack Thias
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
