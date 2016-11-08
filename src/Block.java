@@ -21,7 +21,7 @@ public class Block extends GImage {
 	
 	public Block(String imageName, double x, double y) {
 		super(imageName, x, y);
-		// TODO Auto-generated constructor stub
+		isBlockSolid = true;
 	}
 	
 	public boolean isSolid() {
