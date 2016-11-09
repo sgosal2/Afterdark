@@ -85,6 +85,10 @@ public class SceneLayout {
 		return true;
 	}
 	
+	public void setBlock(int x, int y, Block b) {
+		terrain.get(x).set(y, b);
+	}
+	
 	public static void main(String[] args) {
 		SceneLayout instance = new SceneLayout();
 		instance.readInData(LEVEL_PREFIX + "prototype.csv");
