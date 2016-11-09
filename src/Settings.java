@@ -30,4 +30,15 @@ public class Settings {
 		isMusicOn = m;
 	}
 	
+	public Direction getDifficultLevel(){
+		return;
+	}
+	
+	public void setDifficultyLevel(String s){
+		
+	}
+	
+	public void settingsMenu(){
+		
+	}
 }
