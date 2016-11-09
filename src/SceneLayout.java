@@ -82,15 +82,7 @@ public class SceneLayout {
 					terrain.get(i).add(null);
 				}
 			}
-		} 
-		
-//		for (int i = 0; i < data.size(); i++) {
-//			terrain.add(new ArrayList<Block>());
-//			for (int j = 0; j < data.get(i).length(); j++) {
-//				// TODO Set-up proper column iteration. Look into how .csv files are read in.
-//				terrain.get(i).add(null);
-//			}
-//		}
+		}
 		
 		return true;
 	}
