@@ -1,4 +1,4 @@
-// Settings class for our game
+// Settings class
 
 /*
  * Settings will hold our settings for if the game sound is on or off as well as the music. 
