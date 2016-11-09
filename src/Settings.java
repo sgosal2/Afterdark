@@ -1,5 +1,5 @@
 
-public class settings {
+public class Settings {
 //testing settings commit
 	
 	
