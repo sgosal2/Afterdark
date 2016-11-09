@@ -46,7 +46,6 @@ public class SceneLayout {
 	}
 
 	public boolean readInData(String path) {
-		// TODO Look at how .csv files are read-in and modify appropriately.
 		ArrayList<String[]> data = new ArrayList<String[]>();
 		String line = "";
 		String cvsSplitBy = ",";
@@ -64,7 +63,6 @@ public class SceneLayout {
 		}
 		
 		if (PRINT_CONTENTS) {
-			//System.out.println(data);
 			for (int i = 0; i < data.size(); i++) {
 				for (int j = 0; j < data.get(i).length; j++) {
 					System.out.print(data.get(i)[j] + ", ");
