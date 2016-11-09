@@ -31,7 +31,7 @@ public class Settings {
 	}
 	
 	public Direction getDifficultLevel(){
-		return;
+		return null;
 	}
 	
 	public void setDifficultyLevel(String s){
