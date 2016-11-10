@@ -1,15 +1,14 @@
 package game;
-import utilities.MainApplication;
-import utilities.GraphicsPane;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import menus.*;
 
 import javax.swing.Timer;
 
-import acm.graphics.GImage;
+import utilities.GraphicsPane;
+import utilities.MainApplication;
 
 public class Game extends GraphicsPane implements ActionListener {
 	
@@ -48,7 +47,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		gameLoop = new Timer(50, (ActionListener) this);
 		System.out.print("Game made.");
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
