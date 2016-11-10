@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Scene {
 
-	private SceneLayout scene;
+	private SceneLayout layout;
 	
 	public Scene() {
 		
@@ -12,7 +12,7 @@ public class Scene {
 
 	public boolean checkTerrainCollisions(Entity player) {
 		Rectangle rect = player.getBox();
-		Direction direction = scene.checkCollisions(player);
+		Direction direction = layout.checkCollisions(player);
 		if (direction == Direction.NO_DIRECTION)
 			return false;
 		else

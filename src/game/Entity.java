@@ -118,4 +118,8 @@ public class Entity {
 		// TODO Auto-generated method stub
 		return img.getHeight();
 	}
+	
+	public void add() {
+		
+	}
 }

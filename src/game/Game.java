@@ -45,7 +45,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
 		env = new ArrayList<Scene>();
-		gameLoop = new Timer(50, (ActionListener) this);
+		gameLoop = new Timer(50, this);
 		System.out.print("Game made.");
 	}
 
@@ -78,7 +78,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
-		
+		program.add(player);
 	}
 
 	@Override
