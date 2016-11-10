@@ -18,7 +18,9 @@ public class Game extends GraphicsPane {
 	}
 
 	public static void main(String[] args) {
-
+		MainApplication p = new MainApplication();
+		Game game = new Game(p);
+		game.run();
 	}
 
 	public static final int MOVEMENT = 5;
