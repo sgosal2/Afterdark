@@ -4,14 +4,19 @@ import java.util.ArrayList;
 
 public class Scene {
 
-	private ArrayList<SceneLayout> scene = new ArrayList<SceneLayout>();
+	private ArrayList<SceneLayout> scene;
 	
 	public Scene() {
-		// TODO Auto-generated constructor stub
+		scene = new ArrayList<SceneLayout>();
 	}
 
-	public void checkTerrainCollisions(Entity player) {
-		
+	public boolean checkTerrainCollisions(Entity player, int sceneNum) {
+		Rectangle rect = player.getBox();
+		Direction direction = scene.get(sceneNum).checkCollisions(player);
+		if (direction == Direction.NO_DIRECTION)
+			return false;
+		else
+			return true;
 	}
 
 }
