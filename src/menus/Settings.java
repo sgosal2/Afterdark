@@ -8,12 +8,10 @@ package menus;
  */
 public class Settings {
 
-	private boolean isMusicOn;
-	private boolean isSoundOn;
+	private boolean isMusicOn = true;
+	private boolean isSoundOn = true;
 	
 	Settings(){
-		isMusicOn = true;
-		isSoundOn = true;
 	}
 
 	public boolean getIsMusicOn(){
@@ -41,6 +39,10 @@ public class Settings {
 	}
 	
 	public void settingsMenu(){
+		
+	}
+	
+	public void settingsPause(){
 		
 	}
 }
