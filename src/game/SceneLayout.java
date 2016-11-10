@@ -8,6 +8,7 @@ package game;
  */
 
 import java.awt.Rectangle;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
