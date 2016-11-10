@@ -46,7 +46,7 @@ public class SceneLayout {
 	}
 
 	public boolean readInData(String path) {
-		ArrayList<String[]> data = new ArrayList<String[]>();
+		List<String[]> data = new ArrayList<String[]>();
 		String line = "";
 		String cvsSplitBy = ",";
 		try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -74,7 +74,7 @@ public class SceneLayout {
 		for (int i = 0; i < data.size(); i++) {
 			terrain.add(new ArrayList<Block>());
 			for (int j = 0; j < data.get(i).length; j++) {
-				if (data.get(i)[j] != "-1") {
+				if (!data.get(i)[j].equals("-1")) {
 					terrain.get(i).add(new Block(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", i*TILE_WIDTH, j*TILE_HEIGHT));
 				} else {
 					terrain.get(i).add(null);
