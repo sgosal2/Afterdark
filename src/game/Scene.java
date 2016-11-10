@@ -11,8 +11,7 @@ public class Scene {
 	}
 
 	public void checkTerrainCollisions(Entity player) {
-		Rectangle rect = player.getBox();
-		for()
+		
 	}
 
 }
