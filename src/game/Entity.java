@@ -5,7 +5,7 @@ import acm.graphics.GImage;
 import acm.program.GraphicsProgram;
 
 public class Entity {
-	public static final String PATH = "../";
+	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
 	public static final int MOVEMENT = 5;
 	public static final double GRAVITY = 1;

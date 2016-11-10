@@ -11,17 +11,17 @@ import javax.swing.Timer;
 
 import acm.graphics.GImage;
 
-public class Game extends GraphicsPane {
+public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
 	}
 
-	public static void main(String[] args) {
-		MainApplication p = new MainApplication();
-		Game game = new Game(p);
-		game.run();
-	}
+//	public static void main(String[] args) {
+//		MainApplication p = new MainApplication();
+//		Game game = new Game(p);
+//		game.run();
+//	}
 
 	public static final int MOVEMENT = 5;
 	public static final int GROUND_HEIGHT = 100;
@@ -42,7 +42,7 @@ public class Game extends GraphicsPane {
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
 		env = new Scene();
-		gameLoop = new Timer(50, (ActionListener) this);
+		gameLoop = new Timer(50, this);
 		gameLoop.start();
 	}
 
