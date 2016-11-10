@@ -1,13 +1,20 @@
 package game;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Scene {
 
+	public static int TILE_WIDTH;
+	public static int TILE_HEIGHT;
+	
 	private SceneLayout layout;
 	
-	public Scene() {
-		
+	public Scene(int tileWidth, int tileHeight) {
+		TILE_WIDTH = tileWidth;
+		TILE_HEIGHT = tileHeight;
+		layout = new SceneLayout(tileWidth, tileHeight);
 	}
 
 	public boolean checkTerrainCollisions(Entity player) {
@@ -18,5 +25,9 @@ public class Scene {
 		else
 			return true;
 	}
-
+	
+	public List<List<Block>> getTerrain() {
+		return layout.getTerrain();
+	}
+	
 }
