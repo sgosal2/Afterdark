@@ -40,7 +40,8 @@ public class GButton extends GCompound {
 	public GButton(double x, double y, double width, double height, boolean visible){
 		setLocation(x,y);
 		rect = new GRoundRect(0,0, width, height);
-		rect.setVisible(visible);
+		rect.setFilled(true);
+		rect.setVisible(false);
 		add(rect);
 	}
 	
