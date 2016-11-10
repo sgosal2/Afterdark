@@ -78,7 +78,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	@Override
 	public void showContents() {
 		// TODO Auto-generated method stub
-		program.add(player);
+		program.add(player.getSprite());
 	}
 
 	@Override

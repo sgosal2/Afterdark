@@ -119,7 +119,7 @@ public class Entity {
 		return img.getHeight();
 	}
 	
-	public void add() {
-		
+	public GImage getSprite() {
+		return img;
 	}
 }
