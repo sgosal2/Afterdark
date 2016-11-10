@@ -32,7 +32,7 @@ public class AudioPlayer {
 		if(mPlayer.getCycleDuration().lessThanOrEqualTo(mPlayer.getCurrentTime())) {
 			mPlayer.seek(Duration.ZERO);
 		}
-		mPlayer.play();
+		//mPlayer.play();
 	}
 	
 	private MediaPlayer createMediaPlayer(String folder, String filename) {
