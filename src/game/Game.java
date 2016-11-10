@@ -9,10 +9,12 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
-public class Game extends GraphicsPane {
+import acm.graphics.GImage;
 
+public class Game extends GraphicsPane {
+	
 	public Game(MainApplication app) {
-		super(app);
+		this.program = app;
 	}
 
 	public static void main(String[] args) {
@@ -27,12 +29,12 @@ public class Game extends GraphicsPane {
 	public static final int BLOCK_HEIGHT = GROUND_HEIGHT/7;
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
 	
+	private MainApplication program;
 	private Entity player;
 	private Timer gameLoop;
 	private Scene env;
 	
 	public void init() {
-		//setSize(WIDTH, HEIGHT);
 	}
 	
 	public void run() {
@@ -67,8 +69,16 @@ public class Game extends GraphicsPane {
 		env.checkCollisions(player);
 		player.walkMovement();
 	}
-	
-	public void add() {
+
+	@Override
+	public void showContents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hideContents() {
+		// TODO Auto-generated method stub
 		
 	}
 }

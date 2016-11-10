@@ -4,6 +4,7 @@ package utilities;
  * This is my second commit.
  */
 
+import game.Game;
 import menus.MenuPane;
 
 public class MainApplication extends GraphicsApplication {
@@ -12,6 +13,7 @@ public class MainApplication extends GraphicsApplication {
 	
 	//private SomePane somePane;
 	private GraphicsPane menu;
+	private GraphicsPane game;
 	private int count = 0;
 	
 	public void init() {
@@ -22,6 +24,7 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Hello, world!");
 		//somePane = new SomePane(this);
 		menu = new MenuPane(this);
+		game = new Game(this);
 		setupInteractions();
 		switchToSome();
 	}
