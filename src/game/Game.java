@@ -15,6 +15,8 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
+		player = new Entity("sprite", 0, 450, 3, this);
+		System.out.print("Game ran.");
 	}
 
 //	public static void main(String[] args) {
@@ -44,6 +46,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		player = new Entity("sprite", 0, 450, 3, this);
 		env = new ArrayList<Scene>();
 		gameLoop = new Timer(50, (ActionListener) this);
+		System.out.print("Game made.");
 	}
 
 	@Override
