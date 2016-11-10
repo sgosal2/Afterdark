@@ -32,14 +32,15 @@ public class Game extends GraphicsPane {
 	private MainApplication program;
 	private Entity player;
 	private Timer gameLoop;
-	private Scene env;
+	private ArrayList<Scene> env;
+	private int sceneNum;
 	
 	public void init() {
 	}
 	
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
-		env = new Scene();
+		env = new ArrayList<Scene>();
 		gameLoop = new Timer(50, (ActionListener) this);
 		gameLoop.start();
 	}
@@ -66,7 +67,7 @@ public class Game extends GraphicsPane {
 			player.setLocation((int) player.getX(), (int) (GROUND_Y - player.getHeight()));
 			player.setJumping(false);
 		}
-		env.checkCollisions(player);
+		env.get(sceneNum).checkTerrainCollisions(player);
 		player.walkMovement();
 	}
 

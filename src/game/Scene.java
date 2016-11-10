@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Scene {
 
-	private ArrayList<SceneLayout> scene;
+	private SceneLayout scene;
 	
 	public Scene() {
-		scene = new ArrayList<SceneLayout>();
+		
 	}
 
-	public boolean checkTerrainCollisions(Entity player, int sceneNum) {
+	public boolean checkTerrainCollisions(Entity player) {
 		Rectangle rect = player.getBox();
-		Direction direction = scene.get(sceneNum).checkCollisions(player);
+		Direction direction = scene.checkCollisions(player);
 		if (direction == Direction.NO_DIRECTION)
 			return false;
 		else
