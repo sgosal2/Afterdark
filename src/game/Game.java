@@ -1,6 +1,6 @@
 package game;
 import utilities.MainApplication;
-import utilities.SomePane;
+import utilities.GraphicsPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
-public class Game extends SomePane {
+public class Game extends GraphicsPane {
 
 	public Game(MainApplication app) {
 		super(app);
@@ -40,7 +40,6 @@ public class Game extends SomePane {
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
 		env = new Scene();
-		//addKeyListeners();
 		gameLoop = new Timer(50, (ActionListener) this);
 		gameLoop.start();
 	}
