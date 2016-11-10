@@ -1,3 +1,5 @@
+package menus;
+
 // Settings class
 
 /*
@@ -30,8 +32,8 @@ public class Settings {
 		isMusicOn = m;
 	}
 	
-	public Direction getDifficultLevel(){
-		return null;
+	public void getDifficultLevel(){
+		
 	}
 	
 	public void setDifficultyLevel(String s){

@@ -1,3 +1,4 @@
+package game;
 import utilities.MainApplication;
 import utilities.SomePane;
 

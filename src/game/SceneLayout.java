@@ -1,3 +1,4 @@
+package game;
 /**
  * SceneLayout.java
  * @author jackthias

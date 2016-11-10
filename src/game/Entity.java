@@ -1,3 +1,4 @@
+package game;
 import java.awt.Rectangle;
 
 import acm.graphics.GImage;

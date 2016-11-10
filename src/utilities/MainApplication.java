@@ -4,17 +4,14 @@ package utilities;
  * This is my second commit.
  */
 
-import java.awt.*;
-
-import acm.graphics.*;
-import acm.program.*;
+import menus.MenuPane;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1024;
 	public static final int WINDOW_HEIGHT = 768;
 	
-	private SomePane somePane;
-	private MenuPane menu;
+	//private SomePane somePane;
+	private GraphicsPane menu;
 	private int count = 0;
 	
 	public void init() {
@@ -23,7 +20,7 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void run() {
 		System.out.println("Hello, world!");
-		somePane = new SomePane(this);
+		//somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		setupInteractions();
 		switchToSome();
@@ -48,7 +45,7 @@ public class MainApplication extends GraphicsApplication {
 //			case 1: audio.stopSound("sounds", "somethinlikethis.mp3"); break;
 //		}
 //		count++;
-//		switchToScreen(menu);
+		switchToScreen(menu);
 	}
 	
 	public void switchToSome() {
@@ -57,6 +54,6 @@ public class MainApplication extends GraphicsApplication {
 //			case 0: audio.playSound("sounds", "r2d2.mp3"); break;
 //			case 1: audio.playSound("sounds", "somethinlikethis.mp3"); break;
 //		}
-//		switchToScreen(menu);
+		switchToScreen(menu);
 	}
 }

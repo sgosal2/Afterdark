@@ -1,3 +1,4 @@
+package game;
 import acm.program.GraphicsProgram;
 
 public class Player extends Entity {

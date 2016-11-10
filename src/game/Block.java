@@ -1,3 +1,4 @@
+package game;
 /**
  * Block.java
  * @author jackthias

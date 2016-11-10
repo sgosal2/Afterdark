@@ -1,6 +1,4 @@
-package utilities;
-// Sahib Gosal.
-// Ali Noorani
+package menus;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -9,6 +7,8 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
+import utilities.GraphicsPane;
+import utilities.MainApplication;
 
 public class MenuPane extends GraphicsPane {
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
