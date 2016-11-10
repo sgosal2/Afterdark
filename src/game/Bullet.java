@@ -9,6 +9,12 @@ public class Bullet {
 	private static final int DAMAGE = 1;
 	private static final int SPEED = 1;
 	
+	private Bullet(GImage sp, Entity se, Direction d) {
+		sprite = sp;
+		sender = se;
+		direction = d;
+	}
+	
 	private GImage getSprite() {
 		return sprite;
 	}
@@ -27,6 +33,10 @@ public class Bullet {
 	
 	private void setDirection(Direction d) {
 		direction = d;
+	}
+	
+	private void destroy() {
+		
 	}
 	
 }

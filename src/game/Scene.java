@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Scene {
 
 	private SceneLayout scene;
+	private Bullet bullet;
 	
 	public Scene() {
 		
@@ -18,5 +19,7 @@ public class Scene {
 		else
 			return true;
 	}
+	
+	
 
 }
