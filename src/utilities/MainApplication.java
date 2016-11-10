@@ -26,7 +26,7 @@ public class MainApplication extends GraphicsApplication {
 		menu = new MenuPane(this);
 		game = new Game(this);
 		setupInteractions();
-		switchToSome();
+		switchToMenu();
 	}
 	
 	/* Method: setupInteractions
@@ -41,17 +41,17 @@ public class MainApplication extends GraphicsApplication {
 		addMouseListeners();
 	}
 	
-	public void switchBack() {
+	public void switchToMenu() {
 //		AudioPlayer audio = AudioPlayer.getInstance();
 //		switch(count % 2) {
 //			case 0: audio.stopSound("sounds", "r2d2.mp3"); break;
 //			case 1: audio.stopSound("sounds", "somethinlikethis.mp3"); break;
 //		}
 //		count++;
-		switchToScreen(game);
+		switchToScreen(menu);
 	}
 	
-	public void switchToSome() {
+	public void switchToGame() {
 //		AudioPlayer audio = AudioPlayer.getInstance();
 //		switch(count % 2) {
 //			case 0: audio.playSound("sounds", "r2d2.mp3"); break;

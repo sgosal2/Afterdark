@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import menus.*;
-
+import java.util.List;
 import javax.swing.Timer;
 
 import utilities.GraphicsPane;
@@ -14,8 +14,11 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
-		player = new Entity("sprite", 0, 450, 3, this);
+		player = new Entity("sprite", 64, program.WINDOW_HEIGHT - 128, 3, this);
 		System.out.print("Game ran.");
+		sceneNum = 0;
+		scenes = new ArrayList<Scene>();
+		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 	}
 
 //	public static void main(String[] args) {
@@ -23,7 +26,9 @@ public class Game extends GraphicsPane implements ActionListener {
 //		Game game = new Game(p);
 //		game.run();
 //	}
-
+	
+	public static final int TILE_WIDTH = 32;
+	public static final int TILE_HEIGHT = 32;
 	public static final int MOVEMENT = 5;
 	public static final int GROUND_HEIGHT = 100;
 	public static final int WIDTH = 800;
@@ -35,7 +40,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private Entity player;
 	private Timer gameLoop;
-	private ArrayList<Scene> env;
+	private ArrayList<Scene> scenes;
 	private int sceneNum;
 	
 	public void init() {
@@ -43,9 +48,11 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
-		env = new ArrayList<Scene>();
-		gameLoop = new Timer(50, (ActionListener) this);
+		scenes = new ArrayList<Scene>();
+		gameLoop = new Timer(50, this);
 		System.out.print("Game made.");
+		sceneNum = 0;
+		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 	}
 	
 	@Override
@@ -70,14 +77,20 @@ public class Game extends GraphicsPane implements ActionListener {
 			player.setLocation((int) player.getX(), (int) (GROUND_Y - player.getHeight()));
 			player.setJumping(false);
 		}
-		env.get(sceneNum).checkTerrainCollisions(player);
+		scenes.get(sceneNum).checkTerrainCollisions(player);
 		player.walkMovement();
 	}
 
 	@Override
 	public void showContents() {
-		// TODO Auto-generated method stub
-		
+		program.add(player.getSprite());
+		for (List<Block> row: scenes.get(0).getTerrain()) {
+			for (Block b: row) {
+				if (b != null) {
+					program.add(b);
+				}
+			}
+		}
 	}
 
 	@Override

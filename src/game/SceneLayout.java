@@ -24,16 +24,19 @@ import acm.graphics.GImage;
  * @author jackthias
  */
 public class SceneLayout {
-	public static final int TILE_WIDTH = 32;
-	public static final int TILE_HEIGHT = 32;
+	public static int TILE_WIDTH = 32;
+	public static int TILE_HEIGHT = 32;
 	private static final boolean PRINT_CONTENTS = false;
-	public static final String LEVEL_PREFIX = "./media/levels/";
-	public static final String SPRITE_PREFIX = "./media/images/";
+	public static final String LEVEL_PREFIX = "../media/levels/";
+	public static final String SPRITE_PREFIX = "../media/images/";
 	private List<List<Block>> terrain = new ArrayList<List<Block>>();
 	private ArrayList<GImage> backgrounds;
 	
-	public SceneLayout() {
+	public SceneLayout(int tileWidth, int tileHeight) {
 		backgrounds = new ArrayList<GImage>();
+		readInData(LEVEL_PREFIX + "prototype.csv");
+		//TILE_WIDTH = tileWidth;
+		//TILE_HEIGHT = tileHeight;
 	}
 	
 	public List<List<Block>> getTerrain() {
@@ -78,7 +81,8 @@ public class SceneLayout {
 			terrain.add(new ArrayList<Block>());
 			for (int j = 0; j < data.get(i).length; j++) {
 				if (!data.get(i)[j].equals("-1")) {
-					terrain.get(i).add(new Block(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", i*TILE_WIDTH, j*TILE_HEIGHT));
+					terrain.get(i).add(new Block(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", j*TILE_HEIGHT, i*TILE_WIDTH));
+					terrain.get(i).get(j).setSize(TILE_WIDTH, TILE_HEIGHT);
 				} else {
 					terrain.get(i).add(null);
 				}
@@ -93,10 +97,10 @@ public class SceneLayout {
 	}
 	
 	
-	public static void main(String[] args) {
-		SceneLayout instance = new SceneLayout();
-		instance.readInData(LEVEL_PREFIX + "prototype.csv");
-	}
+//	public static void main(String[] args) {
+//		SceneLayout instance = new SceneLayout();
+//		instance.readInData(LEVEL_PREFIX + "prototype.csv");
+//	}
 	
 	public Direction checkCollisions(Entity character) {
 		Rectangle personRect = character.getBox();
