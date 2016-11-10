@@ -46,12 +46,13 @@ public class MenuPane extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		program.remove(background);
+		program.remove(playButton);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if(obj == background) {
+		if(obj == playButton) {
 			program.switchToGame();
 		}
 	}

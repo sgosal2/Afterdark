@@ -26,7 +26,7 @@ public class MainApplication extends GraphicsApplication {
 		menu = new MenuPane(this);
 		game = new Game(this);
 		setupInteractions();
-		switchToGame();
+		switchToMenu();
 	}
 	
 	/* Method: setupInteractions
@@ -48,7 +48,7 @@ public class MainApplication extends GraphicsApplication {
 //			case 1: audio.stopSound("sounds", "somethinlikethis.mp3"); break;
 //		}
 //		count++;
-		switchToScreen(game);
+		switchToScreen(menu);
 	}
 	
 	public void switchToGame() {
