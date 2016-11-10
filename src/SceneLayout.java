@@ -6,6 +6,7 @@
  * in terrain information from a file.
  */
 
+import java.awt.Rectangle;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -93,5 +94,33 @@ public class SceneLayout {
 	public static void main(String[] args) {
 		SceneLayout instance = new SceneLayout();
 		instance.readInData(LEVEL_PREFIX + "prototype.csv");
+	}
+	
+	public Direction checkCollisions(Entity character) {
+		Rectangle personRect = character.getBox();
+		for(List<Block> row:terrain) {
+			for (Block b:row) {
+				Direction d = b.getDirectionComingFrom(personRect);
+				if (d != Direction.NO_DIRECTION) {
+					changeCharacter(character, d);
+					//changeBlock(b);
+					return d;
+				} 
+			}
+		}
+		return Direction.NO_DIRECTION;
+	}
+	
+//	public void changeBlock(Block b) {
+//		b.setColor(Color.RED);
+//	}
+	
+	public void changeCharacter(Entity c, Direction d) {
+		if(d == Direction.NORTH || d == Direction.SOUTH) {
+			c.reflectVertically();
+		}
+		if(d == Direction.EAST || d == Direction.WEST) {
+			c.reflectHorizontally();
+		}
 	}
 }

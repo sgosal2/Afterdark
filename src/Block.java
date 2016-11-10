@@ -5,6 +5,8 @@
  * Block represents a single "tile" of terrain in a scene.
  */
 
+import java.awt.Rectangle;
+
 import acm.graphics.GImage;
 
 /**
@@ -30,5 +32,28 @@ public class Block extends GImage {
 	
 	public void setSolid(boolean isSolid) {
 		isBlockSolid = isSolid;
+	}
+	
+	public Direction getDirectionComingFrom(Rectangle character) {
+		//Rectangle myOwnBox = new Rectangle((int) getX(),(int) getY(),(int) getWidth(), (int) getHeight());
+		if(character.intersectsLine(getX(), getY(), getX()+getWidth(), getY())) {
+			System.out.println("N");
+			return Direction.NORTH;
+		}
+		if(character.intersectsLine(getX(), getY()+getHeight(), getX()+getWidth(), getY()+getHeight())) {
+			System.out.println("S");
+			return Direction.SOUTH;
+		}
+		if(character.intersectsLine(getX()+getWidth(), getY(), getX()+getWidth(), getY()+getHeight())) {
+			System.out.println("E");
+			return Direction.EAST;
+		}
+		
+		if(character.intersectsLine(getX(), getY(), getX(), getY()+getHeight())) {
+			System.out.println("W");
+			return Direction.WEST;
+		}
+		
+		return Direction.NO_DIRECTION;
 	}
 }

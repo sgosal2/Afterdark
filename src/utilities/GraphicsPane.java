@@ -1,3 +1,4 @@
+package utilities;
 /* File: GraphicsPane.java
  * -----------------------
  * Like you did with your own graphics programs, simply
