@@ -13,11 +13,9 @@ public class Game extends GraphicsPane {
 
 	public Game(MainApplication app) {
 		super(app);
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
