@@ -14,11 +14,12 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
-		player = new Entity("sprite", 64, program.WINDOW_HEIGHT - 128, 3, this);
+		player = new Entity("sprite", 64, program.WINDOW_HEIGHT - 200, 3, this);
 		System.out.print("Game ran.");
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
+		gameLoop = new Timer(50, this);
 	}
 	
 	public static final int TILE_WIDTH = 32;
@@ -40,7 +41,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void init() {
 	}
 	
-	@Override
+	//@Override
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
 		scenes = new ArrayList<Scene>();
@@ -64,6 +65,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		//System.out.println("Tick");
 		if(player.getY() + player.getHeight() < GROUND_Y) {
 //			System.out.println(sprite.getY());
 			player.fall();
@@ -85,11 +87,12 @@ public class Game extends GraphicsPane implements ActionListener {
 				}
 			}
 		}
+		gameLoop.start();
 	}
 
 	@Override
 	public void hideContents() {
 		// TODO Auto-generated method stub
-		
+		gameLoop.stop();
 	}
 }

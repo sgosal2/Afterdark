@@ -4,6 +4,8 @@ package utilities;
  * This is my second commit.
  */
 
+import javax.swing.Timer;
+
 import game.Game;
 import menus.MenuPane;
 
@@ -15,6 +17,7 @@ public class MainApplication extends GraphicsApplication {
 	private GraphicsPane menu;
 	private GraphicsPane game;
 	private int count = 0;
+	//private Timer gameLoop;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -27,6 +30,7 @@ public class MainApplication extends GraphicsApplication {
 		game = new Game(this);
 		setupInteractions();
 		switchToMenu();
+		//gameLoop = new Timer(50, this);
 	}
 	
 	/* Method: setupInteractions

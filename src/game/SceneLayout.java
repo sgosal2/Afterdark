@@ -106,11 +106,13 @@ public class SceneLayout {
 		Rectangle personRect = character.getBox();
 		for(List<Block> row:terrain) {
 			for (Block b:row) {
-				Direction d = b.getDirectionComingFrom(personRect);
-				if (d != Direction.NO_DIRECTION) {
-					changeCharacter(character, d);
-					//changeBlock(b);
-					return d;
+				if (b != null) {
+					Direction d = b.getDirectionComingFrom(personRect);
+					if (d != Direction.NO_DIRECTION) {
+						changeCharacter(character, d);
+						//changeBlock(b);
+						return d;
+					} 
 				} 
 			}
 		}

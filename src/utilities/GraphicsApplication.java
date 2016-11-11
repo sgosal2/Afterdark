@@ -53,6 +53,12 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 	 * was given to the application to a particular screen.
 	 */
 	
+	public void actionPerformed(MouseEvent e) {
+		if(curScreen != null) {
+			curScreen.mousePressed(e);
+		}
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(curScreen != null) {
