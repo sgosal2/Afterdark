@@ -49,15 +49,14 @@ public class Settings extends GraphicsPane {
 		program = app;
 		background = new GImage("images/Main Menu.png", 0, 0);
 		playButton = new GButton(WIDTH_OFFSET, PLAY_HEIGHT_OFFSET, 
-				program.WINDOW_WIDTH/PLAY_SIZE_WIDTH,
-				program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
+								program.WINDOW_WIDTH/PLAY_SIZE_WIDTH,
+								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
 		settingsButton = new GButton(WIDTH_OFFSET, SETTINGS_HEIGHT_OFFSET,
-				program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
-				program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
+								program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
+								program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
-				program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
-				program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
-
+								program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
+								program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
 	}
 
 	@Override
@@ -69,9 +68,7 @@ public class Settings extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		program.remove(background);
-		program.remove(playButton);
-		program.remove(settingsButton);
-		program.remove(controlsButton);
+	
 	}
 
 	@Override
