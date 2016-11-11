@@ -19,6 +19,8 @@ public class Block extends GImage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final int BUFFER_X = 0;
+	private static final int BUFFER_Y = 4;
 
 	private boolean isBlockSolid;
 	

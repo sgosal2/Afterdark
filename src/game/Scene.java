@@ -21,12 +21,12 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 	}
 
-	public boolean checkTerrainCollisions(Entity player) {
-		Direction direction = layout.checkCollisions(player);
-		if (direction == Direction.NO_DIRECTION)
-			return false;
-		else
-			return true;
+	public Direction checkTerrainCollisions(Entity e) {
+		return layout.checkCollisions(e);
+	}
+	
+	public Block findGround(Entity e) {
+		return layout.findGround(e);
 	}
 	
 	public List<List<Block>> getTerrain() {

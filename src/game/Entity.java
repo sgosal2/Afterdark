@@ -45,6 +45,7 @@ public class Entity {
 
 	public void move(int x, int y) {
 		img.move(x, y);
+		System.out.println("Y: " + y);
 		if(x != 0) {
 			currentStep++;
 		}
@@ -86,8 +87,9 @@ public class Entity {
 		return new Rectangle((int) img.getX(), (int) img.getY(), (int) img.getWidth(), (int) img.getHeight());
 	}
 
-	public void fall() {
+	public void fall(Scene s) {
 		move(0, (int) Math.round(dy));
+		
 		dy += GRAVITY;
 		dy = Math.min(dy, MAX_GRAVITY);
 		dy = Math.max(dy, -MAX_GRAVITY);

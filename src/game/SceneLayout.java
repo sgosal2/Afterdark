@@ -102,14 +102,14 @@ public class SceneLayout {
 //		instance.readInData(LEVEL_PREFIX + "prototype.csv");
 //	}
 	
-	public Direction checkCollisions(Entity character) {
-		Rectangle personRect = character.getBox();
+	public Direction checkCollisions(Entity e) {
+		Rectangle personRect = e.getBox();
 		for(List<Block> row:terrain) {
 			for (Block b:row) {
 				if (b != null) {
 					Direction d = b.getDirectionComingFrom(personRect);
 					if (d != Direction.NO_DIRECTION) {
-						changeCharacter(character, d);
+						changeCharacter(e, d);
 						//changeBlock(b);
 						return d;
 					} 
@@ -123,12 +123,27 @@ public class SceneLayout {
 //		b.setColor(Color.RED);
 //	}
 	
-	public void changeCharacter(Entity c, Direction d) {
+	public void changeCharacter(Entity e, Direction d) {
 		if(d == Direction.NORTH || d == Direction.SOUTH) {
-			c.reflectVertically();
+			e.reflectVertically();
 		}
 		if(d == Direction.EAST || d == Direction.WEST) {
-			c.reflectHorizontally();
+			e.reflectHorizontally();
 		}
+	}
+
+	public Block findGround(Entity e) {
+		Rectangle personRect = e.getBox();
+		for(List<Block> row:terrain) {
+			for (Block b:row) {
+				if (b != null) {
+					Direction d = b.getDirectionComingFrom(personRect);
+					if (d == Direction.NORTH) {
+						return b;
+					} 
+				} 
+			}
+		}
+		return null;
 	}
 }

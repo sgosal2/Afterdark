@@ -14,18 +14,17 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
-		player = new Entity("sprite", 64, program.WINDOW_HEIGHT - 200, 3, this);
-		System.out.print("Game ran.");
+		player = new Entity("sprite", 64, MainApplication.WINDOW_HEIGHT - 500, 3, this);
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
-		gameLoop = new Timer(50, this);
+		gameLoop = new Timer(20, this);
 	}
 	
-	public static final int TILE_WIDTH = 32;
-	public static final int TILE_HEIGHT = 32;
+	public static final int TILE_WIDTH = 16;
+	public static final int TILE_HEIGHT = 16;
 	public static final int MOVEMENT = 5;
-	public static final int GROUND_HEIGHT = 100;
+	public static final int GROUND_HEIGHT = 0;
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 	public static final int GROUND_Y = HEIGHT - GROUND_HEIGHT;
@@ -37,19 +36,6 @@ public class Game extends GraphicsPane implements ActionListener {
 	private Timer gameLoop;
 	private ArrayList<Scene> scenes;
 	private int sceneNum;
-	
-	public void init() {
-	}
-	
-	//@Override
-	public void run() {
-		player = new Entity("sprite", 0, 450, 3, this);
-		scenes = new ArrayList<Scene>();
-		gameLoop = new Timer(50, this);
-		System.out.print("Game made.");
-		sceneNum = 0;
-		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
-	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -65,12 +51,10 @@ public class Game extends GraphicsPane implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		//System.out.println("Tick");
-		if(player.getY() + player.getHeight() < GROUND_Y) {
-//			System.out.println(sprite.getY());
-			player.fall();
+		if(scenes.get(sceneNum).findGround(player) == null) {
+			player.fall(scenes.get(sceneNum));
 		}else{
-			player.setLocation((int) player.getX(), (int) (GROUND_Y - player.getHeight()));
+			//player.setLocation((int) player.getX(), (int) (player.getHeight() + scenes.get(sceneNum).findGround(player).getY() + 20));
 			player.setJumping(false);
 		}
 		scenes.get(sceneNum).checkTerrainCollisions(player);
