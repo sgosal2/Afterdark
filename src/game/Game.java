@@ -20,12 +20,6 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 	}
-
-//	public static void main(String[] args) {
-//		MainApplication p = new MainApplication();
-//		Game game = new Game(p);
-//		game.run();
-//	}
 	
 	public static final int TILE_WIDTH = 32;
 	public static final int TILE_HEIGHT = 32;
