@@ -69,7 +69,6 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 	}
 	
-	//@Override
 	public void actionPerformed(ActionEvent e) {
 		if(player.getY() + player.getHeight() < GROUND_Y) {
 //			System.out.println(sprite.getY());
