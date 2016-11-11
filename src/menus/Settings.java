@@ -47,7 +47,7 @@ public class Settings extends GraphicsPane {
 
 	public Settings(MainApplication app) {
 		program = app;
-		background = new GImage("images/Main Menu.png", 0, 0);
+		background = new GImage("images/Settings.png", 0, 0);
 		playButton = new GButton(WIDTH_OFFSET, PLAY_HEIGHT_OFFSET, 
 								program.WINDOW_WIDTH/PLAY_SIZE_WIDTH,
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
