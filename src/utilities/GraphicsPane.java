@@ -71,4 +71,8 @@ public abstract class GraphicsPane implements Interfaceable {
 		
 	}
 
+	public void run() {
+		
+	}
+
 }
