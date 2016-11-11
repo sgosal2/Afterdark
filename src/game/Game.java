@@ -20,12 +20,6 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 	}
-
-//	public static void main(String[] args) {
-//		MainApplication p = new MainApplication();
-//		Game game = new Game(p);
-//		game.run();
-//	}
 	
 	public static final int TILE_WIDTH = 32;
 	public static final int TILE_HEIGHT = 32;
@@ -46,6 +40,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void init() {
 	}
 	
+	@Override
 	public void run() {
 		player = new Entity("sprite", 0, 450, 3, this);
 		scenes = new ArrayList<Scene>();
@@ -68,7 +63,6 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 	}
 	
-	//@Override
 	public void actionPerformed(ActionEvent e) {
 		if(player.getY() + player.getHeight() < GROUND_Y) {
 //			System.out.println(sprite.getY());
