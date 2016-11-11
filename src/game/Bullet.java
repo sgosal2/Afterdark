@@ -1,5 +1,7 @@
 package game;
 import acm.graphics.*;
+import java.awt.Rectangle;
+import acm.graphics.*;
 
 public class Bullet {
 	
@@ -35,8 +37,10 @@ public class Bullet {
 		direction = d;
 	}
 	
-	private void destroy() {
-		
+	private Boolean destroy(Entity e) {
+		return true;
 	}
+	
+	
 	
 }

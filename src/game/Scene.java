@@ -8,6 +8,7 @@ public class Scene {
 
 	private SceneLayout scene;
 	private Bullet bullet;
+	private Player player;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 
@@ -21,7 +22,6 @@ public class Scene {
 	}
 
 	public boolean checkTerrainCollisions(Entity player) {
-		Rectangle rect = player.getBox();
 		Direction direction = layout.checkCollisions(player);
 		if (direction == Direction.NO_DIRECTION)
 			return false;
@@ -31,6 +31,10 @@ public class Scene {
 	
 	public List<List<Block>> getTerrain() {
 		return layout.getTerrain();
+	}
+	
+	public void removeEntity(Entity e) {
+		
 	}
 	
 }
