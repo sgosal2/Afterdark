@@ -6,8 +6,11 @@ import java.util.List;
 
 public class Scene {
 
+	private SceneLayout scene;
+	private Bullet bullet;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+
 	
 	private SceneLayout layout;
 	

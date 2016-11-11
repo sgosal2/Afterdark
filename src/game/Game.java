@@ -1,16 +1,14 @@
 package game;
-import utilities.MainApplication;
-import utilities.GraphicsPane;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import menus.*;
 import java.util.List;
-
 import javax.swing.Timer;
 
-import acm.graphics.GImage;
+import utilities.GraphicsPane;
+import utilities.MainApplication;
 
 public class Game extends GraphicsPane implements ActionListener {
 	
@@ -56,7 +54,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		sceneNum = 0;
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
