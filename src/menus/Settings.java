@@ -63,9 +63,7 @@ public class Settings extends GraphicsPane {
 	@Override
 	public void showContents() {
 		program.add(background);
-		program.add(playButton);
-		program.add(settingsButton);
-		program.add(controlsButton);
+
 	}
 
 	@Override
@@ -83,20 +81,6 @@ public class Settings extends GraphicsPane {
 			program.switchToGame();
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-//hello
 
 
 
