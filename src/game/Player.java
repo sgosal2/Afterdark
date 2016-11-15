@@ -7,5 +7,9 @@ public class Player extends Entity {
 		super(imgName, x, y, nImages, gp);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void shoot() {
+		
+	}
 
 }
