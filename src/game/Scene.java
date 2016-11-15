@@ -6,14 +6,11 @@ import java.util.List;
 
 public class Scene {
 
-	private SceneLayout scene;
+	private SceneLayout layout;
 	private Bullet bullet;
 	private Player player;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
-
-	
-	private SceneLayout layout;
 	
 	public Scene(int tileWidth, int tileHeight) {
 		TILE_WIDTH = tileWidth;
@@ -33,10 +30,16 @@ public class Scene {
 		return layout.getTerrain();
 	}
 	
+	public void addEntity(Entity e, int x, int y) {
+		
+	}
+	
 	public void removeEntity(Entity e) {
 		
 	}
 	
-	
+	public void addBullet(int x, int y) {
+		
+	}
 	
 }

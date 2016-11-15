@@ -66,7 +66,6 @@ public class Bullet implements ActionListener {
 	}
 	
 	private void move() {
-		
 		someTimer.start();
 	}
 	
