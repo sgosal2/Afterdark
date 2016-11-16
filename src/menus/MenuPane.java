@@ -72,5 +72,11 @@ public class MenuPane extends GraphicsPane {
 		if(obj == playButton) {
 			program.switchToGame();
 		}
+		if(obj == settingsButton){
+			program.switchToSettingsMenu();
+		}
+		if(obj == controlsButton){
+			program.switchToControlsMenu();
+		}
 	}
 }

@@ -8,6 +8,9 @@ import javax.swing.Timer;
 
 import game.Game;
 import menus.MenuPane;
+import menus.PauseMenu;
+import menus.Settings;
+import menus.Controls;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1024;
@@ -16,6 +19,9 @@ public class MainApplication extends GraphicsApplication {
 	//private SomePane somePane;
 	private GraphicsPane menu;
 	private GraphicsPane game;
+	private GraphicsPane pauseMenu;
+	private GraphicsPane settings;
+	private GraphicsPane controls;
 	private int count = 0;
 	//private Timer gameLoop;
 	
@@ -28,6 +34,9 @@ public class MainApplication extends GraphicsApplication {
 		//somePane = new SomePane(this);
 		menu = new MenuPane(this);
 		game = new Game(this);
+		pauseMenu = new PauseMenu(this);
+		settings = new Settings(this);
+		controls = new Controls(this);
 		setupInteractions();
 		switchToMenu();
 		//gameLoop = new Timer(50, this);
@@ -62,5 +71,17 @@ public class MainApplication extends GraphicsApplication {
 //			case 1: audio.playSound("sounds", "somethinlikethis.mp3"); break;
 //		}
 		switchToScreen(game);
+	}
+	
+	public void switchToPauseMenu(){
+		switchToScreen(pauseMenu);
+	}
+	
+	public void switchToSettingsMenu(){
+		switchToScreen(settings);
+	}
+	
+	public void switchToControlsMenu(){
+		switchToScreen(controls);
 	}
 }
