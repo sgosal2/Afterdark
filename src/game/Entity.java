@@ -19,7 +19,7 @@ public class Entity {
 	private int currentStep;
 	private int numImages;
 	private GImage img;
-	private Game window;
+	//private Game window;
 	private double dy;
 	private double dx;
 	
@@ -29,7 +29,7 @@ public class Entity {
 		numImages = nImages;
 		img = new GImage(getCorrectSprite(), x, y);
 		amIJumping = false;
-		window = gp;
+		//window = gp;
 		dy = 0;
 		dx = 0;
 		//window.add(img);
