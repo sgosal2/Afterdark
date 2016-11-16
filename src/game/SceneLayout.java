@@ -124,9 +124,14 @@ public class SceneLayout {
 //	}
 	
 	public void changeCharacter(Entity e, Direction d) {
-		if(d == Direction.NORTH || d == Direction.SOUTH) {
+		if(d == Direction.NORTH) {
+			e.setJumping(false);
+		}
+		
+		if(d == Direction.SOUTH) {
 			e.reflectVertically();
 		}
+		
 		if(d == Direction.EAST || d == Direction.WEST) {
 			e.reflectHorizontally();
 		}

@@ -54,7 +54,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(scenes.get(sceneNum).findGround(player) == null) {
 			player.fall(scenes.get(sceneNum));
 		}else{
-			//player.setLocation((int) player.getX(), (int) (player.getHeight() + scenes.get(sceneNum).findGround(player).getY() + 20));
+			player.setLocation((int) player.getX(), (int) (scenes.get(sceneNum).findGround(player).getY() - player.getHeight()));
 			player.setJumping(false);
 		}
 		scenes.get(sceneNum).checkTerrainCollisions(player);

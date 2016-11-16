@@ -20,7 +20,7 @@ public class Block extends GImage {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int BUFFER_X = 0;
-	private static final int BUFFER_Y = 4;
+	private static final int BUFFER_Y = 0;
 
 	private boolean isBlockSolid;
 	
@@ -38,8 +38,7 @@ public class Block extends GImage {
 	}
 	
 	public Direction getDirectionComingFrom(Rectangle character) {
-		//Rectangle myOwnBox = new Rectangle((int) getX(),(int) getY(),(int) getWidth(), (int) getHeight());
-		if(character.intersectsLine(getX(), getY(), getX()+getWidth(), getY())) {
+		if(character.intersectsLine(getX(), getY() + BUFFER_Y, getX()+getWidth(), getY() + BUFFER_Y)) {
 			System.out.println("N");
 			return Direction.NORTH;
 		}
