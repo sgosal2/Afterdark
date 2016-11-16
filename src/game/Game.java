@@ -14,7 +14,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
-		player = new Entity("sprite", 64, MainApplication.WINDOW_HEIGHT - 500, 3, this);
+		player = new Entity("sprite", 34, MainApplication.WINDOW_HEIGHT - 72, 3, this);
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));

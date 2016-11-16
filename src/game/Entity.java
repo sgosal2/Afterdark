@@ -90,7 +90,7 @@ public class Entity {
 	public void fall(Scene s) {
 		move(0, (int) Math.round(dy));
 		
-		dy += GRAVITY;
+		dy += FRICTION;
 		dy = Math.min(dy, MAX_GRAVITY);
 		dy = Math.max(dy, -MAX_GRAVITY);
 	}
