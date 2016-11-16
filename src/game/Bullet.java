@@ -33,27 +33,27 @@ public class Bullet implements ActionListener {
 		sprite.move(5, 0);
 	}
 	
-	private GImage getSprite() {
+	public GImage getSprite() {
 		return sprite;
 	}
 	
-	private void setSprite(GImage s) {
+	public void setSprite(GImage s) {
 		sprite = s;
 	}
 	
-	private Entity getSender() {
+	public Entity getSender() {
 		return sender;
 	}
 	
-	private void setDamage(int d) {
+	public void setDamage(int d) {
 		damage = d;
 	}
 	
-	private int getDamage() {
+	public int getDamage() {
 		return damage;
 	}
 	
-	private Direction getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 	
