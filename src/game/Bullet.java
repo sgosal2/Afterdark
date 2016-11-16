@@ -1,5 +1,6 @@
 package game;
 import acm.graphics.*;
+
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -8,6 +9,8 @@ import javax.swing.Timer;
 
 import acm.graphics.GLabel;
 import acm.program.GraphicsProgram;
+import utilities.MainApplication;
+
 import java.awt.Rectangle;
 import acm.graphics.*;
 
@@ -17,10 +20,11 @@ public class Bullet implements ActionListener {
 	private Entity sender;
 	private Direction direction;
 	private int damage;
+	private MainApplication program;
 	private static final int DAMAGE = 1;
 	private static final int SPEED = 1;
 	
-	Timer someTimer = new Timer(200, this);
+	Timer someTimer = new Timer(100, this);
 	
 	private Bullet(GImage sp, Entity se, Direction d, int dam) {
 		sprite = sp;
@@ -62,6 +66,7 @@ public class Bullet implements ActionListener {
 	}
 	
 	private Boolean destroy(Entity e) {
+		program.remove(e.getSprite());
 		return true;
 	}
 	
