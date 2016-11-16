@@ -39,13 +39,13 @@ public class MenuPane extends GraphicsPane {
 		background = new GImage("images/Main Menu.png", 0, 0);
 		playButton = new GButton(WIDTH_OFFSET, PLAY_HEIGHT_OFFSET, 
 						program.WINDOW_WIDTH/PLAY_SIZE_WIDTH,
-						program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
+						program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
 		settingsButton = new GButton(WIDTH_OFFSET, SETTINGS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
-						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
+						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
-						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, true);
+						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
 		
 		
 	}
