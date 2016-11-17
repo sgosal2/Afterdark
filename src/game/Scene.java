@@ -1,11 +1,15 @@
 package game;
 
 import java.awt.Rectangle;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import utilities.MainApplication;
+
 public class Scene {
 
+	private MainApplication program;
 	private SceneLayout layout;
 	private Bullet bullet;
 	private Player player;
@@ -31,15 +35,15 @@ public class Scene {
 	}
 	
 	public void addEntity(Entity e, int x, int y) {
-		
+		program.add(e.getSprite());
 	}
 	
 	public void removeEntity(Entity e) {
-		
+		program.remove(e.getSprite());
 	}
 	
 	public void addBullet(int x, int y) {
-		
+		program.add(bullet.getSprite());
 	}
 	
 }

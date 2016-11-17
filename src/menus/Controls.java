@@ -11,10 +11,9 @@ import utilities.MainApplication;
 public class Controls extends GraphicsPane {
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage background;
+	private GButton xButton;
 
-	
-	
-	
+ 
 	public Controls(MainApplication app) {
 		program = app;
 		background = new GImage("images/Background Control Settings.png", 0, 0);
