@@ -30,12 +30,50 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int GROUND_Y = HEIGHT - GROUND_HEIGHT;
 	public static final int BLOCK_HEIGHT = GROUND_HEIGHT/7;
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
+	private static final double VERTICAL_SCROLL_RATIO = 8;
+	private static final double HORIZONTAL_SCROLL_RATIO = 3;
 	
 	private MainApplication program;
 	private Entity player;
 	private Timer gameLoop;
 	private ArrayList<Scene> scenes;
 	private int sceneNum;
+	
+	private int leftThreshold() {
+		return MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO;
+	}
+	
+	private int rightThreshold() {
+		return MainApplication.WINDOW_WIDTH - (MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO);
+	}
+	
+	private int topThreshold() {
+		return (MainApplication.WINDOW_HEIGHT / (int) VERTICAL_SCROLL_RATIO);
+	}
+	
+	private int bottomThreshold() {
+		return MainApplication.WINDOW_HEIGHT - (MainApplication.WINDOW_HEIGHT / (int) VERTICAL_SCROLL_RATIO);
+	}
+	
+	private Direction checkForHorizontalScrolling() {
+		if (player.getX() < leftThreshold()) {
+			return Direction.WEST;
+		}
+		if (player.getX() > rightThreshold()) {
+			return Direction.EAST;
+		}
+		return Direction.NO_DIRECTION;
+	}
+	
+	private Direction checkForVerticalScrolling() {
+		if (player.getY() < topThreshold()) {
+			return Direction.NORTH;
+		}
+		if (player.getY() > bottomThreshold()) {
+			return Direction.SOUTH;
+		}
+		return Direction.NO_DIRECTION;
+	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -59,6 +97,20 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		scenes.get(sceneNum).checkTerrainCollisions(player);
 		player.walkMovement();
+		if (checkForVerticalScrolling() == Direction.NORTH) {
+			//Scroll up
+			System.out.println("Scroll up!");
+		} else if (checkForVerticalScrolling() == Direction.SOUTH) {
+			//Scroll down
+			System.out.println("Scroll down!");
+		}
+		if (checkForHorizontalScrolling() == Direction.WEST) {
+			//Scroll left
+			System.out.println("Scroll left!");
+		} else if (checkForHorizontalScrolling() == Direction.EAST) {
+			//Scroll right
+			System.out.println("Scroll right!");
+		}
 	}
 
 	@Override
