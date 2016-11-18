@@ -66,8 +66,9 @@ public class Bullet implements ActionListener {
 	}
 	
 	private Boolean destroy(Entity e) {
-		program.remove(e.getSprite());
-		return true;
+		if (sprite.getElementAt(e.getX(), e.getY()) == ) {
+			return true;
+		}
 	}
 	
 	private void move() {
