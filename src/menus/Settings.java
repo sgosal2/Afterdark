@@ -21,9 +21,15 @@ public class Settings extends GraphicsPane {
 	private boolean isMusicOn = true;
 	private boolean isSoundOn = true;
 	private GButton musicButton;
+	private GButton soundEffectsButton;
+	private GButton difficultyButton;
 	public static final double MUSIC_WIDTH_FACTOR = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR = 4.52;
 	public static final double BOX_FACTOR = 29.26;
+	public static final double SOUND_EFFECTS_WIDTH = 1.35;
+	public static final double SOUND_EFFECTS_HEIGHT = 4.52;
+	public static final double EASY_DIFF_W = 2.2;
+	public static final double EASY_DIFF_H = 3.3;
 
 
 
@@ -38,6 +44,16 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.GREEN);
+		soundEffectsButton = new GButton("X", program.WINDOW_WIDTH/SOUND_EFFECTS_WIDTH,
+								program.WINDOW_HEIGHT/SOUND_EFFECTS_HEIGHT, 
+								program.WINDOW_WIDTH/BOX_FACTOR, 
+								program.WINDOW_HEIGHT/BOX_FACTOR, 
+								Color.GREEN);
+		difficultyButton = new GButton("EASY", program.WINDOW_WIDTH/EASY_DIFF_W,
+										program.WINDOW_HEIGHT/EASY_DIFF_H, 
+										program.WINDOW_WIDTH/BOX_FACTOR,
+										program.WINDOW_HEIGHT/BOX_FACTOR,
+										Color.GREEN);
 		
 		
 		
@@ -47,6 +63,7 @@ public class Settings extends GraphicsPane {
 	public void showContents() {
 		program.add(background);
 		program.add(musicButton);
+		program.add(soundEffectsButton);
 
 	}
 
@@ -54,6 +71,7 @@ public class Settings extends GraphicsPane {
 	public void hideContents() {
 		program.remove(background);
 		program.remove(musicButton);
+		program.remove(soundEffectsButton);
 		
 	
 	}
