@@ -24,6 +24,7 @@ public class Settings extends GraphicsPane {
 	private GButton soundEffectsButton;
 	private GButton easyButton;
 	private GButton mediumButton;
+	private GButton hardButton;
 	public static final double MUSIC_WIDTH_FACTOR = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR = 4.52;
 	public static final double BOX_FACTOR = 29.26;
@@ -34,6 +35,8 @@ public class Settings extends GraphicsPane {
 	public static final double MEDIUM_DIFF_W = 1.93;
 	public static final double MEDIUM_DIFF_H = 3.35;
 	public static final double MEDIUM_BOX_FACTOR = 23;
+	public static final double HARD_DIFF_W = 1.68;
+	public static final double HARD_DIFF_H = 3.35;
 
 
 
@@ -43,7 +46,6 @@ public class Settings extends GraphicsPane {
 	public Settings(MainApplication app) {
 		program = app;
 		background = new GImage("images/Settings.png", 0, 0);
-//public GButton(String label, double x, double y, double width, double height, Color col)
 		musicButton = new GButton("X",program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR,
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR,
 								program.WINDOW_WIDTH/BOX_FACTOR,
@@ -63,9 +65,11 @@ public class Settings extends GraphicsPane {
 									program.WINDOW_WIDTH/MEDIUM_BOX_FACTOR, 
 									program.WINDOW_HEIGHT/BOX_FACTOR, 
 									Color.YELLOW);
-		
-		
-		
+		hardButton = new GButton("HARD",program.WINDOW_WIDTH/HARD_DIFF_W,
+									program.WINDOW_HEIGHT/HARD_DIFF_H,
+									program.WINDOW_WIDTH/BOX_FACTOR,
+									program.WINDOW_HEIGHT/BOX_FACTOR,
+									Color.RED);
 		
 	}
 
@@ -76,6 +80,7 @@ public class Settings extends GraphicsPane {
 		program.add(soundEffectsButton);
 		program.add(easyButton);
 		program.add(mediumButton);
+		program.add(hardButton);
 
 	}
 
@@ -86,6 +91,7 @@ public class Settings extends GraphicsPane {
 		program.remove(soundEffectsButton);
 		program.remove(easyButton);
 		program.remove(mediumButton);
+		program.remove(hardButton);
 		
 	
 	}
