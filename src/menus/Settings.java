@@ -22,14 +22,18 @@ public class Settings extends GraphicsPane {
 	private boolean isSoundOn = true;
 	private GButton musicButton;
 	private GButton soundEffectsButton;
-	private GButton difficultyButton;
+	private GButton easyButton;
+	private GButton mediumButton;
 	public static final double MUSIC_WIDTH_FACTOR = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR = 4.52;
 	public static final double BOX_FACTOR = 29.26;
 	public static final double SOUND_EFFECTS_WIDTH = 1.35;
 	public static final double SOUND_EFFECTS_HEIGHT = 4.52;
 	public static final double EASY_DIFF_W = 2.2;
-	public static final double EASY_DIFF_H = 3.3;
+	public static final double EASY_DIFF_H = 3.35;
+	public static final double MEDIUM_DIFF_W = 1.93;
+	public static final double MEDIUM_DIFF_H = 3.35;
+	public static final double MEDIUM_BOX_FACTOR = 23;
 
 
 
@@ -49,11 +53,17 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_WIDTH/BOX_FACTOR, 
 								program.WINDOW_HEIGHT/BOX_FACTOR, 
 								Color.GREEN);
-		difficultyButton = new GButton("EASY", program.WINDOW_WIDTH/EASY_DIFF_W,
-										program.WINDOW_HEIGHT/EASY_DIFF_H, 
-										program.WINDOW_WIDTH/BOX_FACTOR,
-										program.WINDOW_HEIGHT/BOX_FACTOR,
-										Color.GREEN);
+		easyButton = new GButton("EASY", program.WINDOW_WIDTH/EASY_DIFF_W,
+								program.WINDOW_HEIGHT/EASY_DIFF_H, 
+								program.WINDOW_WIDTH/BOX_FACTOR,
+								program.WINDOW_HEIGHT/BOX_FACTOR,
+								Color.GREEN);
+		mediumButton = new GButton("MEDIUM", program.WINDOW_WIDTH/MEDIUM_DIFF_W, 
+									program.WINDOW_HEIGHT/MEDIUM_DIFF_H, 
+									program.WINDOW_WIDTH/MEDIUM_BOX_FACTOR, 
+									program.WINDOW_HEIGHT/BOX_FACTOR, 
+									Color.YELLOW);
+		
 		
 		
 		
@@ -64,7 +74,8 @@ public class Settings extends GraphicsPane {
 		program.add(background);
 		program.add(musicButton);
 		program.add(soundEffectsButton);
-		program.add(difficultyButton);
+		program.add(easyButton);
+		program.add(mediumButton);
 
 	}
 
@@ -73,6 +84,8 @@ public class Settings extends GraphicsPane {
 		program.remove(background);
 		program.remove(musicButton);
 		program.remove(soundEffectsButton);
+		program.remove(easyButton);
+		program.remove(mediumButton);
 		
 	
 	}
