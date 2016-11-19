@@ -77,7 +77,6 @@ public class Settings extends GraphicsPane {
 									program.WINDOW_WIDTH/BOX_FACTOR,
 									program.WINDOW_HEIGHT/BOX_FACTOR,
 									Color.RED);
-		
 	}
 
 	@Override
@@ -89,7 +88,6 @@ public class Settings extends GraphicsPane {
 		program.add(easyButton);
 		program.add(mediumButton);
 		program.add(hardButton);
-
 	}
 
 	@Override
@@ -101,8 +99,6 @@ public class Settings extends GraphicsPane {
 		program.remove(easyButton);
 		program.remove(mediumButton);
 		program.remove(hardButton);
-		
-	
 	}
 
 	@Override
