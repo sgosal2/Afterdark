@@ -152,7 +152,7 @@ public class SceneLayout {
 		return null;
 	}
 	
-	public void horzScroll(int distance) {
+	public void horzScroll(double distance) {
 		for (List<Block> row:terrain) {
 			for (Block b: row) {
 				b.move(distance, 0);
@@ -160,7 +160,7 @@ public class SceneLayout {
 		}
 	}
 	
-	public void vertScroll(int distance) {
+	public void vertScroll(double distance) {
 		for (List<Block> row:terrain) {
 			for (Block b: row) {
 				b.move(0, distance);
