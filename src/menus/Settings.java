@@ -26,6 +26,7 @@ public class Settings extends GraphicsPane {
 	private GButton easyButton;
 	private GButton mediumButton;
 	private GButton hardButton;
+	
 	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
 	public static final double MUSIC_WIDTH_FACTOR_N = 2.06;
@@ -78,7 +79,7 @@ public class Settings extends GraphicsPane {
 									program.WINDOW_HEIGHT/BOX_FACTOR,
 									Color.RED);
 	}
-
+	
 	@Override
 	public void showContents() {
 		program.add(background);
