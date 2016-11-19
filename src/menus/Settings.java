@@ -1,6 +1,5 @@
 package menus;
 import java.awt.Color;
-
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -65,6 +64,7 @@ public class Settings extends GraphicsPane {
 		program.add(background);
 		program.add(musicButton);
 		program.add(soundEffectsButton);
+		program.add(difficultyButton);
 
 	}
 
