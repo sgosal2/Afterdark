@@ -20,13 +20,16 @@ public class Settings extends GraphicsPane {
 
 	private boolean isMusicOn = true;
 	private boolean isSoundOn = true;
-	private GButton musicButton;
+	private GButton musicButtonON;
+	private GButton musicButtonOFF;
 	private GButton soundEffectsButton;
 	private GButton easyButton;
 	private GButton mediumButton;
 	private GButton hardButton;
-	public static final double MUSIC_WIDTH_FACTOR = 2.41;
-	public static final double MUSIC_HEIGHT_FACTOR = 4.52;
+	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
+	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
+	public static final double MUSIC_WIDTH_FACTOR_N = 2.06;
+	public static final double MUSIC_HEIGHT_FACTOR_N = 4.52;
 	public static final double BOX_FACTOR = 29.26;
 	public static final double SOUND_EFFECTS_WIDTH = 1.35;
 	public static final double SOUND_EFFECTS_HEIGHT = 4.52;
@@ -46,8 +49,12 @@ public class Settings extends GraphicsPane {
 	public Settings(MainApplication app) {
 		program = app;
 		background = new GImage("images/Settings.png", 0, 0);
-		musicButton = new GButton("X",program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR,
-								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR,
+		musicButtonON = new GButton("ON",program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR_Y,
+								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_Y,
+								program.WINDOW_WIDTH/BOX_FACTOR,
+								program.WINDOW_HEIGHT/BOX_FACTOR, Color.GREEN);
+		musicButtonOFF = new GButton("OFF", program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR_N,
+								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_N,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.GREEN);
 		soundEffectsButton = new GButton("X", program.WINDOW_WIDTH/SOUND_EFFECTS_WIDTH,
@@ -76,7 +83,8 @@ public class Settings extends GraphicsPane {
 	@Override
 	public void showContents() {
 		program.add(background);
-		program.add(musicButton);
+		program.add(musicButtonON);
+		program.add(musicButtonOFF);
 		program.add(soundEffectsButton);
 		program.add(easyButton);
 		program.add(mediumButton);
@@ -87,7 +95,8 @@ public class Settings extends GraphicsPane {
 	@Override
 	public void hideContents() {
 		program.remove(background);
-		program.remove(musicButton);
+		program.remove(musicButtonON);
+		program.remove(musicButtonOFF);
 		program.remove(soundEffectsButton);
 		program.remove(easyButton);
 		program.remove(mediumButton);
