@@ -20,6 +20,10 @@ public class Settings extends GraphicsPane {
 
 	private boolean isMusicOn = true;
 	private boolean isSoundOn = true;
+	private GButton musicButton;
+	public static final double MUSIC_WIDTH_FACTOR = 2.41;
+	public static final double MUSIC_HEIGHT_FACTOR = 4.52;
+	public static final double BOX_FACTOR = 29.26;
 
 
 
@@ -29,17 +33,28 @@ public class Settings extends GraphicsPane {
 	public Settings(MainApplication app) {
 		program = app;
 		background = new GImage("images/Settings.png", 0, 0);
+//public GButton(String label, double x, double y, double width, double height, Color col)
+		musicButton = new GButton("X",program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR,
+								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR,
+								program.WINDOW_WIDTH/BOX_FACTOR,
+								program.WINDOW_HEIGHT/BOX_FACTOR, Color.GREEN);
+		
+		
+		
 	}
 
 	@Override
 	public void showContents() {
 		program.add(background);
+		program.add(musicButton);
 
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(background);
+		program.remove(musicButton);
+		
 	
 	}
 
