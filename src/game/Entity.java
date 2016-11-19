@@ -115,6 +115,14 @@ public class Entity {
 			dx = Math.min(dx, 0);
 		}
 	}
+	
+	public void horzScroll(int distance) {
+		img.move(distance, 0);
+	}
+	
+	public void vertScroll(int distance) {
+		img.move(0, distance);
+	}
 
 	public double getHeight() {
 		// TODO Auto-generated method stub

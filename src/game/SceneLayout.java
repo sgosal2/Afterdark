@@ -151,4 +151,20 @@ public class SceneLayout {
 		}
 		return null;
 	}
+	
+	public void horzScroll(int distance) {
+		for (List<Block> row:terrain) {
+			for (Block b: row) {
+				b.move(distance, 0);
+			}
+		}
+	}
+	
+	public void vertScroll(int distance) {
+		for (List<Block> row:terrain) {
+			for (Block b: row) {
+				b.move(0, distance);
+			}
+		}
+	}
 }

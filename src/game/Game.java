@@ -55,6 +55,22 @@ public class Game extends GraphicsPane implements ActionListener {
 		return MainApplication.WINDOW_HEIGHT - (MainApplication.WINDOW_HEIGHT / (int) VERTICAL_SCROLL_RATIO);
 	}
 	
+	private double amountToScroll(Direction d) {
+		if (d == Direction.WEST) {
+			return player.getX() - leftThreshold();
+		}
+		if (d == Direction.EAST) {
+			return player.getX() - rightThreshold();
+		}
+		if (d == Direction.NORTH) {
+			return player.getY() - topThreshold();
+		}
+		if (d == Direction.SOUTH) {
+			return player.getY() - bottomThreshold();
+		}
+		return 0;
+	}
+	
 	private Direction checkForHorizontalScrolling() {
 		if (player.getX() < leftThreshold()) {
 			return Direction.WEST;
@@ -77,6 +93,9 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_P) {
+			program.switchToPauseMenu();
+		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			player.walk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -98,17 +117,13 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes.get(sceneNum).checkTerrainCollisions(player);
 		player.walkMovement();
 		if (checkForVerticalScrolling() == Direction.NORTH) {
-			//Scroll up
 			System.out.println("Scroll up!");
 		} else if (checkForVerticalScrolling() == Direction.SOUTH) {
-			//Scroll down
 			System.out.println("Scroll down!");
 		}
 		if (checkForHorizontalScrolling() == Direction.WEST) {
-			//Scroll left
 			System.out.println("Scroll left!");
 		} else if (checkForHorizontalScrolling() == Direction.EAST) {
-			//Scroll right
 			System.out.println("Scroll right!");
 		}
 	}

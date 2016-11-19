@@ -13,6 +13,7 @@ public class Scene {
 	private SceneLayout layout;
 	private Bullet bullet;
 	private Player player;
+	private List<Entity> npcs;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	
@@ -46,4 +47,11 @@ public class Scene {
 		program.add(bullet.getSprite());
 	}
 	
+	public void horzScroll(int distance) {
+		
+	}
+	
+	public void vertScroll(int distance) {
+		
+	}
 }
