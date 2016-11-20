@@ -12,7 +12,7 @@ public class Scene {
 	private MainApplication program;
 	private SceneLayout layout;
 	private Bullet bullet;
-	private Player player;
+	private Entity player;
 	private List<Entity> npcs;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
@@ -21,6 +21,8 @@ public class Scene {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
+		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
+		center(player);
 	}
 
 	public void tick() {
@@ -49,23 +51,23 @@ public class Scene {
 		}
 	}
 	
-	public double amountToScroll(Direction d) {
+	private double amountToScroll(Direction d) {
 		if (d == Direction.WEST) {
-			return player.getX() - Game.leftThreshold();
+			return Game.leftThreshold() - player.getX() - 1;
 		}
 		if (d == Direction.EAST) {
-			return player.getX() - Game.rightThreshold();
+			return Game.rightThreshold() - player.getX() + 1;
 		}
 		if (d == Direction.NORTH) {
-			return player.getY() - Game.topThreshold();
+			return Game.topThreshold() - player.getY() - 1;
 		}
 		if (d == Direction.SOUTH) {
-			return player.getY() - Game.bottomThreshold();
+			return Game.bottomThreshold() - player.getY() + 1;
 		}
 		return 0;
 	}
 	
-	public Direction checkForHorizontalScrolling() {
+	private Direction checkForHorizontalScrolling() {
 		if (player.getX() < Game.leftThreshold()) {
 			return Direction.WEST;
 		}
@@ -75,7 +77,7 @@ public class Scene {
 		return Direction.NO_DIRECTION;
 	}
 	
-	public Direction checkForVerticalScrolling() {
+	private Direction checkForVerticalScrolling() {
 		if (player.getY() < Game.topThreshold()) {
 			return Direction.NORTH;
 		}
@@ -110,11 +112,20 @@ public class Scene {
 	}
 	
 	public void horzScroll(double distance) {
+		player.horzScroll(distance);
 		layout.horzScroll(distance);
 	}
 	
 	public void vertScroll(double distance) {
+		player.vertScroll(distance);
 		layout.vertScroll(distance);
+	}
+	
+	public void center(Entity focus) {
+		double xShift = focus.horzCenterDifference();
+		double yShift = focus.vertCenterDifference();
+		horzScroll(xShift);
+		vertScroll(yShift);
 	}
 	
 	public void playerWalk(Direction d) {
@@ -127,5 +138,9 @@ public class Scene {
 	
 	public void playerJump() {
 		player.jump();
+	}
+
+	public Entity getPlayer() {
+		return player;
 	}
 }

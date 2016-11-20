@@ -35,8 +35,6 @@ public class SceneLayout {
 	public SceneLayout(int tileWidth, int tileHeight) {
 		backgrounds = new ArrayList<GImage>();
 		readInData(LEVEL_PREFIX + "prototype.csv");
-		//TILE_WIDTH = tileWidth;
-		//TILE_HEIGHT = tileHeight;
 	}
 	
 	public List<List<Block>> getTerrain() {
@@ -51,7 +49,7 @@ public class SceneLayout {
 		this.backgrounds = backgrounds;
 	}
 
-	public boolean readInData(String path) {
+	private boolean readInData(String path) {
 		List<String[]> data = new ArrayList<String[]>();
 		String line = "";
 		String cvsSplitBy = ",";
@@ -155,7 +153,9 @@ public class SceneLayout {
 	public void horzScroll(double distance) {
 		for (List<Block> row:terrain) {
 			for (Block b: row) {
-				b.move(distance, 0);
+				if (b != null) {
+					b.move(distance, 0);
+				}
 			}
 		}
 	}
@@ -163,7 +163,9 @@ public class SceneLayout {
 	public void vertScroll(double distance) {
 		for (List<Block> row:terrain) {
 			for (Block b: row) {
-				b.move(0, distance);
+				if (b != null) {
+					b.move(0, distance);
+				}
 			}
 		}
 	}
