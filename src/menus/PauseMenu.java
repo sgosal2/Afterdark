@@ -22,16 +22,16 @@ public class PauseMenu extends GraphicsPane {
 	public static final double RG_HEIGHT = 19.2;
 	
 	public static final double EM_HEIGHT_OFFSET = 5.7;
-	public static final double EM_WIDTH = 4.85;
+	public static final double EM_WIDTH = 4.4;
 	public static final double EM_HEIGHT = 19.2;
 	
 	public static final double EG_HEIGHT_OFFSET = 4.3;
 	public static final double EG_WIDTH = 5.4;
 	public static final double EG_HEIGHT = 19.2;
 	
-	public static final double C_HEIGHT_OFFSET = 3.41;
-	public static final double C_WIDTH = 3.41;
-	public static final double C_HEIGHT = 19.2;
+	public static final double C_HEIGHT_OFFSET = 3.4;
+	public static final double C_WIDTH = 6.61;
+	public static final double C_HEIGHT = 25;
 	
 	public PauseMenu(MainApplication app) {
 		program = app;
