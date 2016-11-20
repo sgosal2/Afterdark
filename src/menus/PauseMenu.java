@@ -21,6 +21,13 @@ public class PauseMenu extends GraphicsPane {
 	public static final double RG_WIDTH = 3.9;
 	public static final double RG_HEIGHT = 19.2;
 	
+	public static final double EM_HEIGHT_OFFSET = 5.7;
+	public static final double EM_WIDTH = 4.85;
+	public static final double EM_HEIGHT = 19.2;
+	
+	public static final double EG_HEIGHT_OFFSET = 4.3;
+	
+	
 	public PauseMenu(MainApplication app) {
 		program = app;
 		background = new GImage("Pause.png", 0, 0);
@@ -28,17 +35,27 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_HEIGHT/RG_HEIGHT_OFFSET,
 				program.WINDOW_WIDTH/RG_WIDTH, 
 				program.WINDOW_HEIGHT/RG_HEIGHT, true);
+		exitToMenuButton = new GButton(program.WINDOW_WIDTH/WIDTH_OFFSET, 
+				program.WINDOW_HEIGHT/EM_HEIGHT_OFFSET, 
+				program.WINDOW_WIDTH/EM_WIDTH, 
+				program.WINDOW_HEIGHT/EM_HEIGHT, true);
+//		exitGameButton = new GButton(program.WINDOW_WIDTH/WIDTH_OFFSET, 
+//				program.WINDOW_HEIGHT/EG_HEIGHT_OFFSET, 
+//				width, 
+//				height, visible)
 		
 	}
 	
 	public void showContents() {
 		program.add(background);
 		program.add(resumeButton);
+		program.add(exitToMenuButton);
 	}
 
 	public void hideContents() {
 		program.remove(background);
 		program.remove(resumeButton);
+		program.remove(exitToMenuButton);
 	}
 
 	public void mousePressed(MouseEvent e) {
