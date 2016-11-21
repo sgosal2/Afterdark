@@ -21,25 +21,49 @@ public class Controls extends GraphicsPane {
 	private final double X_YCORD = program.WINDOW_HEIGHT/X_YCORD_FACTOR;
 	private final double X_SIZEX = program.WINDOW_WIDTH/X_WIDTH_FACTOR;
 	private final double X_SIZEY = program.WINDOW_HEIGHT/X_HEIGHT_FACTOR;
-
-
+	
+	private GButton leftKeyButton;
+	private GButton rightKeyButton;
+	private GButton jumpKeyButton;
+	private GButton attackKeyButton;
+	private GButton pauseKeyButton;
+	
+	private static final double BUTTON_WIDTH_FACTOR = 5.54;
+	private static final double BUTTON_HEIGHT_FACTOR = 17.07;
+	private static final double BUTTON_XCORD_FACTOR = 2.84;
+	private static final double BUTTON_YCORD_FACTOR = 3.01;
+	private final double BUTTON_XCORD= program.WINDOW_WIDTH/BUTTON_XCORD_FACTOR;
+	private final double BUTTON_YCORD = program.WINDOW_HEIGHT/BUTTON_YCORD_FACTOR;
+	private final double BUTTON_SIZEX = program.WINDOW_WIDTH/BUTTON_WIDTH_FACTOR;
+	private final double BUTTON_SIZEY = program.WINDOW_HEIGHT/BUTTON_HEIGHT_FACTOR;
+	
+//	private final String moveLeftKey;
+//	private final String moveRightKey;
+//	private final String jumpKey;
+//	private final String attackKey;
+//	private final String pauseKey;
+	
  
 	public Controls(MainApplication app) {
 		program = app;
 		background = new GImage("images/Background Control Settings.png", 0, 0);
 		xButton = new GButton(X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
+		leftKeyButton = new GButton(BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, false);
+		
 	}
 	
 	@Override
 	public void showContents() {
 		program.add(background);
 		program.add(xButton);
+		program.add(leftKeyButton);
 	}
 
 	@Override
 	public void hideContents() {
 		program.remove(background);
-		program.add(xButton);
+		program.remove(xButton);
+		program.remove(leftKeyButton);
 	}
 
 	@Override
@@ -49,4 +73,9 @@ public class Controls extends GraphicsPane {
 			program.switchToMenu();
 		}
 	}
+	
+	
+	
+	
+	
 }
