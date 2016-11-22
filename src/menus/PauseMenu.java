@@ -107,6 +107,7 @@ public class PauseMenu extends GraphicsPane {
 		program.remove(musicButtonOFF);
 		program.remove(soundEffectsON);
 		program.remove(soundEffectsOFF);
+		
 	}
 
 	public void mousePressed(MouseEvent e) {
