@@ -27,6 +27,7 @@ public class Settings extends GraphicsPane {
 	private GButton easyButton;
 	private GButton mediumButton;
 	private GButton hardButton;
+	private GButton controlsButton;
 	
 	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
@@ -44,6 +45,11 @@ public class Settings extends GraphicsPane {
 	public static final double MEDIUM_BOX_FACTOR = 23;
 	public static final double HARD_DIFF_W = 1.68;
 	public static final double HARD_DIFF_H = 3.35;
+	public static final double CONTROLS_X_FACTOR = 25.6;
+	public static final double CONTROLS_Y_FACTOR = 5.5;
+	private static final double OTHER_SIZE_HEIGHT = 19.2;
+	private static final double OTHER_SIZE_WIDTH = 4.57;
+	
 
 
 
@@ -77,15 +83,19 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/BOX_FACTOR,
 								Color.DARK_GRAY);
 		mediumButton = new GButton("MEDIUM", program.WINDOW_WIDTH/MEDIUM_DIFF_W, 
-									program.WINDOW_HEIGHT/MEDIUM_DIFF_H, 
-									program.WINDOW_WIDTH/MEDIUM_BOX_FACTOR, 
-									program.WINDOW_HEIGHT/BOX_FACTOR, 
-									Color.DARK_GRAY);
+								program.WINDOW_HEIGHT/MEDIUM_DIFF_H, 
+								program.WINDOW_WIDTH/MEDIUM_BOX_FACTOR, 
+								program.WINDOW_HEIGHT/BOX_FACTOR, 
+								Color.DARK_GRAY);
 		hardButton = new GButton("HARD",program.WINDOW_WIDTH/HARD_DIFF_W,
-									program.WINDOW_HEIGHT/HARD_DIFF_H,
-									program.WINDOW_WIDTH/BOX_FACTOR,
-									program.WINDOW_HEIGHT/BOX_FACTOR,
-									Color.DARK_GRAY);
+								program.WINDOW_HEIGHT/HARD_DIFF_H,
+								program.WINDOW_WIDTH/BOX_FACTOR,
+								program.WINDOW_HEIGHT/BOX_FACTOR,
+								Color.DARK_GRAY);
+		controlsButton = new GButton(program.WINDOW_WIDTH/CONTROLS_X_FACTOR, 
+								program.WINDOW_HEIGHT/CONTROLS_Y_FACTOR, 
+								program.WINDOW_WIDTH/OTHER_SIZE_WIDTH, 
+								program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
 	}
 	
 	@Override
@@ -98,6 +108,7 @@ public class Settings extends GraphicsPane {
 		program.add(easyButton);
 		program.add(mediumButton);
 		program.add(hardButton);
+		program.add(controlsButton);
 	}
 
 	@Override
@@ -110,11 +121,15 @@ public class Settings extends GraphicsPane {
 		program.remove(easyButton);
 		program.remove(mediumButton);
 		program.remove(hardButton);
+		program.remove(controlsButton);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
+		if(obj == controlsButton){
+			program.switchToControlsMenu();
+		}
 	}
 
 
