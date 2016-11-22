@@ -2,9 +2,11 @@ package game;
 
 import java.awt.Rectangle;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
+import acm.graphics.GImage;
 import utilities.MainApplication;
 
 public class Scene {
@@ -16,6 +18,7 @@ public class Scene {
 	private List<Entity> npcs;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	public Scene(int tileWidth, int tileHeight) {
 		TILE_WIDTH = tileWidth;
@@ -23,6 +26,7 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
+		bullet = new Bullet(SPRITE_PREFIX + "robot head.png", player, Direction.EAST, 5);
 	}
 
 	public void tick() {
@@ -107,8 +111,10 @@ public class Scene {
 		program.remove(e.getSprite());
 	}
 	
-	public void addBullet(int x, int y) {
-		program.add(bullet.getSprite());
+	public void addBullet(double d, double e) {
+		GImage b = bullet.getSprite();
+		program.add(b);
+		b.setLocation(d, e);
 	}
 	
 	public void horzScroll(double distance) {
@@ -142,5 +148,9 @@ public class Scene {
 
 	public Entity getPlayer() {
 		return player;
+	}
+	
+	public Bullet getBullet() {
+		return bullet;
 	}
 }

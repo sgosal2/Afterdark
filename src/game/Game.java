@@ -70,6 +70,8 @@ public class Game extends GraphicsPane implements ActionListener {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
+		}else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			curScene.addBullet(curScene.getPlayer().getX(), curScene.getPlayer().getY());
 		}
 	}
 	

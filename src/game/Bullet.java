@@ -23,11 +23,12 @@ public class Bullet implements ActionListener {
 	private MainApplication program;
 	private static final int DAMAGE = 1;
 	private static final int SPEED = 1;
+	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	Timer someTimer = new Timer(100, this);
 	
-	private Bullet(GImage sp, Entity se, Direction d, int dam) {
-		sprite = sp;
+	private Bullet(String imageName, Entity se, Direction d, int dam) {
+		
 		sender = se;
 		direction = d;
 		damage = dam;
@@ -65,11 +66,12 @@ public class Bullet implements ActionListener {
 		direction = d;
 	}
 	
-	private Boolean destroy(Entity e) {
+/*	private Boolean destroy(Entity e) {
 		if (sprite.getElementAt(e.getX(), e.getY()) == ) {
 			return true;
 		}
 	}
+*/
 	
 	private void move() {
 		someTimer.start();
