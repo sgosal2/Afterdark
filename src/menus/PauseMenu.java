@@ -20,6 +20,7 @@ public class PauseMenu extends GraphicsPane {
 	private GButton musicButtonOFF;
 	private GButton soundEffectsON;
 	private GButton soundEffectsOFF;
+	private GButton XButton;
 	
 	public static final double WIDTH_OFFSET = 51.2;
 	public static final double RG_HEIGHT_OFFSET = 8.53;
@@ -46,6 +47,11 @@ public class PauseMenu extends GraphicsPane {
 	public static final double SOUND_BUTTON_WIDTH_ON = 2.3;
 	public static final double SOUND_BUTTON_WIDTH_OFF = 2.1;
 	public static final double SOUND_BUTTON_HEIGHT = 2.4;
+	
+	public static final double X_BUTTON_WIDTH = 1.075;
+	public static final double X_BUTTON_HEIGHT = 47.5;
+	public static final double X_BUTTON_BOX_WIDTH = 21;
+	public static final double X_BUTTON_BOX_HEIGHT = 17;
 	
 	
 	public PauseMenu(MainApplication app) {
@@ -83,6 +89,10 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_HEIGHT/SOUND_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/BOX_FACTOR, 
 				program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
+		XButton = new GButton(program.WINDOW_WIDTH/X_BUTTON_WIDTH,
+				program.WINDOW_HEIGHT/X_BUTTON_HEIGHT, 
+				program.WINDOW_WIDTH/X_BUTTON_BOX_WIDTH, 
+				program.WINDOW_HEIGHT/X_BUTTON_BOX_HEIGHT, false);
 	}
 	
 	public void showContents() {
@@ -95,6 +105,7 @@ public class PauseMenu extends GraphicsPane {
 		program.add(musicButtonOFF);
 		program.add(soundEffectsON);
 		program.add(soundEffectsOFF);
+		program.add(XButton);
 	}
 
 	public void hideContents() {
@@ -107,7 +118,7 @@ public class PauseMenu extends GraphicsPane {
 		program.remove(musicButtonOFF);
 		program.remove(soundEffectsON);
 		program.remove(soundEffectsOFF);
-		
+		program.remove(XButton);
 	}
 
 	public void mousePressed(MouseEvent e) {
