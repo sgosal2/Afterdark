@@ -105,7 +105,7 @@ public class Settings extends GraphicsPane {
 		playButton = new GButton(program.WINDOW_WIDTH/WIDTH_FACTOR, 
 				program.WINDOW_HEIGHT/PLAY_HEIGHT_FACTOR, 
 				program.WINDOW_WIDTH/PLAY_SIZE_WIDTH, 
-				program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
+				program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
 	}
 	
 	@Override
