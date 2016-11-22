@@ -12,6 +12,7 @@ import utilities.MainApplication;
 
 // Settings class
 
+
 /*
  * Settings will hold our settings for if the game sound is on or off as well as the music. 
  * Volume will be up to the hardware of the device the user is playing on.
