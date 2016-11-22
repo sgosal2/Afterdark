@@ -34,7 +34,7 @@ public class SceneLayout {
 	
 	public SceneLayout(int tileWidth, int tileHeight) {
 		backgrounds = new ArrayList<GImage>();
-		readInData(LEVEL_PREFIX + "prototype.csv");
+		readInData(LEVEL_PREFIX + "prototype1.csv");
 	}
 	
 	public List<List<Block>> getTerrain() {
