@@ -60,6 +60,8 @@ public class Settings extends GraphicsPane {
 	private static final double PLAY_SIZE_WIDTH = 4.68;
 	private static final double PLAY_SIZE_HEIGHT = 10.97;
 	
+	
+	
 	private static final double X_WIDTH_FACTOR = 34.13;
 	private static final double X_HEIGHT_FACTOR = 25.6;
 	private static final double X_XCORD_FACTOR = 1.29;
