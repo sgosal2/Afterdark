@@ -18,6 +18,8 @@ import utilities.MainApplication;
  */
 public class Settings extends GraphicsPane {
 
+	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
+
 	private boolean isMusicOn = true;
 	private boolean isSoundOn = true;
 	private GButton musicButtonON;
@@ -29,6 +31,7 @@ public class Settings extends GraphicsPane {
 	private GButton hardButton;
 	private GButton controlsButton;
 	private GButton playButton;
+	private GButton xButton;
 	
 	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
@@ -56,10 +59,15 @@ public class Settings extends GraphicsPane {
 	private static final double PLAY_SIZE_WIDTH = 4.68;
 	private static final double PLAY_SIZE_HEIGHT = 10.97;
 	
+	private static final double X_WIDTH_FACTOR = 34.13;
+	private static final double X_HEIGHT_FACTOR = 25.6;
+	private static final double X_XCORD_FACTOR = 1.29;
+	private static final double X_YCORD_FACTOR = 5.37;
+	private final double X_XCORD= program.WINDOW_WIDTH/X_XCORD_FACTOR;
+	private final double X_YCORD = program.WINDOW_HEIGHT/X_YCORD_FACTOR;
+	private final double X_SIZEX = program.WINDOW_WIDTH/X_WIDTH_FACTOR;
+	private final double X_SIZEY = program.WINDOW_HEIGHT/X_HEIGHT_FACTOR;
 
-
-
-	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage background;
 
 	public Settings(MainApplication app) {
@@ -106,6 +114,8 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/PLAY_HEIGHT_FACTOR, 
 								program.WINDOW_WIDTH/PLAY_SIZE_WIDTH, 
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
+		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY);
+
 	}
 	
 	@Override
@@ -120,6 +130,7 @@ public class Settings extends GraphicsPane {
 		program.add(hardButton);
 		program.add(controlsButton);
 		program.add(playButton);	
+		program.add(xButton);
 	}
 
 	@Override
@@ -134,6 +145,7 @@ public class Settings extends GraphicsPane {
 		program.remove(hardButton);
 		program.remove(controlsButton);
 		program.remove(playButton);
+		program.remove(xButton);
 	}
 
 	@Override
@@ -143,6 +155,9 @@ public class Settings extends GraphicsPane {
 			program.switchToControlsMenu();
 		}
 		if(obj == playButton){
+			program.switchToGame();
+		}
+		if(obj == xButton){
 			program.switchToGame();
 		}
 	}
