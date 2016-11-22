@@ -27,6 +27,7 @@ public class GButton extends GCompound {
 		rect.setFillColor(col);
 		add(rect);
 		message = new GLabel(label);
+		message.setColor(Color.WHITE);
 		sizeLabelFont(message, width-BUFFER, height-BUFFER);
 		double centerX = width/2 - message.getWidth()/2;
 		double centerY = height/2 + message.getAscent()/4;
