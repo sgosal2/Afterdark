@@ -35,12 +35,13 @@ public class GButton extends GCompound {
 	}
 	
 	//For the buttons with text on them. 
-	public GButton(String label, double x, double y, double width, double height) {
+	public GButton(String label, double x, double y, double width, double height, boolean visible) {
 		setLocation(x, y);
 		rect = new GRoundRect(0, 0, width, height);
 		rect.setFilled(false);
 		add(rect);
 		message = new GLabel(label);
+		rect.setVisible(visible);
 		sizeLabelFont(message, width-BUFFER, height-BUFFER);
 		message.setColor(Color.WHITE);
 		double centerX = width/2 - message.getWidth()/2;

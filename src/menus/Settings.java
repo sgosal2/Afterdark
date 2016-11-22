@@ -114,7 +114,7 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/PLAY_HEIGHT_FACTOR, 
 								program.WINDOW_WIDTH/PLAY_SIZE_WIDTH, 
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
-		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY);
+		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
 
 	}
 	
@@ -158,7 +158,7 @@ public class Settings extends GraphicsPane {
 			program.switchToGame();
 		}
 		if(obj == xButton){
-			program.switchToGame();
+			program.switchToMenu();
 		}
 	}
 

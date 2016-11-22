@@ -49,11 +49,11 @@ public class Controls extends GraphicsPane {
 		program = app;
 		background = new GImage("images/Background Control Settings.png", 0, 0);
 		xButton = new GButton(X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
-		leftKeyButton = new GButton("left arrow", BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY);
-		rightKeyButton = new GButton("right arrow", BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY);
-		jumpKeyButton = new GButton("spacebar", BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY);
-		attackKeyButton = new GButton("enter", BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY);
-		pauseKeyButton = new GButton("p", BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY);
+		leftKeyButton = new GButton("left arrow", BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
+		rightKeyButton = new GButton("right arrow", BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		jumpKeyButton = new GButton("spacebar", BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		attackKeyButton = new GButton("enter", BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		pauseKeyButton = new GButton("p", BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 
 		
 	}
