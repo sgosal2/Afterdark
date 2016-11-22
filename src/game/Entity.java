@@ -18,21 +18,19 @@ public class Entity {
 	private boolean amIJumping;
 	private int currentStep;
 	private int numImages;
-	private GImage img;
+	private GImage sprite;
 	//private Game window;
 	private double dy;
 	private double dx;
 	
-	public Entity(String imgName, int x, int y, int nImages, Game gp) {
-		imageName = imgName;
+	public Entity(String sprite, int startX, int startY, int imagesInAnimation) {
+		imageName = sprite;
 		currentStep = 0;
-		numImages = nImages;
-		img = new GImage(getCorrectSprite(), x, y);
+		numImages = imagesInAnimation;
+		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		amIJumping = false;
-		//window = gp;
 		dy = 0;
 		dx = 0;
-		//window.add(img);
 	}
 	
 	public boolean amIJumping() {
@@ -44,12 +42,12 @@ public class Entity {
 	}
 
 	public void move(int x, int y) {
-		img.move(x, y);
+		sprite.move(x, y);
 		System.out.println("Y: " + y);
 		if(x != 0) {
 			currentStep++;
 		}
-		img.setImage(getCorrectSprite());
+		sprite.setImage(getCorrectSprite());
 	}
 	
 	private String getCorrectSprite() {
@@ -72,19 +70,19 @@ public class Entity {
 	}
 	
 	public void setLocation(int x, int y) {
-		img.setLocation(x, y);
+		sprite.setLocation(x, y);
 	}
 	
 	public double getX() {
-		return img.getX();
+		return sprite.getX();
 	}
 	
 	public double getY() {
-		return img.getY();
+		return sprite.getY();
 	}
 	
 	public Rectangle getBox() {
-		return new Rectangle((int) img.getX(), (int) img.getY(), (int) img.getWidth(), (int) img.getHeight());
+		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
 	}
 
 	public void fall(Scene s) {
@@ -115,13 +113,29 @@ public class Entity {
 			dx = Math.min(dx, 0);
 		}
 	}
+	
+	public double horzCenterDifference() {
+		return Game.horzCenter() - getX();
+	}
+	
+	public double vertCenterDifference() {
+		return Game.vertCenter() - getY();
+	}
+	
+	public void horzScroll(double distance) {
+		sprite.move(distance, 0);
+	}
+	
+	public void vertScroll(double distance) {
+		sprite.move(0, distance);
+	}
 
 	public double getHeight() {
 		// TODO Auto-generated method stub
-		return img.getHeight();
+		return sprite.getHeight();
 	}
 	
 	public GImage getSprite() {
-		return img;
+		return sprite;
 	}
 }

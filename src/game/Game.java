@@ -14,7 +14,6 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public Game(MainApplication app) {
 		this.program = app;
-		player = new Entity("sprite", 34, MainApplication.WINDOW_HEIGHT - 72, 3, this);
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
@@ -34,89 +33,56 @@ public class Game extends GraphicsPane implements ActionListener {
 	private static final double HORIZONTAL_SCROLL_RATIO = 3;
 	
 	private MainApplication program;
-	private Entity player;
 	private Timer gameLoop;
 	private ArrayList<Scene> scenes;
 	private int sceneNum;
 	
-	private int leftThreshold() {
+	static int leftThreshold() {
 		return MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO;
 	}
-	
-	private int rightThreshold() {
+	static int rightThreshold() {
 		return MainApplication.WINDOW_WIDTH - (MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO);
 	}
-	
-	private int topThreshold() {
+	static int topThreshold() {
 		return (MainApplication.WINDOW_HEIGHT / (int) VERTICAL_SCROLL_RATIO);
 	}
-	
-	private int bottomThreshold() {
+	static int bottomThreshold() {
 		return MainApplication.WINDOW_HEIGHT - (MainApplication.WINDOW_HEIGHT / (int) VERTICAL_SCROLL_RATIO);
 	}
-	
-	private Direction checkForHorizontalScrolling() {
-		if (player.getX() < leftThreshold()) {
-			return Direction.WEST;
-		}
-		if (player.getX() > rightThreshold()) {
-			return Direction.EAST;
-		}
-		return Direction.NO_DIRECTION;
+	static int horzCenter() {
+		return MainApplication.WINDOW_WIDTH / 2;
 	}
-	
-	private Direction checkForVerticalScrolling() {
-		if (player.getY() < topThreshold()) {
-			return Direction.NORTH;
-		}
-		if (player.getY() > bottomThreshold()) {
-			return Direction.SOUTH;
-		}
-		return Direction.NO_DIRECTION;
+	static int vertCenter() {
+		return MainApplication.WINDOW_HEIGHT / 2;
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
+		Scene curScene = scenes.get(sceneNum);
+		if(e.getKeyCode() == KeyEvent.VK_P) {
+			program.switchToPauseMenu();
+		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.walk(Direction.EAST);
+			curScene.playerWalk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.walk(Direction.WEST);
+			curScene.playerWalk(Direction.WEST);
 		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if(!player.amIJumping()) {
-				player.jump();
+			if(!curScene.isPlayerJumping()) {
+				curScene.playerJump();
 			}
 		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(scenes.get(sceneNum).findGround(player) == null) {
-			player.fall(scenes.get(sceneNum));
-		}else{
-			player.setLocation((int) player.getX(), (int) (scenes.get(sceneNum).findGround(player).getY() - player.getHeight()));
-			player.setJumping(false);
-		}
-		scenes.get(sceneNum).checkTerrainCollisions(player);
-		player.walkMovement();
-		if (checkForVerticalScrolling() == Direction.NORTH) {
-			//Scroll up
-			System.out.println("Scroll up!");
-		} else if (checkForVerticalScrolling() == Direction.SOUTH) {
-			//Scroll down
-			System.out.println("Scroll down!");
-		}
-		if (checkForHorizontalScrolling() == Direction.WEST) {
-			//Scroll left
-			System.out.println("Scroll left!");
-		} else if (checkForHorizontalScrolling() == Direction.EAST) {
-			//Scroll right
-			System.out.println("Scroll right!");
-		}
+		Scene curScene = scenes.get(sceneNum);
+		curScene.tick();
 	}
 
 	@Override
 	public void showContents() {
-		program.add(player.getSprite());
-		for (List<Block> row: scenes.get(0).getTerrain()) {
+		Scene curScene = scenes.get(sceneNum);
+		program.add(curScene.getPlayer().getSprite());
+		for (List<Block> row: curScene.getTerrain()) {
 			for (Block b: row) {
 				if (b != null) {
 					program.add(b);
@@ -128,7 +94,7 @@ public class Game extends GraphicsPane implements ActionListener {
 
 	@Override
 	public void hideContents() {
-		// TODO Auto-generated method stub
+		program.removeAll();
 		gameLoop.stop();
 	}
 }
