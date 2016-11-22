@@ -17,10 +17,6 @@ public class GButton extends GCompound {
 	
 	public static final int BUFFER = 20;
 	
-	public GButton(String label, double x, double y, double width, double height) {
-		this(label, x, y, width, height, Color.white);
-	}
-	
 	public GButton(String label, double x, double y, double width, double height, int r, int g, int b) {
 	}
 	
@@ -32,6 +28,20 @@ public class GButton extends GCompound {
 		add(rect);
 		message = new GLabel(label);
 		sizeLabelFont(message, width-BUFFER, height-BUFFER);
+		double centerX = width/2 - message.getWidth()/2;
+		double centerY = height/2 + message.getAscent()/4;
+		add(message, centerX, centerY);
+	}
+	
+	//For the buttons with text on them. 
+	public GButton(String label, double x, double y, double width, double height) {
+		setLocation(x, y);
+		rect = new GRoundRect(0, 0, width, height);
+		rect.setFilled(false);
+		add(rect);
+		message = new GLabel(label);
+		sizeLabelFont(message, width-BUFFER, height-BUFFER);
+		message.setColor(Color.WHITE);
 		double centerX = width/2 - message.getWidth()/2;
 		double centerY = height/2 + message.getAscent()/4;
 		add(message, centerX, centerY);
