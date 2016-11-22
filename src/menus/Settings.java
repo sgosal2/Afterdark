@@ -28,6 +28,7 @@ public class Settings extends GraphicsPane {
 	private GButton mediumButton;
 	private GButton hardButton;
 	private GButton controlsButton;
+	private GButton playButton;
 	
 	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
@@ -49,6 +50,11 @@ public class Settings extends GraphicsPane {
 	public static final double CONTROLS_Y_FACTOR = 5.5;
 	private static final double OTHER_SIZE_HEIGHT = 19.2;
 	private static final double OTHER_SIZE_WIDTH = 4.57;
+	
+	private static final double WIDTH_FACTOR = 25.6;
+	private static final double PLAY_HEIGHT_FACTOR = 24;
+	private static final double PLAY_SIZE_WIDTH = 4.68;
+	private static final double PLAY_SIZE_HEIGHT = 10.97;
 	
 
 
@@ -96,6 +102,10 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/CONTROLS_Y_FACTOR, 
 								program.WINDOW_WIDTH/OTHER_SIZE_WIDTH, 
 								program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
+		playButton = new GButton(program.WINDOW_WIDTH/WIDTH_FACTOR, 
+				program.WINDOW_HEIGHT/PLAY_HEIGHT_FACTOR, 
+				program.WINDOW_WIDTH/PLAY_SIZE_WIDTH, 
+				program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, true);
 	}
 	
 	@Override
@@ -109,6 +119,7 @@ public class Settings extends GraphicsPane {
 		program.add(mediumButton);
 		program.add(hardButton);
 		program.add(controlsButton);
+		program.add(playButton);	
 	}
 
 	@Override
@@ -122,6 +133,7 @@ public class Settings extends GraphicsPane {
 		program.remove(mediumButton);
 		program.remove(hardButton);
 		program.remove(controlsButton);
+		program.remove(playButton);
 	}
 
 	@Override
@@ -129,6 +141,9 @@ public class Settings extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == controlsButton){
 			program.switchToControlsMenu();
+		}
+		if(obj == playButton){
+			program.switchToGame();
 		}
 	}
 
