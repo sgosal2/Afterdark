@@ -130,7 +130,11 @@ public class PauseMenu extends GraphicsPane {
 			program.switchToMenu();
 		}
 		if(obj == controlsButton){
-			program.switchToControlsMenu();
+			program.switchToPauseControlsMenu();
+		}
+		
+		if(obj == exitGameButton){
+			System.exit(0);
 		}
 	}
 }

@@ -9,6 +9,7 @@ import menus.MenuPane;
 import menus.PauseMenu;
 import menus.Settings;
 import menus.Controls;
+import menus.pauseControlsMenu;
 
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 1024;
@@ -19,6 +20,7 @@ public class MainApplication extends GraphicsApplication {
 	private GraphicsPane pauseMenu;
 	private GraphicsPane settings;
 	private GraphicsPane controls;
+	private GraphicsPane pauseControls;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -30,6 +32,7 @@ public class MainApplication extends GraphicsApplication {
 		pauseMenu = new PauseMenu(this);
 		settings = new Settings(this);
 		controls = new Controls(this);
+		pauseControls = new pauseControlsMenu(this);
 		setupInteractions();
 		switchToMenu();
 	}
@@ -64,5 +67,9 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void switchToControlsMenu(){
 		switchToScreen(controls);
+	}
+	
+	public void switchToPauseControlsMenu(){
+		switchToScreen(pauseControls);
 	}
 }
