@@ -8,6 +8,8 @@ import acm.graphics.GObject;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
+import java.util.Scanner;
+
 
 public class Controls extends GraphicsPane {
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
@@ -38,6 +40,9 @@ public class Controls extends GraphicsPane {
 	private final double BUTTON_SIZEX = program.WINDOW_WIDTH/BUTTON_WIDTH_FACTOR;
 	private final double BUTTON_SIZEY = program.WINDOW_HEIGHT/BUTTON_HEIGHT_FACTOR;
 	private static final double NEXT_BUTTON_OFFSET = 62;
+	
+	private String userInput;
+	Scanner user_input = new Scanner(System.in);
 	
 //	private final String moveLeftKey;
 //	private final String moveRightKey;
@@ -87,6 +92,7 @@ public class Controls extends GraphicsPane {
 		if(obj == xButton){
 			program.switchToMenu();
 		}
+		
 	}
 	
 	
