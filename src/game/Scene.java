@@ -26,10 +26,11 @@ public class Scene {
 	}
 
 	public void tick() {
-		if(findGround(player) == null) {
+		Block ground = findGround(player);
+		if(ground == null) {
 			player.fall(this);
 		}else{
-			player.setLocation((int) player.getX(), (int) (findGround(player).getY() - player.getHeight()));
+			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
 		checkTerrainCollisions(player);

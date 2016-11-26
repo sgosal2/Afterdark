@@ -7,12 +7,12 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final int MOVEMENT = 5;
-	public static final double GRAVITY = 1;
-	public static final double FRICTION = .3;
-	public static final int JUMP_VELOCITY = -7;
-	private static final double MAX_GRAVITY = 7;
-	private static final double MAX_SPEED = 10;
+	public static final double MOVEMENT = 5;
+	public static final double GRAVITY = 10;
+	public static final double FRICTION = 3;
+	public static final double JUMP_VELOCITY = 20;
+	private static final double MAX_GRAVITY = 2;
+	private static final double MAX_SPEED = 20;
 	
 	private String imageName;
 	private boolean amIJumping;
@@ -42,9 +42,9 @@ public class Entity {
 		this.amIJumping = amIJumpin;
 	}
 
-	public void move(int x, int y) {
+	public void move(double x, double y) {
 		sprite.move(x, y);
-		System.out.println("Y: " + y);
+		//System.out.println("Y: " + y);
 		if(x != 0) {
 			currentStep++;
 		}
@@ -57,9 +57,9 @@ public class Entity {
 	}
 	
 	public void jump() {
-		dy = JUMP_VELOCITY;
+		dy = -JUMP_VELOCITY;
 		setJumping(true);
-		move(0, -1);
+		move(0, -0.1);
 	}
 	
 	public void reflectHorizontally() {
@@ -87,25 +87,25 @@ public class Entity {
 	}
 
 	public void fall(Scene s) {
-		move(0, (int) Math.round(dy));
+		move(0, dy);
 		
 		dy += FRICTION;
 		dy = Math.min(dy, MAX_GRAVITY);
-		dy = Math.max(dy, -MAX_GRAVITY);
+		dy = Math.max(dy, -JUMP_VELOCITY);
 	}
 	
 	public void walk(Direction d) {
 		if(d == Direction.EAST) {
-			dx += GRAVITY;
+			dx += FRICTION;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
-			dx -= GRAVITY;
+			dx -= FRICTION;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
 	}
 	
 	public void walkMovement() {
-		move((int) Math.round(dx), 0);
+		move(dx, 0);
 		if(dx > 0) {
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
@@ -132,7 +132,6 @@ public class Entity {
 	}
 
 	public double getHeight() {
-		// TODO Auto-generated method stub
 		return sprite.getHeight();
 	}
 	

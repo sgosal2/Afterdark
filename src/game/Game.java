@@ -66,7 +66,8 @@ public class Game extends GraphicsPane implements ActionListener {
 			curScene.playerWalk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			curScene.playerWalk(Direction.WEST);
-		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
