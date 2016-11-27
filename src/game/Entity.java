@@ -7,19 +7,19 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final double MOVEMENT = 5;
-	public static final double GRAVITY = 10;
+//	public static final double MOVEMENT = 5;
+	public static final double GRAVITY = 3;
 	public static final double FRICTION = 3;
 	public static final double JUMP_VELOCITY = 20;
-	private static final double MAX_GRAVITY = 2;
-	private static final double MAX_SPEED = 20;
+	private static final double MAX_GRAVITY = 50;
+	private static final double MAX_SPEED = 100;
 	
 	private String imageName;
 	private boolean amIJumping;
+	private boolean amIWalking;
 	private int currentStep;
 	private int numImages;
 	private GImage sprite;
-	//private Game window;
 	private double dy;
 	private double dx;
 	
@@ -30,6 +30,7 @@ public class Entity {
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		this.sprite.setSize(16, 16);
 		amIJumping = false;
+		amIWalking = false;
 		dy = 0;
 		dx = 0;
 	}
@@ -44,7 +45,6 @@ public class Entity {
 
 	public void move(double x, double y) {
 		sprite.move(x, y);
-		//System.out.println("Y: " + y);
 		if(x != 0) {
 			currentStep++;
 		}
@@ -89,27 +89,32 @@ public class Entity {
 	public void fall(Scene s) {
 		move(0, dy);
 		
-		dy += FRICTION;
+		dy += GRAVITY;
 		dy = Math.min(dy, MAX_GRAVITY);
 		dy = Math.max(dy, -JUMP_VELOCITY);
 	}
 	
 	public void walk(Direction d) {
 		if(d == Direction.EAST) {
+			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
+			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
+		amIWalking = true;
 	}
 	
 	public void walkMovement() {
 		move(dx, 0);
 		if(dx > 0) {
+			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 		}else if(dx < 0) {
+			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
 		}
@@ -137,5 +142,13 @@ public class Entity {
 	
 	public GImage getSprite() {
 		return sprite;
+	}
+
+	public boolean isWalking() {
+		return amIWalking;
+	}
+
+	public void setWalking(boolean amIWalking) {
+		this.amIWalking = amIWalking;
 	}
 }
