@@ -26,7 +26,7 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
-		bullet = new Bullet(SPRITE_PREFIX + "robot head.png", player, Direction.EAST, 5);
+		//bullet = new Bullet("robot head.jpg", player, Direction.EAST);
 	}
 
 	public void tick() {
@@ -53,6 +53,7 @@ public class Scene {
 			System.out.println("Scroll right!");
 			horzScroll(amountToScroll(Direction.EAST));
 		}
+		
 	}
 	
 	private double amountToScroll(Direction d) {
