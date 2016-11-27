@@ -1,6 +1,5 @@
 package menus;
 
-
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -8,10 +7,8 @@ import acm.graphics.GObject;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
-import java.util.Scanner;
 
-
-public class Controls extends GraphicsPane {
+public class pauseControlsMenu extends GraphicsPane{
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage background;
 	
@@ -34,15 +31,12 @@ public class Controls extends GraphicsPane {
 	private static final double BUTTON_WIDTH_FACTOR = 5.54;
 	private static final double BUTTON_HEIGHT_FACTOR = 17.07;
 	private static final double BUTTON_XCORD_FACTOR = 2.84;
-	private static final double BUTTON_YCORD_FACTOR = 3.01;
+	private static final double BUTTON_YCORD_FACTOR = 3.77;
 	private final double BUTTON_XCORD= program.WINDOW_WIDTH/BUTTON_XCORD_FACTOR;
 	private final double BUTTON_YCORD = program.WINDOW_HEIGHT/BUTTON_YCORD_FACTOR;
 	private final double BUTTON_SIZEX = program.WINDOW_WIDTH/BUTTON_WIDTH_FACTOR;
 	private final double BUTTON_SIZEY = program.WINDOW_HEIGHT/BUTTON_HEIGHT_FACTOR;
 	private static final double NEXT_BUTTON_OFFSET = 62;
-	
-	private String userInput;
-	Scanner user_input = new Scanner(System.in);
 	
 //	private final String moveLeftKey;
 //	private final String moveRightKey;
@@ -51,9 +45,9 @@ public class Controls extends GraphicsPane {
 //	private final String pauseKey;
 	
  
-	public Controls(MainApplication app) {
+	public pauseControlsMenu(MainApplication app) {
 		program = app;
-		background = new GImage("images/Background Control Settings.png", 0, 0);
+		background = new GImage("images/Pause Controls.png", 0, 0);
 		xButton = new GButton(X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
 		leftKeyButton = new GButton("LEFT ARROW", BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
 		rightKeyButton = new GButton("RIGHT ARROW", BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY, true);
@@ -90,13 +84,7 @@ public class Controls extends GraphicsPane {
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == xButton){
-			program.switchToMenu();
+			program.switchToPauseMenu();
 		}
-		
 	}
-	
-	
-	
-	
-	
 }

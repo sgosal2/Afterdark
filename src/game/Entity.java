@@ -12,7 +12,7 @@ public class Entity {
 	public static final double FRICTION = .3;
 	public static final int JUMP_VELOCITY = -7;
 	private static final double MAX_GRAVITY = 7;
-	private static final double MAX_SPEED = 5;
+	private static final double MAX_SPEED = 10;
 	
 	private String imageName;
 	private boolean amIJumping;
@@ -28,6 +28,7 @@ public class Entity {
 		currentStep = 0;
 		numImages = imagesInAnimation;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
+		this.sprite.setSize(16, 16);
 		amIJumping = false;
 		dy = 0;
 		dx = 0;
