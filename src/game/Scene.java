@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import acm.graphics.GImage;
+
 import java.awt.event.KeyEvent;
 
 import utilities.MainApplication;
@@ -129,8 +131,12 @@ public class Scene {
 		program.remove(e.getSprite());
 	}
 	
-	public void addBullet(int x, int y) {
-		program.add(bullet.getSprite());
+	public void addBullet(double d, double e) {
+		if (bullet != null) {
+			GImage b = bullet.getSprite();
+			program.add(b);
+			b.setLocation(d, e);
+		}
 	}
 	
 	public void horzScroll(double distance) {
@@ -164,5 +170,9 @@ public class Scene {
 
 	public Entity getPlayer() {
 		return player;
+	}
+	
+	public Bullet getBullet() {
+		return bullet;
 	}
 }
