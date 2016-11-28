@@ -4,16 +4,23 @@ package menus;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 
 public class Controls extends GraphicsPane {
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
 	private GImage background;
+	private GLabel change;
+	
+	private String leftKey;
+	private Boolean changed = false;
 	
 	private GButton xButton;
 	private static final double X_WIDTH_FACTOR = 28.4;
@@ -50,12 +57,27 @@ public class Controls extends GraphicsPane {
 //	private final String attackKey;
 //	private final String pauseKey;
 	
- 
+	public String getLeftKey(){
+		return leftKey;
+	}
+	
+	public void setLeftKey(String lKey){
+		leftKey = lKey;
+	}
+	
+	public void updateOnce(){
+		leftKey = "Left Arrow";
+		changed = true;
+	}
+	
 	public Controls(MainApplication app) {
+		if(changed == false){
+			updateOnce();
+		}
 		program = app;
 		background = new GImage("images/Background Control Settings.png", 0, 0);
 		xButton = new GButton(X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
-		leftKeyButton = new GButton("LEFT ARROW", BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
+		leftKeyButton = new GButton(getLeftKey(), BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
 		rightKeyButton = new GButton("RIGHT ARROW", BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		jumpKeyButton = new GButton("SPACEBAR", BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		attackKeyButton = new GButton("ENTER", BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
@@ -83,6 +105,10 @@ public class Controls extends GraphicsPane {
 		program.remove(attackKeyButton);
 		program.remove(pauseKeyButton);
 	}
+	
+	public String keyPressedChange(){
+		return JOptionPane.showInputDialog("Enter a new keybinding");
+	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -91,7 +117,8 @@ public class Controls extends GraphicsPane {
 			program.switchToMenu();
 		}
 		if(obj == leftKeyButton){
-			
+			setLeftKey(keyPressedChange());
+			program.switchToControlsMenu();
 		}
 		if(obj == rightKeyButton){
 			
