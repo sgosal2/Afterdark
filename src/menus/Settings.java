@@ -163,6 +163,43 @@ public class Settings extends GraphicsPane {
 		if(obj == xButton){
 			program.switchToMenu();
 		}
+		
+		//the checks below activate the corresponding buttons and 
+		//change the look of the buttons also
+		
+		if(obj == musicButtonON){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == musicButtonOFF){
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
+		
+		if(obj == soundEffectsButtonOn){
+			soundEffectsButtonOn.setFillColor(Color.decode("#e23fff"));
+			soundEffectsButtonOff.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == soundEffectsButtonOff){
+			soundEffectsButtonOff.setFillColor(Color.decode("#e23fff"));
+			soundEffectsButtonOn.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == easyButton){
+			easyButton.setFillColor(Color.decode("#e23fff"));
+			mediumButton.setFillColor(Color.DARK_GRAY);
+			hardButton.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == mediumButton){
+			mediumButton.setFillColor(Color.decode("#e23fff"));
+			easyButton.setFillColor(Color.DARK_GRAY);
+			hardButton.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == hardButton){
+			hardButton.setFillColor(Color.decode("#e23fff"));
+			easyButton.setFillColor(Color.DARK_GRAY);
+			mediumButton.setFillColor(Color.DARK_GRAY);
+		}
+		
 	}
 
 
