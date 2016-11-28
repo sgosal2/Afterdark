@@ -136,5 +136,26 @@ public class PauseMenu extends GraphicsPane {
 		if(obj == exitGameButton){
 			System.exit(0);
 		}
+		
+		//the checks below activate the corresponding buttons and 
+		//change the look of the buttons also
+
+		if(obj == musicButtonON){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == musicButtonOFF){
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
+
+		if(obj == soundEffectsON){
+			soundEffectsON.setFillColor(Color.decode("#e23fff"));
+			soundEffectsOFF.setFillColor(Color.DARK_GRAY);
+		}
+		if(obj == soundEffectsOFF){
+			soundEffectsOFF.setFillColor(Color.decode("#e23fff"));
+			soundEffectsON.setFillColor(Color.DARK_GRAY);
+		}
 	}
 }
