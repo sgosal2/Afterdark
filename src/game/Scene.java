@@ -32,7 +32,7 @@ public class Scene {
 	public void tick() {
 		Block ground = findGround(player);
 		if(ground == null) {
-			player.fall(this);
+			//player.fall(this);
 		}else{
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);

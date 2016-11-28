@@ -29,7 +29,7 @@ public class Entity {
 		numImages = imagesInAnimation;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		this.sprite.setSize(16, 16);
-		amIJumping = false;
+		amIJumping = true;
 		amIWalking = false;
 		dy = 0;
 		dx = 0;
@@ -59,7 +59,7 @@ public class Entity {
 	public void jump() {
 		dy = -JUMP_VELOCITY;
 		setJumping(true);
-		move(0, -0.1);
+		move(dx, -0.1);
 	}
 	
 	public void reflectHorizontally() {
@@ -86,13 +86,13 @@ public class Entity {
 		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
 	}
 
-	public void fall(Scene s) {
-		move(0, dy);
-		
-		dy += GRAVITY;
-		dy = Math.min(dy, MAX_GRAVITY);
-		dy = Math.max(dy, -JUMP_VELOCITY);
-	}
+//	public void fall(Scene s) {
+//		move(0, dy);
+//		
+//		dy += GRAVITY;
+//		dy = Math.min(dy, MAX_GRAVITY);
+//		dy = Math.max(dy, -JUMP_VELOCITY);
+//	}
 	
 	public void walk(Direction d) {
 		System.out.println("Grow");
@@ -109,16 +109,24 @@ public class Entity {
 	}
 	
 	public void walkMovement() {
-		System.out.println("Decay");
-		move(dx, 0);
+		move(dx, dy);
 		if(dx > 0) {
+			System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 		}else if(dx < 0) {
+			System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
+		}
+		if (amIJumping) {
+			dy += GRAVITY;
+			dy = Math.min(dy, MAX_GRAVITY);
+			dy = Math.max(dy, -JUMP_VELOCITY);
+		} else {
+			dy = 0;
 		}
 	}
 	
