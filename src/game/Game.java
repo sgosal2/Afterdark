@@ -13,7 +13,6 @@ import utilities.MainApplication;
 public class Game extends GraphicsPane implements ActionListener {
 	public static final int TILE_WIDTH = 16;
 	public static final int TILE_HEIGHT = 16;
-	public static final int MOVEMENT = 5;
 	public static final int GROUND_HEIGHT = 0;
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
@@ -26,14 +25,14 @@ public class Game extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private Timer gameLoop;
 	private List<Scene> scenes;
-	private List<Integer> keysDown;
+//	private List<Integer> keysDown;
 	private int sceneNum;
 	
 	public Game(MainApplication app) {
 		this.program = app;
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
-		keysDown = new ArrayList<Integer>();
+//		keysDown = new ArrayList<Integer>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 		gameLoop = new Timer(30, this);
 	}
@@ -75,21 +74,17 @@ public class Game extends GraphicsPane implements ActionListener {
 		}else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			curScene.addBullet(curScene.getPlayer().getX(), curScene.getPlayer().getY());
 		}
-		if (!keysDown.contains(e.getKeyCode())) {
-			keysDown.add(e.getKeyCode());
-		}
 	}
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
 		List<Integer> dummyList = new ArrayList<Integer>();
 		dummyList.add(e.getKeyCode());
-		keysDown.removeAll(dummyList);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		curScene.tick(keysDown);
+		curScene.tick();
 	}
 
 	@Override

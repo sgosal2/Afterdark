@@ -7,12 +7,12 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-//	public static final double MOVEMENT = 5;
+	public static final double MOVEMENT = 10;
 	public static final double GRAVITY = 3;
 	public static final double FRICTION = 3;
 	public static final double JUMP_VELOCITY = 20;
 	private static final double MAX_GRAVITY = 50;
-	private static final double MAX_SPEED = 100;
+	private static final double MAX_SPEED = 15;
 	
 	private String imageName;
 	private boolean amIJumping;
@@ -97,11 +97,11 @@ public class Entity {
 	public void walk(Direction d) {
 		if(d == Direction.EAST) {
 			System.out.println("dx: " + dx);
-			dx += FRICTION;
+			dx += MOVEMENT;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
 			System.out.println("dx: " + dx);
-			dx -= FRICTION;
+			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
 		amIWalking = true;

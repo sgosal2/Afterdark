@@ -29,7 +29,7 @@ public class Scene {
 		center(player);
 	}
 
-	public void tick(List<Integer> keysDown) {
+	public void tick() {
 		Block ground = findGround(player);
 		if(ground == null) {
 			player.fall(this);
@@ -38,24 +38,19 @@ public class Scene {
 			player.setJumping(false);
 		}
 		checkTerrainCollisions(player);
-		if (checkRightLeft(keysDown)) {
-			player.setWalking(true);
-		} else {
-			player.setWalking(false);
-			player.walkMovement();
-		}
+		player.walkMovement();
 		handleScrolling();
 	}
 	
-	private boolean checkRightLeft(List<Integer> keysDown) {
-		if (keysDown.contains(KeyEvent.VK_LEFT)) {
-			return true;
-		}
-		if (keysDown.contains(KeyEvent.VK_RIGHT)) {
-			return true;
-		}
-		return false;
-	}
+//	private boolean checkRightLeft(List<Integer> keysDown) {
+//		if (keysDown.contains(KeyEvent.VK_LEFT)) {
+//			return true;
+//		}
+//		if (keysDown.contains(KeyEvent.VK_RIGHT)) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
 	private void handleScrolling() {
 		if (checkForVerticalScrolling() == Direction.NORTH) {
