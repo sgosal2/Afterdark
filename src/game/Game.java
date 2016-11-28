@@ -34,7 +34,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes = new ArrayList<Scene>();
 //		keysDown = new ArrayList<Integer>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
-		gameLoop = new Timer(30, this);
+		gameLoop = new Timer(20, this);
 	}
 	
 	static int leftThreshold() {

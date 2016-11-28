@@ -7,12 +7,12 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final double MOVEMENT = 10;
+	public static final double MOVEMENT = 4;
 	public static final double GRAVITY = 3;
-	public static final double FRICTION = 3;
+	public static final double FRICTION = 1;
 	public static final double JUMP_VELOCITY = 20;
 	private static final double MAX_GRAVITY = 50;
-	private static final double MAX_SPEED = 15;
+	private static final double MAX_SPEED = 7;
 	
 	private String imageName;
 	private boolean amIJumping;
@@ -95,12 +95,13 @@ public class Entity {
 	}
 	
 	public void walk(Direction d) {
+		System.out.println("Grow");
 		if(d == Direction.EAST) {
-			System.out.println("dx: " + dx);
+//			System.out.println("dx: " + dx);
 			dx += MOVEMENT;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
-			System.out.println("dx: " + dx);
+//			System.out.println("dx: " + dx);
 			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
@@ -108,13 +109,14 @@ public class Entity {
 	}
 	
 	public void walkMovement() {
+		System.out.println("Decay");
 		move(dx, 0);
 		if(dx > 0) {
-			System.out.println("dx: " + dx);
+//			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 		}else if(dx < 0) {
-			System.out.println("dx: " + dx);
+//			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
 		}
