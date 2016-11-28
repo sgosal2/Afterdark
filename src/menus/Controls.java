@@ -60,8 +60,6 @@ public class Controls extends GraphicsPane {
 		jumpKeyButton = new GButton("SPACEBAR", BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		attackKeyButton = new GButton("ENTER", BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		pauseKeyButton = new GButton("P", BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
-
-		
 	}
 	
 	@Override
@@ -91,6 +89,18 @@ public class Controls extends GraphicsPane {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == xButton){
 			program.switchToMenu();
+		}
+		if(obj == leftKeyButton){
+			
+		}
+		if(obj == rightKeyButton){
+			
+		}
+		if(obj == jumpKeyButton){
+			
+		}
+		if(obj == attackKeyButton){
+			
 		}
 		
 	}
