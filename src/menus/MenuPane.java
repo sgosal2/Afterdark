@@ -56,6 +56,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(playButton);
 		program.add(settingsButton);
 		program.add(controlsButton);
+		
 //		music.playSound("../media/sounds/menu_music.mp3");
 	}
 
