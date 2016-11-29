@@ -83,5 +83,9 @@ public class Bullet implements ActionListener {
 	public void move() {
 		someTimer.start();
 	}
+
+	public void move(double x, double y) {
+		sprite.move(x, y);
+	}
 	
 }

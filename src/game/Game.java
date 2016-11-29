@@ -59,15 +59,12 @@ public class Game extends GraphicsPane implements ActionListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
+		Entity player = curScene.getPlayer();
 		if(e.getKeyCode() == KeyEvent.VK_P) {
 			program.switchToPauseMenu();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			bullet = new Bullet("robot head.jpg", curScene.getPlayer(), Direction.EAST);
-			GImage b = bullet.getSprite();
-			program.add(b);
-			b.setLocation(curScene.getPlayer().getX(), curScene.getPlayer().getY());
-			bullet.move();
+			program.add(curScene.addBullet("robot head.jpg", curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);
