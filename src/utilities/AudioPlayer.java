@@ -13,7 +13,7 @@ public class AudioPlayer {
 	private ArrayList<MediaPlayer> players;
 	private static AudioPlayer somePlayer;
 	
-	private AudioPlayer() {
+	public AudioPlayer() {
 		JFXPanel fxPanel = new JFXPanel();
 		players = new ArrayList<MediaPlayer>();
 	}
@@ -33,11 +33,29 @@ public class AudioPlayer {
 		if(mPlayer.getCycleDuration().lessThanOrEqualTo(mPlayer.getCurrentTime())) {
 			mPlayer.seek(Duration.ZERO);
 		}
-		//mPlayer.play();
+		mPlayer.play();
+	}
+	
+	public void playSound(String filepath) {
+		MediaPlayer mPlayer = findSound(filepath);
+		if(mPlayer == null) {
+			mPlayer = createMediaPlayer(filepath);
+		}
+		if(mPlayer.getCycleDuration().lessThanOrEqualTo(mPlayer.getCurrentTime())) {
+			mPlayer.seek(Duration.ZERO);
+		}
+		mPlayer.play();
 	}
 	
 	private MediaPlayer createMediaPlayer(String folder, String filename) {
 		Media sound = new Media(buildResourcePath(folder, filename));
+		MediaPlayer mPlayer = new MediaPlayer(sound);
+		players.add(mPlayer);
+		return mPlayer;
+	}
+	
+	private MediaPlayer createMediaPlayer(String filepath) {
+		Media sound = new Media(buildResourcePath(filepath));
 		MediaPlayer mPlayer = new MediaPlayer(sound);
 		players.add(mPlayer);
 		return mPlayer;
@@ -59,8 +77,31 @@ public class AudioPlayer {
 		return resource.toString();
 	}
 	
+	private String buildResourcePath(String filepath) {
+		final URL resource = getClass().getResource(filepath);
+		try {
+			String result = resource.toString();
+			return result;
+		}catch(NullPointerException ex) {
+			ex.printStackTrace();
+			System.out.println("MEDIA FILE NOT FOUND: " + filepath + "...Exiting");
+			System.exit(0);
+		}
+		return resource.toString();
+	}
+	
 	private MediaPlayer findSound(String folder, String filename) {
 		String path = buildResourcePath(folder, filename);
+		for(MediaPlayer mP : players) {
+			if(mP.getMedia().getSource().equals(path)) {
+				return mP;
+			}
+		}
+		return null;
+	}
+	
+	private MediaPlayer findSound(String filepath) {
+		String path = buildResourcePath(filepath);
 		for(MediaPlayer mP : players) {
 			if(mP.getMedia().getSource().equals(path)) {
 				return mP;
