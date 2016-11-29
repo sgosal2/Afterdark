@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import acm.graphics.GImage;
+import acm.graphics.GObject;
 import utilities.MainApplication;
 
 public class Scene {
@@ -26,7 +27,7 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
-		//bullet = new Bullet("robot head.jpg", player, Direction.EAST);
+		bullet = new Bullet("robot head.jpg", player, Direction.EAST);
 	}
 
 	public void tick() {
@@ -113,9 +114,10 @@ public class Scene {
 	}
 	
 	public void addBullet(double d, double e) {
-		GImage b = bullet.getSprite();
-		program.add(b);
+		GObject b = bullet.getSprite();
+		System.out.print(b);
 		b.setLocation(d, e);
+		program.add(b);
 	}
 	
 	public void horzScroll(double distance) {

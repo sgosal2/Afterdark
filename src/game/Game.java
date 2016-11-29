@@ -62,6 +62,9 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_P) {
 			program.switchToPauseMenu();
 		}
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			curScene.addBullet(curScene.getPlayer().getX(), curScene.getPlayer().getY());
+		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
@@ -70,8 +73,6 @@ public class Game extends GraphicsPane implements ActionListener {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
-		}else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			curScene.addBullet(curScene.getPlayer().getX(), curScene.getPlayer().getY());
 		}
 	}
 	
