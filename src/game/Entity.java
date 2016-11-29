@@ -7,19 +7,19 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final int MOVEMENT = 5;
-	public static final double GRAVITY = 1;
-	public static final double FRICTION = .3;
-	public static final int JUMP_VELOCITY = -7;
-	private static final double MAX_GRAVITY = 7;
-	private static final double MAX_SPEED = 10;
+	public static final double MOVEMENT = 4;
+	public static final double GRAVITY = 3;
+	public static final double FRICTION = 1;
+	public static final double JUMP_VELOCITY = 20;
+	private static final double MAX_GRAVITY = 50;
+	private static final double MAX_SPEED = 7;
 	
 	private String imageName;
 	private boolean amIJumping;
+	private boolean amIWalking;
 	private int currentStep;
 	private int numImages;
 	private GImage sprite;
-	//private Game window;
 	private double dy;
 	private double dx;
 	
@@ -29,7 +29,8 @@ public class Entity {
 		numImages = imagesInAnimation;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		this.sprite.setSize(16, 16);
-		amIJumping = false;
+		amIJumping = true;
+		amIWalking = false;
 		dy = 0;
 		dx = 0;
 	}
@@ -42,9 +43,10 @@ public class Entity {
 		this.amIJumping = amIJumpin;
 	}
 
-	public void move(int x, int y) {
+	public void move(double x, double y) {
+		if (x != 0 || y != 0)
+			System.out.println("dx: " + x + ", dy: " + y);
 		sprite.move(x, y);
-		System.out.println("Y: " + y);
 		if(x != 0) {
 			currentStep++;
 		}
@@ -57,9 +59,10 @@ public class Entity {
 	}
 	
 	public void jump() {
-		dy = JUMP_VELOCITY;
+		System.out.println("Jump");
+		dy = -JUMP_VELOCITY;
 		setJumping(true);
-		move(0, -1);
+		move(dx, -0.1);
 	}
 	
 	public void reflectHorizontally() {
@@ -86,32 +89,47 @@ public class Entity {
 		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
 	}
 
-	public void fall(Scene s) {
-		move(0, (int) Math.round(dy));
-		
-		dy += FRICTION;
-		dy = Math.min(dy, MAX_GRAVITY);
-		dy = Math.max(dy, -MAX_GRAVITY);
-	}
+//	public void fall(Scene s) {
+//		move(0, dy);
+//		
+//		dy += GRAVITY;
+//		dy = Math.min(dy, MAX_GRAVITY);
+//		dy = Math.max(dy, -JUMP_VELOCITY);
+//	}
 	
 	public void walk(Direction d) {
+		System.out.println("Walk");
 		if(d == Direction.EAST) {
-			dx += GRAVITY;
+//			System.out.println("dx: " + dx);
+			dx += MOVEMENT;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
-			dx -= GRAVITY;
+//			System.out.println("dx: " + dx);
+			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
+		amIWalking = true;
 	}
 	
 	public void walkMovement() {
-		move((int) Math.round(dx), 0);
+		move(dx, dy);
 		if(dx > 0) {
+			//System.out.println("Decay");
+//			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 		}else if(dx < 0) {
+			//System.out.println("Decay");
+//			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
+		}
+		if (amIJumping) {
+			dy += GRAVITY;
+			dy = Math.min(dy, MAX_GRAVITY);
+			dy = Math.max(dy, -JUMP_VELOCITY);
+		} else {
+			dy = 0;
 		}
 	}
 	
@@ -132,11 +150,18 @@ public class Entity {
 	}
 
 	public double getHeight() {
-		// TODO Auto-generated method stub
 		return sprite.getHeight();
 	}
 	
 	public GImage getSprite() {
 		return sprite;
+	}
+
+	public boolean isWalking() {
+		return amIWalking;
+	}
+
+	public void setWalking(boolean amIWalking) {
+		this.amIWalking = amIWalking;
 	}
 }

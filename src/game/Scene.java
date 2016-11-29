@@ -1,12 +1,14 @@
 package game;
 
 import java.awt.Rectangle;
-
-
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import acm.graphics.GImage;
+
+import java.awt.event.KeyEvent;
+
 import utilities.MainApplication;
 
 public class Scene {
@@ -18,7 +20,6 @@ public class Scene {
 	private List<Entity> npcs;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
-	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	public Scene(int tileWidth, int tileHeight) {
 		TILE_WIDTH = tileWidth;
@@ -26,34 +27,47 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
-		//bullet = new Bullet("robot head.jpg", player, Direction.EAST);
 	}
 
 	public void tick() {
-		if(findGround(player) == null) {
-			player.fall(this);
-		}else{
-			player.setLocation((int) player.getX(), (int) (findGround(player).getY() - player.getHeight()));
+		Block ground = findGround(player);
+		if(ground == null) {
+			player.setJumping(true);
+		} else {
+			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
 		checkTerrainCollisions(player);
 		player.walkMovement();
+		handleScrolling();
+	}
+	
+//	private boolean checkRightLeft(List<Integer> keysDown) {
+//		if (keysDown.contains(KeyEvent.VK_LEFT)) {
+//			return true;
+//		}
+//		if (keysDown.contains(KeyEvent.VK_RIGHT)) {
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	private void handleScrolling() {
 		if (checkForVerticalScrolling() == Direction.NORTH) {
-			System.out.println("Scroll up!");
+//			System.out.println("Scroll up!");
 			vertScroll(amountToScroll(Direction.NORTH));
 			
 		} else if (checkForVerticalScrolling() == Direction.SOUTH) {
-			System.out.println("Scroll down!");
+//			System.out.println("Scroll down!");
 			vertScroll(amountToScroll(Direction.SOUTH));
 		}
 		if (checkForHorizontalScrolling() == Direction.WEST) {
-			System.out.println("Scroll left!");
+//			System.out.println("Scroll left!");
 			horzScroll(amountToScroll(Direction.WEST));
 		} else if (checkForHorizontalScrolling() == Direction.EAST) {
-			System.out.println("Scroll right!");
+//			System.out.println("Scroll right!");
 			horzScroll(amountToScroll(Direction.EAST));
 		}
-		
 	}
 	
 	private double amountToScroll(Direction d) {
@@ -113,9 +127,11 @@ public class Scene {
 	}
 	
 	public void addBullet(double d, double e) {
-		GImage b = bullet.getSprite();
-		program.add(b);
-		b.setLocation(d, e);
+		if (bullet != null) {
+			GImage b = bullet.getSprite();
+			program.add(b);
+			b.setLocation(d, e);
+		}
 	}
 	
 	public void horzScroll(double distance) {
