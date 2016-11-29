@@ -7,6 +7,7 @@ import menus.*;
 import java.util.List;
 import javax.swing.Timer;
 
+import acm.graphics.GImage;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
@@ -63,7 +64,9 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			bullet = new Bullet("robot head.jpg", curScene.getPlayer(), Direction.EAST);
-			curScene.addBullet(bullet, curScene.getPlayer().getX(), curScene.getPlayer().getY());
+			GImage b = bullet.getSprite();
+			program.add(b);
+			b.setLocation(curScene.getPlayer().getX(), curScene.getPlayer().getY());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);
@@ -112,4 +115,5 @@ public class Game extends GraphicsPane implements ActionListener {
 		program.removeAll();
 		gameLoop.stop();
 	}
+
 }

@@ -141,15 +141,7 @@ public class Scene {
 	}
 	
 	public void addBullet(Bullet bullet, double d, double e) {
-		if (bullet != null) {
-			bullets.add(bullet);
-			GImage b = bullet.getSprite();
-			if (b != null) {
-				System.out.print(b);
-				b.setLocation(d, e);
-				program.add(b);
-			}
-		}
+		
 	}
 	
 	public void horzScroll(double distance) {
