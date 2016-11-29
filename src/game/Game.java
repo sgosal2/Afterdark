@@ -64,17 +64,17 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_P) {
 			program.switchToPauseMenu();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
 			program.add(curScene.addBullet("robot head.jpg", curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
@@ -83,7 +83,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.NO_DIRECTION;
 		}
 	}
