@@ -44,6 +44,8 @@ public class Entity {
 	}
 
 	public void move(double x, double y) {
+		if (x != 0 || y != 0)
+			System.out.println("dx: " + x + ", dy: " + y);
 		sprite.move(x, y);
 		if(x != 0) {
 			currentStep++;
@@ -57,6 +59,7 @@ public class Entity {
 	}
 	
 	public void jump() {
+		System.out.println("Jump");
 		dy = -JUMP_VELOCITY;
 		setJumping(true);
 		move(dx, -0.1);
@@ -95,7 +98,7 @@ public class Entity {
 //	}
 	
 	public void walk(Direction d) {
-		System.out.println("Grow");
+		System.out.println("Walk");
 		if(d == Direction.EAST) {
 //			System.out.println("dx: " + dx);
 			dx += MOVEMENT;
@@ -111,12 +114,12 @@ public class Entity {
 	public void walkMovement() {
 		move(dx, dy);
 		if(dx > 0) {
-			System.out.println("Decay");
+			//System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 		}else if(dx < 0) {
-			System.out.println("Decay");
+			//System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
