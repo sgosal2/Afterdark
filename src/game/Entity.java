@@ -10,6 +10,7 @@ public class Entity {
 	public static final double MOVEMENT = 4;
 	public static final double GRAVITY = 3;
 	public static final double FRICTION = 1;
+	public static final int HEALTH_VALUE = 100;
 	public static final double JUMP_VELOCITY = 20;
 	private static final double MAX_GRAVITY = 50;
 	private static final double MAX_SPEED = 7;
@@ -22,6 +23,7 @@ public class Entity {
 	protected GImage sprite;
 	protected double dy;
 	protected double dx;
+	protected int health;
 	
 	public Entity(String sprite, int startX, int startY, int imagesInAnimation) {
 		imageName = sprite;
@@ -33,6 +35,7 @@ public class Entity {
 		amIWalking = false;
 		dy = 0;
 		dx = 0;
+		health = HEALTH_VALUE;
 	}
 	
 	public boolean amIJumping() {
@@ -163,5 +166,13 @@ public class Entity {
 
 	public void setWalking(boolean amIWalking) {
 		this.amIWalking = amIWalking;
+	}
+	
+	public void setHealth(int h) {
+		health = h;
+	}
+	
+	public int getHealth() {
+		return health;
 	}
 }

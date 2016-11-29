@@ -6,6 +6,8 @@ public class Enemy extends Entity {
 		super(imgName, startX, startY, imagesInAnimation);
 	}
 	
-	
+	public void attack() {
+		
+	}
 	
 }
