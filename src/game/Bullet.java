@@ -29,12 +29,11 @@ public class Bullet implements ActionListener {
 	Timer someTimer = new Timer(100, this);
 	
 	public Bullet(String imageName, Entity se, Direction d) {
-		GObject b = new GImage(SPRITE_PREFIX + imageName, 20, 20);
-		program.add(b);
-		b.setLocation(sender.getX(), sender.getY());
 		sender = se;
 		direction = d;
 		damage = DAMAGE;
+		this.sprite = new GImage(SPRITE_PREFIX + imageName, se.getX(), se.getY());
+		this.sprite.setSize(16, 20);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

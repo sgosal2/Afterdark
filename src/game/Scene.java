@@ -1,13 +1,18 @@
 package game;
 
 import java.awt.Rectangle;
+
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import acm.graphics.GImage;
 
+import acm.graphics.GObject;
+
+
 import java.awt.event.KeyEvent;
+
 
 import utilities.MainApplication;
 
@@ -15,7 +20,7 @@ public class Scene {
 
 	private MainApplication program;
 	private SceneLayout layout;
-	private Bullet bullet;
+	private List<Bullet> bullets;
 	private Entity player;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
@@ -28,6 +33,7 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
+		bullets = new ArrayList<Bullet>();
 	}
 
 	public void tick() {
@@ -127,11 +133,15 @@ public class Scene {
 		program.remove(e.getSprite());
 	}
 	
-	public void addBullet(double d, double e) {
+	public void addBullet(Bullet bullet, double d, double e) {
 		if (bullet != null) {
+			bullets.add(bullet);
 			GImage b = bullet.getSprite();
-			program.add(b);
-			b.setLocation(d, e);
+			if (b != null) {
+				System.out.print(b);
+				b.setLocation(d, e);
+				program.add(b);
+			}
 		}
 	}
 	
@@ -168,8 +178,8 @@ public class Scene {
 		return player;
 	}
 	
-	public Bullet getBullet() {
-		return bullet;
+	public List<Bullet> getBullets() {
+		return bullets;
 	}
 
 	public Direction getPlayerWalkDirection() {
