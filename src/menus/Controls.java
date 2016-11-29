@@ -31,7 +31,7 @@ public class Controls extends GraphicsPane {
 	
 	private String moveLeftKey = "Left Arrow/A";
 	private String moveRightKey = "Right Arrow/D";
-	private String jumpKey = "Up arrow/Space";
+	private String jumpKey = "Up arrow/Space/W";
 	private String attackKey = "Enter/V";
 	private String pauseKey = "P/esc";
 	
