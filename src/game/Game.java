@@ -11,18 +11,8 @@ import utilities.GraphicsPane;
 import utilities.MainApplication;
 
 public class Game extends GraphicsPane implements ActionListener {
-	
-	public Game(MainApplication app) {
-		this.program = app;
-		sceneNum = 0;
-		scenes = new ArrayList<Scene>();
-		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
-		gameLoop = new Timer(20, this);
-	}
-	
 	public static final int TILE_WIDTH = 16;
 	public static final int TILE_HEIGHT = 16;
-	public static final int MOVEMENT = 5;
 	public static final int GROUND_HEIGHT = 0;
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
@@ -34,8 +24,18 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	private MainApplication program;
 	private Timer gameLoop;
-	private ArrayList<Scene> scenes;
+	private List<Scene> scenes;
+//	private List<Integer> keysDown;
 	private int sceneNum;
+	
+	public Game(MainApplication app) {
+		this.program = app;
+		sceneNum = 0;
+		scenes = new ArrayList<Scene>();
+//		keysDown = new ArrayList<Integer>();
+		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
+		gameLoop = new Timer(30, this);
+	}
 	
 	static int leftThreshold() {
 		return MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO;
@@ -69,11 +69,18 @@ public class Game extends GraphicsPane implements ActionListener {
 			curScene.playerWalk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			curScene.playerWalk(Direction.WEST);
-		}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+		}
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
 		}
+	}
+	
+	@Override
+	public void keyReleased(KeyEvent e) {
+		List<Integer> dummyList = new ArrayList<Integer>();
+		dummyList.add(e.getKeyCode());
 	}
 	
 	public void actionPerformed(ActionEvent e) {

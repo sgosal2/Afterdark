@@ -39,20 +39,20 @@ public class Block extends GImage {
 	
 	public Direction getDirectionComingFrom(Rectangle character) {
 		if(character.intersectsLine(getX(), getY() + BUFFER_Y, getX()+getWidth(), getY() + BUFFER_Y)) {
-			System.out.println("N");
+//			System.out.println("N");
 			return Direction.NORTH;
 		}
 		if(character.intersectsLine(getX(), getY()+getHeight(), getX()+getWidth(), getY()+getHeight())) {
-			System.out.println("S");
+//			System.out.println("S");
 			return Direction.SOUTH;
 		}
 		if(character.intersectsLine(getX()+getWidth(), getY(), getX()+getWidth(), getY()+getHeight())) {
-			System.out.println("E");
+//			System.out.println("E");
 			return Direction.EAST;
 		}
 		
 		if(character.intersectsLine(getX(), getY(), getX(), getY()+getHeight())) {
-			System.out.println("W");
+//			System.out.println("W");
 			return Direction.WEST;
 		}
 		
