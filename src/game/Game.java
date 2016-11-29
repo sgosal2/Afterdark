@@ -27,6 +27,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	private List<Scene> scenes;
 //	private List<Integer> keysDown;
 	private int sceneNum;
+	private Bullet bullet;
 	
 	public Game(MainApplication app) {
 		this.program = app;
@@ -63,7 +64,8 @@ public class Game extends GraphicsPane implements ActionListener {
 			program.switchToPauseMenu();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			curScene.addBullet(curScene.getPlayer().getX(), curScene.getPlayer().getY());
+			bullet = new Bullet("robot head.jpg", curScene.getPlayer(), Direction.EAST);
+			curScene.addBullet(bullet, curScene.getPlayer().getX(), curScene.getPlayer().getY());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);

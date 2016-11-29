@@ -20,7 +20,7 @@ public class Scene {
 
 	private MainApplication program;
 	private SceneLayout layout;
-	private Bullet bullet;
+	private List<Bullet> bullets;
 	private Entity player;
 	private List<Entity> npcs;
 	public static int TILE_WIDTH;
@@ -32,7 +32,7 @@ public class Scene {
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
-		bullet = new Bullet("robot head.jpg", player, Direction.EAST);
+		bullets = new ArrayList<Bullet>();
 	}
 
 	public void tick() {
@@ -132,11 +132,15 @@ public class Scene {
 		program.remove(e.getSprite());
 	}
 	
-	public void addBullet(double d, double e) {
+	public void addBullet(Bullet bullet, double d, double e) {
 		if (bullet != null) {
+			bullets.add(bullet);
 			GImage b = bullet.getSprite();
-			program.add(b);
-			b.setLocation(d, e);
+			if (b != null) {
+				System.out.print(b);
+				b.setLocation(d, e);
+				program.add(b);
+			}
 		}
 	}
 	
@@ -173,7 +177,7 @@ public class Scene {
 		return player;
 	}
 	
-	public Bullet getBullet() {
-		return bullet;
+	public List<Bullet> getBullets() {
+		return bullets;
 	}
 }

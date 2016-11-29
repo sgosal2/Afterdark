@@ -14,14 +14,14 @@ public class Entity {
 	private static final double MAX_GRAVITY = 50;
 	private static final double MAX_SPEED = 15;
 	
-	private String imageName;
-	private boolean amIJumping;
-	private boolean amIWalking;
-	private int currentStep;
-	private int numImages;
-	private GImage sprite;
-	private double dy;
-	private double dx;
+	protected String imageName;
+	protected boolean amIJumping;
+	protected boolean amIWalking;
+	protected int currentStep;
+	protected int numImages;
+	protected GImage sprite;
+	protected double dy;
+	protected double dx;
 	
 	public Entity(String sprite, int startX, int startY, int imagesInAnimation) {
 		imageName = sprite;
