@@ -7,6 +7,7 @@ import menus.*;
 import java.util.List;
 import javax.swing.Timer;
 
+import acm.graphics.GImage;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
@@ -63,7 +64,10 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 			bullet = new Bullet("robot head.jpg", curScene.getPlayer(), Direction.EAST);
-			curScene.addBullet(bullet, curScene.getPlayer().getX(), curScene.getPlayer().getY());
+			GImage b = bullet.getSprite();
+			program.add(b);
+			b.setLocation(curScene.getPlayer().getX(), curScene.getPlayer().getY());
+			bullet.move();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);
@@ -92,6 +96,10 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void showContents() {
 		Scene curScene = scenes.get(sceneNum);
 		program.add(curScene.getPlayer().getSprite());
+		if (curScene.getEnemyAtIndex(0).getSprite() != null) {
+			System.out.print("Enemy added");
+			program.add(curScene.getEnemyAtIndex(0).getSprite());
+		}
 		for (List<Block> row: curScene.getTerrain()) {
 			for (Block b: row) {
 				if (b != null) {
@@ -99,6 +107,7 @@ public class Game extends GraphicsPane implements ActionListener {
 				}
 			}
 		}
+		
 		gameLoop.start();
 	}
 
@@ -107,4 +116,5 @@ public class Game extends GraphicsPane implements ActionListener {
 		program.removeAll();
 		gameLoop.stop();
 	}
+
 }

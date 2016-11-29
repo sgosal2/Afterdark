@@ -22,6 +22,7 @@ public class Scene {
 	private SceneLayout layout;
 	private List<Bullet> bullets;
 	private Entity player;
+	private List<Enemy> enemies;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
 	public static int TILE_WIDTH;
@@ -34,6 +35,9 @@ public class Scene {
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
 		center(player);
 		bullets = new ArrayList<Bullet>();
+		enemies = new ArrayList<Enemy>();
+		Enemy e = new Enemy("sprite", 1050, MainApplication.WINDOW_HEIGHT - 200, 3);
+		enemies.add(e);
 	}
 
 	public void tick() {
@@ -43,9 +47,12 @@ public class Scene {
 		} else {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
+			enemies.get(0).setLocation((int) enemies.get(0).getX(), (int) (ground.getY() - enemies.get(0).getHeight()));
 		}
 		checkTerrainCollisions(player);
+		checkTerrainCollisions(enemies.get(0));
 		player.walkMovement();
+		enemies.get(0).walkMovement();
 		handleScrolling();
 	}
 	
@@ -134,15 +141,7 @@ public class Scene {
 	}
 	
 	public void addBullet(Bullet bullet, double d, double e) {
-		if (bullet != null) {
-			bullets.add(bullet);
-			GImage b = bullet.getSprite();
-			if (b != null) {
-				System.out.print(b);
-				b.setLocation(d, e);
-				program.add(b);
-			}
-		}
+		
 	}
 	
 	public void horzScroll(double distance) {
@@ -188,5 +187,9 @@ public class Scene {
 
 	public void setPlayerWalkDirection(Direction playerWalkDirection) {
 		this.playerWalkDirection = playerWalkDirection;
+	}
+	
+	public Enemy getEnemyAtIndex(int i) {
+		return enemies.get(i);
 	}
 }
