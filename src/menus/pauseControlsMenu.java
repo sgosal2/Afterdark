@@ -30,7 +30,7 @@ public class pauseControlsMenu extends GraphicsPane{
 	
 	private final String moveLeft = "Left Arrow/A";
 	private final String moveRight = "Right Arrow/D";
-	private final String jumpKey = "Up Arrow/Space";
+	private final String jumpKey = "Up Arrow/Space/W";
 	private final String attackKey = "Enter/V";
 	private final String pauseKey = "P/Esc";
 	
