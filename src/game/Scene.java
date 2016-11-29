@@ -18,6 +18,7 @@ public class Scene {
 	private Bullet bullet;
 	private Entity player;
 	private List<Entity> npcs;
+	private Direction playerWalkDirection;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	
@@ -169,5 +170,13 @@ public class Scene {
 	
 	public Bullet getBullet() {
 		return bullet;
+	}
+
+	public Direction getPlayerWalkDirection() {
+		return playerWalkDirection;
+	}
+
+	public void setPlayerWalkDirection(Direction playerWalkDirection) {
+		this.playerWalkDirection = playerWalkDirection;
 	}
 }
