@@ -227,11 +227,4 @@ public class Settings extends GraphicsPane {
 
 	}
 
-	public void settingsMenu(){
-
-	}
-
-	public void settingsPause(){
-
-	}
 }
