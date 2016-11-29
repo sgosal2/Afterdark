@@ -40,7 +40,7 @@ public class Scene {
 		enemies.add(e);
 	}
 
-	public void tick() {
+	public void tick(Direction walk) {
 		Block ground = findGround(player);
 		if(ground == null) {
 			player.setJumping(true);
@@ -48,6 +48,11 @@ public class Scene {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
 			enemies.get(0).setLocation((int) enemies.get(0).getX(), (int) (ground.getY() - enemies.get(0).getHeight()));
+		}
+		if (walk == Direction.WEST) {
+			player.walk(walk);
+		} else if (walk == Direction.EAST) {
+			player.walk(walk);
 		}
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(enemies.get(0));

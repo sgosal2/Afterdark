@@ -27,7 +27,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	private Timer gameLoop;
 	private List<Scene> scenes;
 	private int sceneNum;
-	private Bullet bullet;
+	private Direction walk;
 	
 	public Game(MainApplication app) {
 		this.program = app;
@@ -35,6 +35,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 		gameLoop = new Timer(20, this);
+		walk = Direction.NO_DIRECTION;
 	}
 	
 	static int leftThreshold() {
@@ -67,8 +68,10 @@ public class Game extends GraphicsPane implements ActionListener {
 			program.add(curScene.addBullet("robot head.jpg", curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
 		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -80,13 +83,14 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		List<Integer> dummyList = new ArrayList<Integer>();
-		dummyList.add(e.getKeyCode());
+		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			walk = Direction.NO_DIRECTION;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		curScene.tick();
+		curScene.tick(walk);
 	}
 
 	@Override
