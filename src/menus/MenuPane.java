@@ -7,6 +7,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
+import utilities.AudioPlayer;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
@@ -31,7 +32,7 @@ public class MenuPane extends GraphicsPane {
 	private final double SETTINGS_HEIGHT_OFFSET = program.WINDOW_HEIGHT/SETTINGS_HEIGHT_FACTOR;
 	private final double CONTROLS_HEIGHT_OFFSET = program.WINDOW_HEIGHT/CONTROLS_HEIGHT_FACTOR;
 
-	
+	private AudioPlayer music;
 	
 	
 	public MenuPane(MainApplication app) {
@@ -46,8 +47,7 @@ public class MenuPane extends GraphicsPane {
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
 						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
-		
-		
+		music = new AudioPlayer();
 	}
 	
 	@Override
@@ -56,6 +56,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(playButton);
 		program.add(settingsButton);
 		program.add(controlsButton);
+		music.playSound("../media/sounds/menu_music.mp3");
 	}
 
 	@Override
