@@ -25,14 +25,12 @@ public class Game extends GraphicsPane implements ActionListener {
 	private MainApplication program;
 	private Timer gameLoop;
 	private List<Scene> scenes;
-//	private List<Integer> keysDown;
 	private int sceneNum;
 	
 	public Game(MainApplication app) {
 		this.program = app;
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
-//		keysDown = new ArrayList<Integer>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 		gameLoop = new Timer(20, this);
 	}
