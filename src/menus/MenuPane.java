@@ -47,7 +47,7 @@ public class MenuPane extends GraphicsPane {
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
 						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
-		music = new AudioPlayer();
+		music = AudioPlayer.getInstance();
 	}
 	
 	@Override
@@ -57,7 +57,9 @@ public class MenuPane extends GraphicsPane {
 		program.add(settingsButton);
 		program.add(controlsButton);
 		
-//		music.playSound("../media/sounds/menu_music.mp3");
+		//make sure to put ../ in front of sounds so that we get out of the
+		//menus folder and then go to the sounds folder
+		music.playSound("../sounds", "menu_music.mp3");
 	}
 
 	@Override
