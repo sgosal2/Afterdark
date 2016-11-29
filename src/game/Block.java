@@ -6,7 +6,9 @@ package game;
  * Block represents a single "tile" of terrain in a scene.
  */
 
+import java.util.List;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import acm.graphics.GImage;
 
@@ -37,25 +39,28 @@ public class Block extends GImage {
 		isBlockSolid = isSolid;
 	}
 	
-	public Direction getDirectionComingFrom(Rectangle character) {
+	public List<Direction> getDirectionComingFrom(Rectangle character) {
+		List<Direction> list = new ArrayList<Direction>();
 		if(character.intersectsLine(getX(), getY() + BUFFER_Y, getX()+getWidth(), getY() + BUFFER_Y)) {
 //			System.out.println("N");
-			return Direction.NORTH;
+			list.add(Direction.NORTH);
 		}
 		if(character.intersectsLine(getX(), getY()+getHeight(), getX()+getWidth(), getY()+getHeight())) {
 //			System.out.println("S");
-			return Direction.SOUTH;
+			list.add(Direction.SOUTH);
 		}
 		if(character.intersectsLine(getX()+getWidth(), getY(), getX()+getWidth(), getY()+getHeight())) {
 //			System.out.println("E");
-			return Direction.EAST;
+			list.add(Direction.EAST);
 		}
 		
 		if(character.intersectsLine(getX(), getY(), getX(), getY()+getHeight())) {
 //			System.out.println("W");
-			return Direction.WEST;
+			list.add(Direction.WEST);
 		}
-		
-		return Direction.NO_DIRECTION;
+		if (list.isEmpty()) {
+			list.add(Direction.NO_DIRECTION);
+		}
+		return list;
 	}
 }

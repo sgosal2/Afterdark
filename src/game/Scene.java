@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import acm.graphics.GImage;
 
@@ -33,6 +34,7 @@ public class Scene {
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
+		player.getSprite().setSize(10, 10);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		enemies = new ArrayList<Enemy>();
@@ -125,7 +127,7 @@ public class Scene {
 		return Direction.NO_DIRECTION;
 	}
 	
-	public Direction checkTerrainCollisions(Entity e) {
+	public Set<Direction> checkTerrainCollisions(Entity e) {
 		return layout.checkCollisions(e);
 	}
 	
