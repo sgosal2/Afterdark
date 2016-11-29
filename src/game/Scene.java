@@ -23,6 +23,7 @@ public class Scene {
 	private List<Bullet> bullets;
 	private Entity player;
 	private List<Entity> npcs;
+	private Direction playerWalkDirection;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	
@@ -38,8 +39,8 @@ public class Scene {
 	public void tick() {
 		Block ground = findGround(player);
 		if(ground == null) {
-			player.fall(this);
-		}else{
+			player.setJumping(true);
+		} else {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
@@ -179,5 +180,13 @@ public class Scene {
 	
 	public List<Bullet> getBullets() {
 		return bullets;
+	}
+
+	public Direction getPlayerWalkDirection() {
+		return playerWalkDirection;
+	}
+
+	public void setPlayerWalkDirection(Direction playerWalkDirection) {
+		this.playerWalkDirection = playerWalkDirection;
 	}
 }
