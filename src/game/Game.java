@@ -67,6 +67,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			GImage b = bullet.getSprite();
 			program.add(b);
 			b.setLocation(curScene.getPlayer().getX(), curScene.getPlayer().getY());
+			bullet.move();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			curScene.playerWalk(Direction.EAST);

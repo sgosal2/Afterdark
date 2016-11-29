@@ -23,7 +23,7 @@ public class Bullet implements ActionListener {
 	private int damage;
 	private MainApplication program;
 	private static final int DAMAGE = 1;
-	private static final int SPEED = 10;
+	private static final int SPEED = 1;
 	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	Timer someTimer = new Timer(10, this);
@@ -69,7 +69,7 @@ public class Bullet implements ActionListener {
 		return direction;
 	}
 	
-	private void setDirection(Direction d) {
+	public void setDirection(Direction d) {
 		direction = d;
 	}
 	
@@ -80,7 +80,7 @@ public class Bullet implements ActionListener {
 	}
 */
 	
-	private void move() {
+	public void move() {
 		someTimer.start();
 	}
 	
