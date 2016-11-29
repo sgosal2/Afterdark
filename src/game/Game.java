@@ -61,7 +61,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
-		if(e.getKeyCode() == KeyEvent.VK_P) {
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			program.switchToPauseMenu();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
