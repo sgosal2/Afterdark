@@ -1,6 +1,7 @@
 package menus;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -124,6 +125,12 @@ public class PauseMenu extends GraphicsPane {
 		program.remove(soundEffectsON);
 		program.remove(soundEffectsOFF);
 		program.remove(XButton);
+	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			program.switchToGame();
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
