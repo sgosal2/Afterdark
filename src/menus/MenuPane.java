@@ -33,6 +33,7 @@ public class MenuPane extends GraphicsPane {
 	private final double CONTROLS_HEIGHT_OFFSET = program.WINDOW_HEIGHT/CONTROLS_HEIGHT_FACTOR;
 
 	private AudioPlayer music;
+	private GraphicsPane settings;
 	
 	
 	public MenuPane(MainApplication app) {
@@ -59,7 +60,12 @@ public class MenuPane extends GraphicsPane {
 		
 		//make sure to put ../ in front of sounds so that we get out of the
 		//menus folder and then go to the sounds folder
-		music.playSound("../sounds", "menu_music.mp3");
+	    if(program.isMusicOn()){
+	    	music.playSound("../sounds", "menu_music.mp3");
+	    }
+	    else{
+	    	music.stopSound("../sounds", "menu_music.mp3");
+	    }
 	}
 
 	@Override
