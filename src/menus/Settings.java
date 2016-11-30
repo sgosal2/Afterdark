@@ -85,6 +85,7 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_N,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
+		//changes color of music buttons depending on whether the audio is playing or not
 		if(program.isMusicOn()){
 			musicButtonON.setFillColor(Color.decode("#e23fff"));
 			musicButtonOFF.setFillColor(Color.DARK_GRAY);
