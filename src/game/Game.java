@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
+import utilities.AudioPlayer;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
@@ -31,6 +32,8 @@ public class Game extends GraphicsPane implements ActionListener {
 	private int sceneNum;
 	private Direction walk;
 	
+	private AudioPlayer music;
+	
 	public Game(MainApplication app) {
 		this.program = app;
 		sceneNum = 0;
@@ -38,6 +41,8 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 		gameLoop = new Timer(20, this);
 		walk = Direction.NO_DIRECTION;
+		music = AudioPlayer.getInstance();
+		
 	}
 	
 	static int leftThreshold() {
@@ -112,6 +117,15 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		
 		gameLoop.start();
+		
+		//adding in the music
+		if(program.isMusicOn()){
+	    	music.stopSound("../sounds", "menu_music.mp3");
+			music.playSound("../sounds", "game_music.mp3");
+	    }
+	    else{
+	    	music.stopSound("../sounds", "game_music.mp3");
+	    }
 	}
 
 	@Override

@@ -81,11 +81,18 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_Y,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
-		musicButtonON.setFillColor(Color.decode("#e23fff"));
 		musicButtonOFF = new GButton("OFF", program.WINDOW_WIDTH/MUSIC_WIDTH_FACTOR_N,
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_N,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
+		if(program.isMusicOn()){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
 		soundEffectsButtonOn = new GButton("ON", program.WINDOW_WIDTH/SOUND_EFFECTS_WIDTH_ON,
 								program.WINDOW_HEIGHT/SOUND_EFFECTS_HEIGHT, 
 								program.WINDOW_WIDTH/SOUND_EFFECTS_BOX_FACTOR, 
@@ -121,6 +128,14 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
 		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
 		music = AudioPlayer.getInstance();
+		if(program.isMusicOn()){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
 
 	}
 	

@@ -61,6 +61,7 @@ public class MenuPane extends GraphicsPane {
 		//make sure to put ../ in front of sounds so that we get out of the
 		//menus folder and then go to the sounds folder
 	    if(program.isMusicOn()){
+	    	music.stopSound("../sounds", "game_music.mp3");
 	    	music.playSound("../sounds", "menu_music.mp3");
 	    }
 	    else{
