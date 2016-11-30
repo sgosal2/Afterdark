@@ -23,7 +23,7 @@ public class Bullet implements ActionListener {
 	private int damage;
 	private MainApplication program;
 	private static final int DAMAGE = 1;
-	private static final int SPEED = 1;
+	private static final int SPEED = 4;
 	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	Timer someTimer = new Timer(10, this);
@@ -33,7 +33,7 @@ public class Bullet implements ActionListener {
 		direction = d;
 		damage = DAMAGE;
 		this.sprite = new GImage(SPRITE_PREFIX + imageName, se.getX(), se.getY());
-		this.sprite.setSize(16, 20);
+		this.sprite.setSize(20, 15);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -82,6 +82,10 @@ public class Bullet implements ActionListener {
 	
 	public void move() {
 		someTimer.start();
+	}
+
+	public void move(double x, double y) {
+		sprite.move(x, y);
 	}
 	
 }

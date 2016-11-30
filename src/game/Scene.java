@@ -40,7 +40,7 @@ public class Scene {
 		enemies.add(e);
 	}
 
-	public void tick() {
+	public void tick(Direction walk) {
 		Block ground = findGround(player);
 		if(ground == null) {
 			player.setJumping(true);
@@ -48,6 +48,11 @@ public class Scene {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
 			enemies.get(0).setLocation((int) enemies.get(0).getX(), (int) (ground.getY() - enemies.get(0).getHeight()));
+		}
+		if (walk == Direction.WEST) {
+			player.walk(walk);
+		} else if (walk == Direction.EAST) {
+			player.walk(walk);
 		}
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(enemies.get(0));
@@ -140,17 +145,40 @@ public class Scene {
 		program.remove(e.getSprite());
 	}
 	
-	public void addBullet(Bullet bullet, double d, double e) {
+	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
+		Bullet bullet = new Bullet(sprite, owner, d);
+		GImage b = bullet.getSprite();
+		b.setLocation(x, y);
+		bullet.move();
+		bullets.add(bullet);
+		return bullet;
+	}
+	
+	public void removeBullet(Bullet bullet) {
 		
 	}
 	
 	public void horzScroll(double distance) {
 		player.horzScroll(distance);
+		if (bullets != null) {
+			for (Bullet b : bullets) {
+				if (b != null) {
+					b.move(distance, 0.0);
+				}
+			} 
+		}
 		layout.horzScroll(distance);
 	}
 	
 	public void vertScroll(double distance) {
 		player.vertScroll(distance);
+		if (bullets != null) {
+			for (Bullet b : bullets) {
+				if (b != null) {
+					b.move(0.0, distance);
+				}
+			} 
+		}
 		layout.vertScroll(distance);
 	}
 	

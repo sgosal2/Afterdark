@@ -22,12 +22,14 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
 	private static final double VERTICAL_SCROLL_RATIO = 8;
 	private static final double HORIZONTAL_SCROLL_RATIO = 3;
+	private static final String BULLET_EAST = "bullet_east.png";
+	private static final String BULLET_WEST = "bullet_west.png";
 	
 	private MainApplication program;
 	private Timer gameLoop;
 	private List<Scene> scenes;
 	private int sceneNum;
-	private Bullet bullet;
+	private Direction walk;
 	
 	public Game(MainApplication app) {
 		this.program = app;
@@ -35,6 +37,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		scenes = new ArrayList<Scene>();
 		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
 		gameLoop = new Timer(20, this);
+		walk = Direction.NO_DIRECTION;
 	}
 	
 	static int leftThreshold() {
@@ -59,22 +62,21 @@ public class Game extends GraphicsPane implements ActionListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		if(e.getKeyCode() == KeyEvent.VK_P) {
+		Entity player = curScene.getPlayer();
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			program.switchToPauseMenu();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			bullet = new Bullet("robot head.jpg", curScene.getPlayer(), Direction.EAST);
-			GImage b = bullet.getSprite();
-			program.add(b);
-			b.setLocation(curScene.getPlayer().getX(), curScene.getPlayer().getY());
-			bullet.move();
+		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
+			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
+			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
-		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 			}
@@ -83,13 +85,14 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
-		List<Integer> dummyList = new ArrayList<Integer>();
-		dummyList.add(e.getKeyCode());
+		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) {
+			walk = Direction.NO_DIRECTION;
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		curScene.tick();
+		curScene.tick(walk);
 	}
 
 	@Override
