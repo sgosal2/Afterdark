@@ -14,9 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import acm.graphics.GImage;
 
@@ -102,39 +100,37 @@ public class SceneLayout {
 //		instance.readInData(LEVEL_PREFIX + "prototype.csv");
 //	}
 	
-	public Set<Direction> checkCollisions(Entity e) {
+	public Direction checkCollisions(Entity e) {
 		Rectangle personRect = e.getBox();
-		Set<Direction> set = new HashSet<Direction>();
 		for(List<Block> row:terrain) {
 			for (Block b:row) {
 				if (b != null) {
-					List<Direction> d = b.getDirectionComingFrom(personRect);
-					if (!d.contains(Direction.NO_DIRECTION)) {
+					Direction d = b.getDirectionComingFrom(personRect);
+					if (d != Direction.NO_DIRECTION) {
 						changeCharacter(e, d);
 						//changeBlock(b);
-						for (Direction dir: d) {
-							set.add(dir);
-						}
+						return d;
 					} 
 				} 
 			}
 		}
-		if (set.isEmpty()) {
-			set.add(Direction.NO_DIRECTION);
-		}
-		return set;
+		return Direction.NO_DIRECTION;
 	}
 	
 //	public void changeBlock(Block b) {
 //		b.setColor(Color.RED);
 //	}
 	
-	public void changeCharacter(Entity e, List<Direction> d) {
-		if(d.contains(Direction.NORTH)) {
+	public void changeCharacter(Entity e, Direction d) {
+		if(d == Direction.NORTH) {
 			e.setJumping(false);
-		} else if(d.contains(Direction.SOUTH)) {
+		}
+		
+		if(d == Direction.SOUTH) {
 			e.reflectVertically();
-		} else if(d.contains(Direction.EAST) || d.contains(Direction.WEST)) {
+		}
+		
+		if(d == Direction.EAST || d == Direction.WEST) {
 			e.reflectHorizontally();
 		}
 	}
@@ -144,8 +140,8 @@ public class SceneLayout {
 		for(List<Block> row:terrain) {
 			for (Block b:row) {
 				if (b != null) {
-					List<Direction> d = b.getDirectionComingFrom(personRect);
-					if (d.contains(Direction.NORTH)) {
+					Direction d = b.getDirectionComingFrom(personRect);
+					if (d == Direction.NORTH) {
 						return b;
 					} 
 				} 
