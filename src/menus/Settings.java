@@ -180,6 +180,7 @@ public class Settings extends GraphicsPane {
 			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
 			musicButtonON.setFillColor(Color.DARK_GRAY);
 			music.stopSound("../sounds", "menu_music.mp3");
+			//if off is clicked change to false
 			program.setMusicIsOn(false);
 		}
 		
