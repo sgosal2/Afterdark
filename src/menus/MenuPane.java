@@ -1,6 +1,7 @@
 package menus;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -74,6 +75,12 @@ public class MenuPane extends GraphicsPane {
 		program.remove(playButton);
 		program.remove(settingsButton);
 		program.remove(controlsButton);
+	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			System.exit(0);
+		}
 	}
 
 	@Override
