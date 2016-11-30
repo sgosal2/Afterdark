@@ -146,7 +146,7 @@ public class Scene {
 	}
 	
 	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
-		Bullet bullet = new Bullet("robot head.jpg", owner, d);
+		Bullet bullet = new Bullet(sprite, owner, d);
 		GImage b = bullet.getSprite();
 		b.setLocation(x, y);
 		bullet.move();
