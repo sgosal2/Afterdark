@@ -5,13 +5,10 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Set;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-=======
->>>>>>> branch 'master' of https://github.com/gittowork/comp-55-group-project-jams.git
 
 import acm.graphics.GImage;
 
@@ -35,7 +32,7 @@ public class Scene implements ActionListener {
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	
-	Timer enemyMovementTimer = new Timer(100, this);
+	Timer enemyMovementTimer = new Timer(10, this);
 	
 	public Scene(int tileWidth, int tileHeight) {
 		TILE_WIDTH = tileWidth;
@@ -45,9 +42,10 @@ public class Scene implements ActionListener {
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
-		Enemy e = new Enemy("sprite", 1020, MainApplication.WINDOW_HEIGHT - 200, 3);
+		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
 		npcs.add(e);
 		timerNum = 0;
+		enemyMovementTimer.start();
 	}
 
 	public void tick(Direction walk) {
@@ -57,7 +55,6 @@ public class Scene implements ActionListener {
 		} else {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
-			npcs.get(0).setLocation((int) npcs.get(0).getX(), (int) (ground.getY() - npcs.get(0).getHeight()));
 		}
 		if (walk == Direction.WEST) {
 			player.walk(walk);
@@ -65,18 +62,17 @@ public class Scene implements ActionListener {
 			player.walk(walk);
 		}
 		checkTerrainCollisions(player);
-		checkTerrainCollisions(npcs.get(0));
 		player.walkMovement();
 		handleScrolling();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		timerNum++;
-		if (timerNum % 10 < 5) {
+		if (timerNum % 200 < 100) {
 			npcs.get(0).move(1, 0);
 		}
 		else {
-			npcs.get(0).move(0, 1);
+			npcs.get(0).move(-1, 0);
 		}
 	}
 	
