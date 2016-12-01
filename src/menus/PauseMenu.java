@@ -114,12 +114,12 @@ public class PauseMenu extends GraphicsPane {
 		program.add(XButton);
 		
 		if(program.isMusicOn() == true){
-			musicButtonON.setFillColor(Color.decode("e23fff"));
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
 			musicButtonOFF.setFillColor(Color.DARK_GRAY);
 		}
 		else {
 			musicButtonON.setFillColor(Color.DARK_GRAY);
-			musicButtonOFF.setFillColor(Color.decode("e23fff"));
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
 		}
 		
 		
