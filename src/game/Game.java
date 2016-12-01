@@ -73,6 +73,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
 			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
+			music.playSound("../sounds", "gun_sound.mp3");
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
@@ -84,6 +85,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
+				music.playSound("../sounds", "jumping_sound.wav");
 			}
 		}
 	}
