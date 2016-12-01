@@ -153,6 +153,15 @@ public class Settings extends GraphicsPane {
 		program.add(controlsButton);
 		program.add(playButton);	
 		program.add(xButton);
+		
+		if (program.isMusicOn() == true){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else {
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+		}
 	}
 
 	@Override
