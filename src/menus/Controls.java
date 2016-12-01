@@ -29,11 +29,11 @@ public class Controls extends GraphicsPane {
 	private GLabel change;
 	public static final String KEY_TEXT = "../media/keys/keys.txt";
 	
-	private String moveLeftKey = "Left Arrow/A";
-	private String moveRightKey = "Right Arrow/D";
-	private String jumpKey = "Up arrow/Space/W";
-	private String attackKey = "Enter/V";
-	private String pauseKey = "P/esc";
+	private static final String MOVE_LEFT_KEY = "Left Arrow/A";
+	private static final String MOVE_RIGHT_KEY = "Right Arrow/D";
+	private static final String JUMP_KEY = "Up arrow/Space/W";
+	private static final String ATTACK_KEY = "Enter/V";
+	private static final String PAUSE_KEY = "P/esc";
 	
 
 	private GButton xButton;
@@ -67,11 +67,11 @@ public class Controls extends GraphicsPane {
 		program = app;
 		background = new GImage("images/Background Control Settings.png", 0, 0);
 		xButton = new GButton(X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
-		leftKeyButton = new GButton(moveLeftKey, BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
-		rightKeyButton = new GButton(moveRightKey, BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY, true);
-		jumpKeyButton = new GButton(jumpKey, BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
-		attackKeyButton = new GButton(attackKey, BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
-		pauseKeyButton = new GButton(pauseKey, BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		leftKeyButton = new GButton(MOVE_LEFT_KEY, BUTTON_XCORD, BUTTON_YCORD, BUTTON_SIZEX, BUTTON_SIZEY, true);
+		rightKeyButton = new GButton(MOVE_RIGHT_KEY, BUTTON_XCORD, (BUTTON_YCORD + NEXT_BUTTON_OFFSET), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		jumpKeyButton = new GButton(JUMP_KEY, BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		attackKeyButton = new GButton(ATTACK_KEY, BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		pauseKeyButton = new GButton(PAUSE_KEY, BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 	}
 
 	@Override

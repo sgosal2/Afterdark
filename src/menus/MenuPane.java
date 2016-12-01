@@ -1,6 +1,7 @@
 package menus;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -33,6 +34,7 @@ public class MenuPane extends GraphicsPane {
 	private final double CONTROLS_HEIGHT_OFFSET = program.WINDOW_HEIGHT/CONTROLS_HEIGHT_FACTOR;
 
 	private AudioPlayer music;
+	private GraphicsPane settings;
 	
 	
 	public MenuPane(MainApplication app) {
@@ -59,7 +61,13 @@ public class MenuPane extends GraphicsPane {
 		
 		//make sure to put ../ in front of sounds so that we get out of the
 		//menus folder and then go to the sounds folder
-		music.playSound("../sounds", "menu_music.mp3");
+	    if(program.isMusicOn()){
+	    	music.stopSound("../sounds", "game_music.mp3");
+	    	music.playSound("../sounds", "menu_music.mp3");
+	    }
+	    else{
+	    	music.stopSound("../sounds", "menu_music.mp3");
+	    }
 	}
 
 	@Override
@@ -68,6 +76,12 @@ public class MenuPane extends GraphicsPane {
 		program.remove(playButton);
 		program.remove(settingsButton);
 		program.remove(controlsButton);
+	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			System.exit(0);
+		}
 	}
 
 	@Override

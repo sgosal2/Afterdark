@@ -6,6 +6,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
+import utilities.AudioPlayer;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
@@ -20,9 +21,7 @@ import utilities.MainApplication;
 public class Settings extends GraphicsPane {
 
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-
-	private boolean isMusicOn = true;
-	private boolean isSoundOn = true;
+	
 	private GButton musicButtonON;
 	private GButton musicButtonOFF;
 	private GButton soundEffectsButtonOn;
@@ -33,6 +32,7 @@ public class Settings extends GraphicsPane {
 	private GButton controlsButton;
 	private GButton playButton;
 	private GButton xButton;
+	private boolean isSoundOn;
 	
 	public static final double MUSIC_WIDTH_FACTOR_Y = 2.41;
 	public static final double MUSIC_HEIGHT_FACTOR_Y = 4.52;
@@ -72,6 +72,7 @@ public class Settings extends GraphicsPane {
 	private final double X_SIZEY = program.WINDOW_HEIGHT/X_HEIGHT_FACTOR;
 
 	private GImage background;
+	private AudioPlayer music;
 
 	public Settings(MainApplication app) {
 		program = app;
@@ -84,6 +85,15 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_N,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
+		//changes color of music buttons depending on whether the audio is playing or not
+		if(program.isMusicOn()){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
 		soundEffectsButtonOn = new GButton("ON", program.WINDOW_WIDTH/SOUND_EFFECTS_WIDTH_ON,
 								program.WINDOW_HEIGHT/SOUND_EFFECTS_HEIGHT, 
 								program.WINDOW_WIDTH/SOUND_EFFECTS_BOX_FACTOR, 
@@ -118,6 +128,15 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_WIDTH/PLAY_SIZE_WIDTH, 
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
 		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
+		music = AudioPlayer.getInstance();
+		if(program.isMusicOn()){
+			musicButtonON.setFillColor(Color.decode("#e23fff"));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+		}
 
 	}
 	
@@ -170,10 +189,15 @@ public class Settings extends GraphicsPane {
 		if(obj == musicButtonON){
 			musicButtonON.setFillColor(Color.decode("#e23fff"));
 			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+			music.playSound("../sounds", "menu_music.mp3");
+			program.setMusicIsOn(true);
 		}
 		if(obj == musicButtonOFF){
 			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
 			musicButtonON.setFillColor(Color.DARK_GRAY);
+			music.stopSound("../sounds", "menu_music.mp3");
+			//if off is clicked change to false
+			program.setMusicIsOn(false);
 		}
 		
 		if(obj == soundEffectsButtonOn){
@@ -202,21 +226,12 @@ public class Settings extends GraphicsPane {
 		
 	}
 
-
-	public boolean getIsMusicOn(){
-		return isMusicOn;
-	}
-
 	public boolean getIsSoundOn(){
 		return isSoundOn;
 	}
 
 	public void setIsSoundOn(boolean s){
 		isSoundOn = s;
-	}
-
-	public void setIsMusicOn(boolean m){
-		isMusicOn = m;
 	}
 
 	public void getDifficultLevel(){

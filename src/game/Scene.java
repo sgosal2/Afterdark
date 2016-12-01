@@ -5,10 +5,13 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Set;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
+=======
+>>>>>>> branch 'master' of https://github.com/gittowork/comp-55-group-project-jams.git
 
 import acm.graphics.GImage;
 
@@ -39,7 +42,6 @@ public class Scene implements ActionListener {
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
 		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
-		player.getSprite().setSize(10, 10);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
@@ -142,7 +144,7 @@ public class Scene implements ActionListener {
 		return Direction.NO_DIRECTION;
 	}
 	
-	public Set<Direction> checkTerrainCollisions(Entity e) {
+	public Direction checkTerrainCollisions(Entity e) {
 		return layout.checkCollisions(e);
 	}
 	

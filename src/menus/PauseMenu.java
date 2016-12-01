@@ -1,10 +1,12 @@
 package menus;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import utilities.AudioPlayer;
 import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
@@ -53,6 +55,8 @@ public class PauseMenu extends GraphicsPane {
 	public static final double X_BUTTON_BOX_WIDTH = 21;
 	public static final double X_BUTTON_BOX_HEIGHT = 17;
 	
+	private AudioPlayer music;
+	
 	
 	public PauseMenu(MainApplication app) {
 		program = app;
@@ -77,6 +81,7 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_HEIGHT/MUSIC_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/BOX_FACTOR, 
 				program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
+		musicButtonON.setFillColor(Color.decode("#e23fff"));
 		musicButtonOFF = new GButton("OFF", program.WINDOW_WIDTH/MUSIC_BUTTON_WIDTH_OFF, 
 				program.WINDOW_HEIGHT/MUSIC_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/BOX_FACTOR, 
@@ -93,6 +98,7 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_HEIGHT/X_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/X_BUTTON_BOX_WIDTH, 
 				program.WINDOW_HEIGHT/X_BUTTON_BOX_HEIGHT, false);
+		music =  AudioPlayer.getInstance();
 	}
 	
 	public void showContents() {
@@ -120,6 +126,12 @@ public class PauseMenu extends GraphicsPane {
 		program.remove(soundEffectsOFF);
 		program.remove(XButton);
 	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			program.switchToGame();
+		}
+	}
 
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
@@ -143,10 +155,15 @@ public class PauseMenu extends GraphicsPane {
 		if(obj == musicButtonON){
 			musicButtonON.setFillColor(Color.decode("#e23fff"));
 			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+			program.setMusicIsOn(true);
+			music.playSound("../sounds", "game_music.mp3");
 		}
 		if(obj == musicButtonOFF){
 			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
 			musicButtonON.setFillColor(Color.DARK_GRAY);
+			music.stopSound("../sounds", "game_music.mp3");
+			music.stopSound("../sounds", "menu_music.mp3");
+			program.setMusicIsOn(false);
 		}
 
 		if(obj == soundEffectsON){
