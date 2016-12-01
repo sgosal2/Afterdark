@@ -23,6 +23,7 @@ public class MainApplication extends GraphicsApplication {
 	private GraphicsPane pauseControls;
 	
 	private boolean musicIsOn = true;
+	private boolean soundIsOn = true;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -81,5 +82,13 @@ public class MainApplication extends GraphicsApplication {
 
 	public void setMusicIsOn(boolean musicIsOn) {
 		this.musicIsOn = musicIsOn;
+	}
+	
+	public boolean isSoundOn(){
+		return soundIsOn;
+	}
+	
+	public void setSoundIsOn(boolean soundIsOn){
+		this.soundIsOn = soundIsOn;
 	}
 }
