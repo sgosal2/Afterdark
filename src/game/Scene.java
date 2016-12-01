@@ -6,6 +6,9 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 import acm.graphics.GImage;
 
@@ -17,17 +20,19 @@ import java.awt.event.KeyEvent;
 
 import utilities.MainApplication;
 
-public class Scene {
+public class Scene implements ActionListener {
 
 	private MainApplication program;
 	private SceneLayout layout;
 	private List<Bullet> bullets;
 	private Entity player;
-	private List<Enemy> enemies;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
+	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+	
+	Timer enemyMovementTimer = new Timer(100, this);
 	
 	public Scene(int tileWidth, int tileHeight) {
 		TILE_WIDTH = tileWidth;
@@ -37,9 +42,10 @@ public class Scene {
 		player.getSprite().setSize(10, 10);
 		center(player);
 		bullets = new ArrayList<Bullet>();
-		enemies = new ArrayList<Enemy>();
-		Enemy e = new Enemy("sprite", 1050, MainApplication.WINDOW_HEIGHT - 200, 3);
-		enemies.add(e);
+		npcs = new ArrayList<Entity>();
+		Enemy e = new Enemy("sprite", 1020, MainApplication.WINDOW_HEIGHT - 200, 3);
+		npcs.add(e);
+		timerNum = 0;
 	}
 
 	public void tick(Direction walk) {
@@ -49,7 +55,7 @@ public class Scene {
 		} else {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
-			enemies.get(0).setLocation((int) enemies.get(0).getX(), (int) (ground.getY() - enemies.get(0).getHeight()));
+			npcs.get(0).setLocation((int) npcs.get(0).getX(), (int) (ground.getY() - npcs.get(0).getHeight()));
 		}
 		if (walk == Direction.WEST) {
 			player.walk(walk);
@@ -57,10 +63,19 @@ public class Scene {
 			player.walk(walk);
 		}
 		checkTerrainCollisions(player);
-		checkTerrainCollisions(enemies.get(0));
+		checkTerrainCollisions(npcs.get(0));
 		player.walkMovement();
-		enemies.get(0).walkMovement();
 		handleScrolling();
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		timerNum++;
+		if (timerNum % 10 < 5) {
+			npcs.get(0).move(1, 0);
+		}
+		else {
+			npcs.get(0).move(0, 1);
+		}
 	}
 	
 //	private boolean checkRightLeft(List<Integer> keysDown) {
@@ -219,7 +234,7 @@ public class Scene {
 		this.playerWalkDirection = playerWalkDirection;
 	}
 	
-	public Enemy getEnemyAtIndex(int i) {
-		return enemies.get(i);
+	public Entity getNPCAtIndex(int i) {
+		return npcs.get(i);
 	}
 }
