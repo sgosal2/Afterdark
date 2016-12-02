@@ -66,16 +66,6 @@ public class Scene implements ActionListener {
 		handleScrolling();
 	}
 	
-	public void actionPerformed(ActionEvent e) {
-		timerNum++;
-		if (timerNum % 200 < 100) {
-			npcs.get(0).move(1, 0);
-		}
-		else {
-			npcs.get(0).move(-1, 0);
-		}
-	}
-	
 //	private boolean checkRightLeft(List<Integer> keysDown) {
 //		if (keysDown.contains(KeyEvent.VK_LEFT)) {
 //			return true;
@@ -152,12 +142,13 @@ public class Scene implements ActionListener {
 		return layout.getTerrain();
 	}
 	
-	public void addEntity(Entity e, int x, int y) {
-		program.add(e.getSprite());
-	}
-	
-	public void removeEntity(Entity e) {
-		program.remove(e.getSprite());
+	public Enemy addEnemy(String sprite, int startX, int startY, int imgsToAnimate) {
+		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
+		GImage e = enemy.getSprite();
+		e.setLocation(startX, startY);
+		enemy.move();
+		npcs.add(enemy);
+		return enemy;
 	}
 	
 	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
@@ -170,7 +161,7 @@ public class Scene implements ActionListener {
 	}
 	
 	public void removeBullet(Bullet bullet) {
-		
+		bullets.remove(bullet);
 	}
 	
 	public void horzScroll(double distance) {
@@ -234,5 +225,11 @@ public class Scene implements ActionListener {
 	
 	public Entity getNPCAtIndex(int i) {
 		return npcs.get(i);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
