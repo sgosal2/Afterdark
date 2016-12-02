@@ -72,8 +72,8 @@ public class Game extends GraphicsPane implements ActionListener {
 			program.switchToPauseMenu();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
+			music.playSound("../sounds", "shoot_sound.wav");
 			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
-			music.playSound("../sounds", "gun_sound.mp3");
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
