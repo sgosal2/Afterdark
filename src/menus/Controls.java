@@ -1,6 +1,7 @@
 package menus;
 
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -94,6 +95,12 @@ public class Controls extends GraphicsPane {
 		program.remove(jumpKeyButton);
 		program.remove(attackKeyButton);
 		program.remove(pauseKeyButton);
+	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_X || e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			program.switchToMenu();
+		}
 	}
 
 

@@ -134,9 +134,33 @@ public class PauseMenu extends GraphicsPane {
 	}
 	
 	public void keyPressed(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE){
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_R){
 			program.switchToGame();
 		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_C){
+			program.switchToPauseControlsMenu();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_M){
+			program.switchToMenu();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_E){
+			System.exit(0);
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_M){
+			if(program.isMusicOn() == true){
+				program.setMusicIsOn(false);
+		    	music.stopSound("../sounds", "menu_music.mp3");
+			}
+			else{
+				program.setMusicIsOn(true);
+		    	music.playSound("../sounds", "menu_music.mp3");
+			}
+		}
+		
 	}
 
 	public void mousePressed(MouseEvent e) {

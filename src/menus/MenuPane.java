@@ -82,6 +82,30 @@ public class MenuPane extends GraphicsPane {
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 			System.exit(0);
 		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_P){
+			program.switchToGame();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_S){
+			program.switchToSettingsMenu();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_C){
+			program.switchToControlsMenu();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_M){
+			if(program.isMusicOn() == true){
+				program.setMusicIsOn(false);
+		    	music.stopSound("../sounds", "menu_music.mp3");
+			}
+			else{
+				program.setMusicIsOn(true);
+		    	music.playSound("../sounds", "menu_music.mp3");
+			}
+		}
+		
 	}
 
 	@Override

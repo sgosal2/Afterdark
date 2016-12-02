@@ -1,5 +1,6 @@
 package menus;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -80,6 +81,12 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.remove(pauseKeyButton);
 	}
 
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_X || e.getKeyCode() == KeyEvent.VK_ESCAPE){
+			program.switchToPauseMenu();
+		}
+	}
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());

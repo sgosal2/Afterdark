@@ -1,5 +1,6 @@
 package menus;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.GImage;
@@ -220,6 +221,23 @@ public class Settings extends GraphicsPane {
 			mediumButton.setFillColor(Color.DARK_GRAY);
 		}
 		
+	}
+	
+	public void keyPressed(KeyEvent e){
+		if(e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_X){
+			program.switchToMenu();
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_M){
+			if(program.isMusicOn() == true){
+				program.setMusicIsOn(false);
+		    	music.stopSound("../sounds", "menu_music.mp3");
+			}
+			else{
+				program.setMusicIsOn(true);
+		    	music.playSound("../sounds", "menu_music.mp3");
+			}
+		}
 	}
 	
 	public void turnMusicOnOff(){
