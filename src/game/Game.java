@@ -72,6 +72,12 @@ public class Game extends GraphicsPane implements ActionListener {
 			program.switchToPauseMenu();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
+			if(program.isSoundOn()){
+				music.playSound("../sounds", "shoot_sound.wav");
+			}
+			else{
+				music.stopSound("../sounds", "shoot_sound.wav");
+			}
 			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
@@ -84,6 +90,12 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
+				if(program.isSoundOn()){
+					music.playSound("../sounds", "jumping_sound.wav");
+				}
+				else{
+					music.stopSound("../sounds", "jumping_sound.wav");
+				}
 			}
 		}
 	}

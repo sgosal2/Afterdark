@@ -24,6 +24,8 @@ public class PauseMenu extends GraphicsPane {
 	private GButton soundEffectsOFF;
 	private GButton XButton;
 	
+	private static final String PURPLE = "#e23fff";
+	
 	public static final double WIDTH_OFFSET = 51.2;
 	public static final double RG_HEIGHT_OFFSET = 8.53;
 	public static final double RG_WIDTH = 3.9;
@@ -81,7 +83,6 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_HEIGHT/MUSIC_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/BOX_FACTOR, 
 				program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
-		musicButtonON.setFillColor(Color.decode("#e23fff"));
 		musicButtonOFF = new GButton("OFF", program.WINDOW_WIDTH/MUSIC_BUTTON_WIDTH_OFF, 
 				program.WINDOW_HEIGHT/MUSIC_BUTTON_HEIGHT, 
 				program.WINDOW_WIDTH/BOX_FACTOR, 
@@ -99,6 +100,8 @@ public class PauseMenu extends GraphicsPane {
 				program.WINDOW_WIDTH/X_BUTTON_BOX_WIDTH, 
 				program.WINDOW_HEIGHT/X_BUTTON_BOX_HEIGHT, false);
 		music =  AudioPlayer.getInstance();
+		turnMusicOnOff();
+		turnSoundOnOff();
 	}
 	
 	public void showContents() {
@@ -112,6 +115,9 @@ public class PauseMenu extends GraphicsPane {
 		program.add(soundEffectsON);
 		program.add(soundEffectsOFF);
 		program.add(XButton);
+		
+		turnMusicOnOff();
+		turnSoundOnOff();
 	}
 
 	public void hideContents() {
@@ -169,10 +175,35 @@ public class PauseMenu extends GraphicsPane {
 		if(obj == soundEffectsON){
 			soundEffectsON.setFillColor(Color.decode("#e23fff"));
 			soundEffectsOFF.setFillColor(Color.DARK_GRAY);
+			program.setSoundIsOn(true);
 		}
 		if(obj == soundEffectsOFF){
 			soundEffectsOFF.setFillColor(Color.decode("#e23fff"));
 			soundEffectsON.setFillColor(Color.DARK_GRAY);
+			program.setSoundIsOn(false);
+			
+		}
+	}
+	
+	public void turnSoundOnOff(){
+		if(program.isSoundOn() == true){
+			soundEffectsON.setFillColor(Color.decode(PURPLE));
+			soundEffectsOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			soundEffectsON.setFillColor(Color.DARK_GRAY);
+			soundEffectsOFF.setFillColor(Color.decode(PURPLE));
+		}
+	}
+	
+	public void turnMusicOnOff(){
+		if(program.isMusicOn() == true){
+			musicButtonON.setFillColor(Color.decode(PURPLE));
+			musicButtonOFF.setFillColor(Color.DARK_GRAY);
+		}
+		else{
+			musicButtonON.setFillColor(Color.DARK_GRAY);
+			musicButtonOFF.setFillColor(Color.decode(PURPLE));
 		}
 	}
 }
