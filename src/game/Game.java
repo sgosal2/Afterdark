@@ -65,6 +65,11 @@ public class Game extends GraphicsPane implements ActionListener {
 	}
 	
 	@Override
+	/*
+	 * When various keys are pressed throughout the game different
+	 * actions will be performed, such as the movement of the character
+	 * or the firing of the gun.
+	 */
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
@@ -113,6 +118,9 @@ public class Game extends GraphicsPane implements ActionListener {
 	}
 
 	@Override
+	/*
+	 * Adding the various items to the screen
+	 */
 	public void showContents() {
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
@@ -146,5 +154,4 @@ public class Game extends GraphicsPane implements ActionListener {
 		program.removeAll();
 		gameLoop.stop();
 	}
-
 }

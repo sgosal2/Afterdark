@@ -47,7 +47,12 @@ public class pauseControlsMenu extends GraphicsPane{
 	private static final double NEXT_BUTTON_OFFSET = 62;
 
 	
- 
+	/*
+	 * Creating various buttons below and adding them to the controls pane
+	 * that will show up when the game is paused.
+	 * Each button is made in such a way that as the background image 
+	 * expands the buttons will too.
+	 */
 	public pauseControlsMenu(MainApplication app) {
 		program = app;
 		background = new GImage("images/Pause Controls.png", 0, 0);
@@ -81,13 +86,21 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.remove(pauseKeyButton);
 	}
 
-	
+	/*
+	 * When various keys are pressed throughout the game different
+	 * actions will be performed, which in this case is a switch to the
+	 * pause menu.
+	 */
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode() == KeyEvent.VK_X || e.getKeyCode() == KeyEvent.VK_ESCAPE){
 			program.switchToPauseMenu();
 		}
 	}
 	@Override
+	/*
+	 * This method does the appropriate task depending on what
+	 * button the user clicks on.
+	 */
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == xButton){

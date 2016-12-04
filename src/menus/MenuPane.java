@@ -36,7 +36,11 @@ public class MenuPane extends GraphicsPane {
 	private AudioPlayer music;
 	private GraphicsPane settings;
 	
-	
+	/*
+	 * Creating various buttons below and adding them to the menu pane.
+	 * Each button is made in such a way that as the background image 
+	 * expands the buttons will too.
+	 */
 	public MenuPane(MainApplication app) {
 		program = app;
 		background = new GImage("images/Main Menu.png", 0, 0);
@@ -53,6 +57,9 @@ public class MenuPane extends GraphicsPane {
 	}
 	
 	@Override
+	/*
+	 * Adding the various items to the screen
+	 */
 	public void showContents() {
 		program.add(background);
 		program.add(playButton);
@@ -78,6 +85,10 @@ public class MenuPane extends GraphicsPane {
 		program.remove(controlsButton);
 	}
 	
+	/*
+	 * When various keys are pressed throughout the game different
+	 * actions will be performed, such as turning the music on or off.
+	 */
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
 			System.exit(0);
@@ -109,6 +120,10 @@ public class MenuPane extends GraphicsPane {
 	}
 
 	@Override
+	/*
+	 * This method does the appropriate task depending on what
+	 * button the user clicks on.
+	 */
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == playButton) {

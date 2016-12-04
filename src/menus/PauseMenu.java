@@ -58,8 +58,12 @@ public class PauseMenu extends GraphicsPane {
 	public static final double X_BUTTON_BOX_HEIGHT = 17;
 	
 	private AudioPlayer music;
-	
-	
+
+	/*
+	 * Creating various buttons below and adding them to the pause menu pane.
+	 * Each button is made in such a way that as the background image 
+	 * expands the buttons will too.
+	 */
 	public PauseMenu(MainApplication app) {
 		program = app;
 		background = new GImage("Pause.png", 0, 0);
@@ -104,6 +108,9 @@ public class PauseMenu extends GraphicsPane {
 		turnSoundOnOff();
 	}
 	
+	/*
+	 * Adding the various items to the screen
+	 */
 	public void showContents() {
 		program.add(background);
 		program.add(resumeButton);
@@ -133,6 +140,10 @@ public class PauseMenu extends GraphicsPane {
 		program.remove(XButton);
 	}
 	
+	/*
+	 * When various keys are pressed throughout the game different
+	 * actions will be performed, such as turning the music on or off.
+	 */
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_R){
 			program.switchToGame();
@@ -163,6 +174,10 @@ public class PauseMenu extends GraphicsPane {
 		
 	}
 
+	/*
+	 * This method does the appropriate task depending on what
+	 * button the user clicks on.
+	 */
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if (obj == resumeButton || obj == XButton) {
@@ -209,6 +224,11 @@ public class PauseMenu extends GraphicsPane {
 		}
 	}
 	
+	/*
+	 * This method is in charge of setting the sound boolean to true
+	 * or false and also changes the various colors of the button
+	 * to represent which option is active.
+	 */
 	public void turnSoundOnOff(){
 		if(program.isSoundOn() == true){
 			soundEffectsON.setFillColor(Color.decode(PURPLE));
@@ -220,6 +240,11 @@ public class PauseMenu extends GraphicsPane {
 		}
 	}
 	
+	/*
+	 * This method is in charge of setting the music boolean to true
+	 * or false and also changes the various colors of the button
+	 * to represent which option is active.
+	 */
 	public void turnMusicOnOff(){
 		if(program.isMusicOn() == true){
 			musicButtonON.setFillColor(Color.decode(PURPLE));

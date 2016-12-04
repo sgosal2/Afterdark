@@ -51,7 +51,10 @@ public class MainApplication extends GraphicsApplication {
 		addKeyListeners();
 		addMouseListeners();
 	}
-	
+	/*
+	 * The various methods below call other methods that actually change
+	 * the screen in the game.
+	 */
 	public void switchToMenu() {
 		switchToScreen(menu);
 	}

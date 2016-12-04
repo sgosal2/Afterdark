@@ -16,8 +16,8 @@ import utilities.MainApplication;
 
 
 /*
- * Settings will hold our settings for if the game sound is on or off as well as the music. 
- * Volume will be up to the hardware of the device the user is playing on.
+ * Settings will hold our settings for the game. 
+ * Volume will be determined by the user.
  */
 public class Settings extends GraphicsPane {
 
@@ -62,9 +62,7 @@ public class Settings extends GraphicsPane {
 	private static final double PLAY_HEIGHT_FACTOR = 24;
 	private static final double PLAY_SIZE_WIDTH = 4.68;
 	private static final double PLAY_SIZE_HEIGHT = 10.97;
-	
-	
-	
+
 	private static final double X_WIDTH_FACTOR = 34.13;
 	private static final double X_HEIGHT_FACTOR = 25.6;
 	private static final double X_XCORD_FACTOR = 1.29;
@@ -77,6 +75,11 @@ public class Settings extends GraphicsPane {
 	private GImage background;
 	private AudioPlayer music;
 
+	/*
+	 * Creating various buttons below and adding them to the settings pane.
+	 * Each button is made in such a way that as the background image 
+	 * expands the buttons will too.
+	 */
 	public Settings(MainApplication app) {
 		program = app;
 		background = new GImage("images/Settings.png", 0, 0);
@@ -88,8 +91,6 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/MUSIC_HEIGHT_FACTOR_N,
 								program.WINDOW_WIDTH/BOX_FACTOR,
 								program.WINDOW_HEIGHT/BOX_FACTOR, Color.DARK_GRAY);
-		//changes color of music buttons depending on whether the audio is playing or not
-		
 		soundEffectsButtonOn = new GButton("ON", program.WINDOW_WIDTH/SOUND_EFFECTS_WIDTH_ON,
 								program.WINDOW_HEIGHT/SOUND_EFFECTS_HEIGHT, 
 								program.WINDOW_WIDTH/SOUND_EFFECTS_BOX_FACTOR, 
@@ -100,10 +101,8 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_WIDTH/SOUND_EFFECTS_BOX_FACTOR, 
 								program.WINDOW_HEIGHT/SOUND_EFFECTS_BOX_FACTOR, 
 								Color.DARK_GRAY);
-		
 		turnMusicOnOff();
 		turnSoundOnOff();
-		
 		easyButton = new GButton("EASY", program.WINDOW_WIDTH/EASY_DIFF_W,
 								program.WINDOW_HEIGHT/EASY_DIFF_H, 
 								program.WINDOW_WIDTH/BOX_FACTOR,
@@ -129,10 +128,12 @@ public class Settings extends GraphicsPane {
 								program.WINDOW_HEIGHT/PLAY_SIZE_HEIGHT, false);
 		xButton = new GButton("X", X_XCORD, X_YCORD, X_SIZEX, X_SIZEY, false);
 		music = AudioPlayer.getInstance();
-
 	}
 	
 	@Override
+	/*
+	 * Adding the various items to the screen
+	 */
 	public void showContents() {
 		program.add(background);
 		program.add(musicButtonON);
@@ -166,6 +167,10 @@ public class Settings extends GraphicsPane {
 	}
 
 	@Override
+	/*
+	 * This method does the appropriate task depending on what
+	 * button the user clicks on.
+	 */
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == controlsButton){
@@ -222,12 +227,14 @@ public class Settings extends GraphicsPane {
 		}
 		
 	}
-	
+	/*
+	 * When various keys are pressed throughout the game different
+	 * actions will be performed, such as turning the music on or off.
+	 */
 	public void keyPressed(KeyEvent e){
 		if(e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_X){
 			program.switchToMenu();
 		}
-		
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			if(program.isMusicOn() == true){
 				program.setMusicIsOn(false);
@@ -239,7 +246,11 @@ public class Settings extends GraphicsPane {
 			}
 		}
 	}
-	
+	/*
+	 * This method is in charge of setting the music boolean to true
+	 * or false and also changes the various colors of the button
+	 * to represent which option is active.
+	 */
 	public void turnMusicOnOff(){
 		if(program.isMusicOn() == true){
 			musicButtonON.setFillColor(Color.decode(PURPLE));
@@ -251,6 +262,11 @@ public class Settings extends GraphicsPane {
 		}
 	}
 
+	/*
+	 * This method is in charge of setting the sound boolean to true
+	 * or false and also changes the various colors of the button
+	 * to represent which option is active.
+	 */
 	public void turnSoundOnOff(){
 		if(program.isSoundOn() == true){
 			soundEffectsButtonOn.setFillColor(Color.decode(PURPLE));
