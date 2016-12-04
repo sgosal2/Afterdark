@@ -65,6 +65,9 @@ public class pauseControlsMenu extends GraphicsPane{
 	}
 	
 	@Override
+	/*
+	 * Adding the various items to the screen
+	 */
 	public void showContents() {
 		program.add(background);
 		program.add(xButton);

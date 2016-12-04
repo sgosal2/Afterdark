@@ -28,7 +28,9 @@ public class MainApplication extends GraphicsApplication {
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	}
-	
+	/*
+	 * This method is similar to a main method in a typical java application.
+	 */
 	public void run() {
 		menu = new MenuPane(this);
 		game = new Game(this);

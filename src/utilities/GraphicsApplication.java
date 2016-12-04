@@ -52,7 +52,6 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 	 * mouse listeners to pass any information that
 	 * was given to the application to a particular screen.
 	 */
-	
 	public void actionPerformed(MouseEvent e) {
 		if(curScreen != null) {
 			curScreen.mousePressed(e);
