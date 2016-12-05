@@ -244,6 +244,14 @@ public class Settings extends GraphicsPane {
 				program.setMusicIsOn(true);
 		    	music.playSound("../sounds", "menu_music.mp3");
 			}
+			
+			if(program.isSoundOn() == true){
+				program.setSoundIsOn(false);
+			}
+			else{
+				program.setSoundIsOn(true);
+			}
+			program.switchToSettingsMenu();
 		}
 	}
 	/*

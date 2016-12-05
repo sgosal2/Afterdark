@@ -115,6 +115,13 @@ public class MenuPane extends GraphicsPane {
 				program.setMusicIsOn(true);
 		    	music.playSound("../sounds", "menu_music.mp3");
 			}
+			
+			if(program.isSoundOn() == true){
+				program.setSoundIsOn(false);
+			}
+			else{
+				program.setSoundIsOn(true);
+			}
 		}
 		
 	}

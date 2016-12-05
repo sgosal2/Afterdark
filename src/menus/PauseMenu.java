@@ -145,7 +145,7 @@ public class PauseMenu extends GraphicsPane {
 	 * actions will be performed, such as turning the music on or off.
 	 */
 	public void keyPressed(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_R){
+		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_R || e.getKeyCode() == KeyEvent.VK_X){
 			program.switchToGame();
 		}
 		
@@ -164,12 +164,22 @@ public class PauseMenu extends GraphicsPane {
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			if(program.isMusicOn() == true){
 				program.setMusicIsOn(false);
+		    	music.stopSound("../sounds", "game_music.mp3");
 		    	music.stopSound("../sounds", "menu_music.mp3");
 			}
 			else{
 				program.setMusicIsOn(true);
-		    	music.playSound("../sounds", "menu_music.mp3");
+		    	music.playSound("../sounds", "game_music.mp3");
 			}
+			
+			if(program.isSoundOn()== true){
+				program.setSoundIsOn(false);
+			}
+			else{
+				program.setSoundIsOn(true);
+			}
+			
+			program.switchToPauseMenu();
 		}
 		
 	}
