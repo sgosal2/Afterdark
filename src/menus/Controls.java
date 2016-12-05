@@ -35,6 +35,7 @@ public class Controls extends GraphicsPane {
 	private static final String JUMP_KEY = "Up arrow/Space/W";
 	private static final String ATTACK_KEY = "Enter/V";
 	private static final String PAUSE_KEY = "P/esc";
+	private static final String MUSIC_KEY = "Music/Sound On or Off = M";
 	
 
 	private GButton xButton;
@@ -52,8 +53,9 @@ public class Controls extends GraphicsPane {
 	private GButton jumpKeyButton;
 	private GButton attackKeyButton;
 	private GButton pauseKeyButton;
+	private GButton musicOnOffButton;
 
-	private static final double BUTTON_WIDTH_FACTOR = 5.54;
+	private static final double BUTTON_WIDTH_FACTOR = 5;
 	private static final double BUTTON_HEIGHT_FACTOR = 17.07;
 	private static final double BUTTON_XCORD_FACTOR = 2.84;
 	private static final double BUTTON_YCORD_FACTOR = 3.01;
@@ -77,6 +79,7 @@ public class Controls extends GraphicsPane {
 		jumpKeyButton = new GButton(JUMP_KEY, BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		attackKeyButton = new GButton(ATTACK_KEY, BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		pauseKeyButton = new GButton(PAUSE_KEY, BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		musicOnOffButton = new GButton(MUSIC_KEY, BUTTON_XCORD, (BUTTON_YCORD + (5*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 	}
 
 	@Override
@@ -91,6 +94,7 @@ public class Controls extends GraphicsPane {
 		program.add(jumpKeyButton);
 		program.add(attackKeyButton);
 		program.add(pauseKeyButton);
+		program.add(musicOnOffButton);
 	}
 
 	@Override
@@ -102,6 +106,7 @@ public class Controls extends GraphicsPane {
 		program.remove(jumpKeyButton);
 		program.remove(attackKeyButton);
 		program.remove(pauseKeyButton);
+		program.remove(musicOnOffButton);
 	}
 	
 	/*

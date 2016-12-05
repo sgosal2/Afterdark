@@ -153,7 +153,7 @@ public class PauseMenu extends GraphicsPane {
 			program.switchToPauseControlsMenu();
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_M){
+		if(e.getKeyCode() == KeyEvent.VK_N){
 			program.switchToMenu();
 		}
 		
