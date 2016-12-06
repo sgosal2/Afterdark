@@ -15,6 +15,7 @@ public class Entity {
 	private static final double MAX_GRAVITY = 50;
 	private static final double MAX_SPEED = 7;
 	
+	protected Direction directionFacing;
 	protected String imageName;
 	protected boolean amIJumping;
 	protected boolean amIWalking;
@@ -36,6 +37,7 @@ public class Entity {
 		dy = 0;
 		dx = 0;
 		health = HEALTH_VALUE;
+		directionFacing = Direction.EAST;
 	}
 	
 	public boolean amIJumping() {
@@ -102,6 +104,7 @@ public class Entity {
 	
 	public void walk(Direction d) {
 		System.out.println("Walk");
+		directionFacing = d;
 		if(d == Direction.EAST) {
 //			System.out.println("dx: " + dx);
 			dx += MOVEMENT;
@@ -121,11 +124,15 @@ public class Entity {
 //			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
+			directionFacing = Direction.EAST;
 		}else if(dx < 0) {
 			//System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
+			directionFacing = Direction.WEST;
+		} else {
+			//Standing still
 		}
 		if (amIJumping) {
 			dy += GRAVITY;
@@ -174,5 +181,13 @@ public class Entity {
 	
 	public int getHealth() {
 		return health;
+	}
+	
+	public Direction isDirectionFacing() {
+		return directionFacing;
+	}
+
+	public void setDirectionFacing(Direction directionFacing) {
+		this.directionFacing = directionFacing;
 	}
 }
