@@ -17,7 +17,7 @@ import acm.graphics.GObject;
 
 import java.awt.event.KeyEvent;
 
-
+import utilities.AudioPlayer;
 import utilities.MainApplication;
 
 public class Scene implements ActionListener {
@@ -31,6 +31,8 @@ public class Scene implements ActionListener {
 	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+	
+	private AudioPlayer music;
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
@@ -47,8 +49,14 @@ public class Scene implements ActionListener {
 		npcs.add(e);
 		timerNum = 0;
 		enemyMovementTimer.start();
+		music = AudioPlayer.getInstance();
 	}
 
+	/*
+	 * This method is called whenever the timer ticks from game.java.
+	 * It performs multiple operations every 20ms to keep track of the
+	 * character and its various properties.
+	 */
 	public void tick(Direction walk) {
 		Block ground = findGround(player);
 		Entity e = npcs.get(0);
@@ -81,7 +89,15 @@ public class Scene implements ActionListener {
 		}
 	}
 	
+	/*
+	 * This will switch to the game over screen when the character dies
+	 * and it will play the appropriate sound as well.
+	 */
 	private void playerKill(String methodOfDeath) {
+		if(program.isMusicOn()){
+			music.stopSound("../sounds", "game_music.mp3");
+			music.playSound("../sounds/gameOver_sound.wav");
+		}
 		program.switchToGameOver(methodOfDeath);
 	}
 	
@@ -177,6 +193,9 @@ public class Scene implements ActionListener {
 		return layout.getTerrain();
 	}
 	
+	/*
+	 * This will add enemies with specific characteristics in different locations.
+	 */
 	public Enemy addEnemy(String sprite, int startX, int startY, int imgsToAnimate) {
 		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
 		GImage e = enemy.getSprite();
@@ -186,6 +205,9 @@ public class Scene implements ActionListener {
 		return enemy;
 	}
 	
+	/*
+	 * This will add a bullet to the screen starting from particular locations and move it.
+	 */
 	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
 		Bullet bullet = new Bullet(sprite, owner, d);
 		GImage b = bullet.getSprite();

@@ -37,6 +37,10 @@ public class Block extends GImage {
 		isBlockSolid = isSolid;
 	}
 	
+	/*
+	 * This method will determine the specific direction the character
+	 * will be arriving from in order to initiate the next action.
+	 */
 	public Direction getDirectionComingFrom(Rectangle character) {
 		if(character.intersectsLine(getX(), getY() + BUFFER_Y, getX()+getWidth(), getY() + BUFFER_Y)) {
 //			System.out.println("N");
