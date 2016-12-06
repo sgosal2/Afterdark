@@ -183,11 +183,23 @@ public class Entity {
 		return health;
 	}
 	
+	public void damage(int d) {
+		health = Math.max(-1, health - d);
+	}
+	
 	public Direction isDirectionFacing() {
 		return directionFacing;
 	}
 
 	public void setDirectionFacing(Direction directionFacing) {
 		this.directionFacing = directionFacing;
+	}
+	
+	public boolean belowLevel() {
+		if (getY() < 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

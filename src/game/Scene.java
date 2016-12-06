@@ -70,6 +70,12 @@ public class Scene implements ActionListener {
 		player.walkMovement();
 		e.walkMovement();
 		handleScrolling();
+		if (player.belowLevel()) {
+			player.damage(10000000);
+		}
+		if (player.getHealth() < 0) {
+			//Game over
+		}
 	}
 	
 //	private boolean checkRightLeft(List<Integer> keysDown) {
