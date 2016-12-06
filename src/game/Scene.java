@@ -261,6 +261,21 @@ public class Scene implements ActionListener {
 	public Entity getNPCAtIndex(int i) {
 		return npcs.get(i);
 	}
+	
+	public void drawScene() {
+		program.add(player.getSprite());
+		if (getNPCAtIndex(0).getSprite() != null) {
+			System.out.print("Enemy added");
+			program.add(addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
+		}
+		for (List<Block> row: getTerrain()) {
+			for (Block b: row) {
+				if (b != null) {
+					program.add(b);
+				}
+			}
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
