@@ -117,25 +117,41 @@ public class Scene implements ActionListener {
 	}
 	
 	private Direction checkForHorizontalScrolling() {
-		if (player.getX() < Game.leftThreshold()) {
+		if (player.getX() < Game.leftThreshold() && terrainLeftOfWindow()) {
 			return Direction.WEST;
 		}
-		if (player.getX() > Game.rightThreshold()) {
+		if (player.getX() > Game.rightThreshold() && terrainRightOfWindow()) {
 			return Direction.EAST;
 		}
 		return Direction.NO_DIRECTION;
 	}
 	
+	private boolean terrainRightOfWindow() {
+		return layout.terrainRightOfWindow();
+	}
+
+	private boolean terrainLeftOfWindow() {
+		return layout.terrainLeftOfWindow();
+	}
+
 	private Direction checkForVerticalScrolling() {
-		if (player.getY() < Game.topThreshold()) {
+		if (player.getY() < Game.topThreshold() && terrainAboveWindow()) {
 			return Direction.NORTH;
 		}
-		if (player.getY() > Game.bottomThreshold()) {
+		if (player.getY() > Game.bottomThreshold() && terrainBelowWindow()) {
 			return Direction.SOUTH;
 		}
 		return Direction.NO_DIRECTION;
 	}
 	
+	private boolean terrainBelowWindow() {
+		return layout.terrainBelowWindow();
+	}
+
+	private boolean terrainAboveWindow() {
+		return layout.terrainAboveWindow();
+	}
+
 	public Direction checkTerrainCollisions(Entity e) {
 		return layout.checkCollisions(e);
 	}
