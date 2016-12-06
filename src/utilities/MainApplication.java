@@ -104,4 +104,8 @@ public class MainApplication extends GraphicsApplication {
 	public void setSoundIsOn(boolean soundIsOn){
 		this.soundIsOn = soundIsOn;
 	}
+	
+	public void resetGame() {
+		game = new Game(this);
+	}
 }

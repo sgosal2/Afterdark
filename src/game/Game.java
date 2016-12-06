@@ -141,7 +141,4 @@ public class Game extends GraphicsPane implements ActionListener {
 		gameLoop.stop();
 	}
 	
-	public void restartGame() {
-		sceneNum = 0;
-	}
 }
