@@ -7,13 +7,13 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final double MOVEMENT = 4;
-	public static final double GRAVITY = 3;
-	public static final double FRICTION = 1;
-	public static final int HEALTH_VALUE = 100;
-	public static final double JUMP_VELOCITY = 20;
-	private static final double MAX_GRAVITY = 50;
-	private static final double MAX_SPEED = 7;
+	public final double MOVEMENT = 4;
+	public final double GRAVITY = 3;
+	public final double FRICTION = 1;
+	public final int HEALTH_VALUE = 100;
+	public final double JUMP_VELOCITY = 20;
+	private final double MAX_GRAVITY = 50;
+	private final double MAX_SPEED = 7;
 	
 	protected Direction directionFacing;
 	protected String imageName;
