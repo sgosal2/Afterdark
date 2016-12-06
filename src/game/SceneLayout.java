@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import acm.graphics.GImage;
+import utilities.MainApplication;
 
 /**
  * Holds all of the blocks in a scene, holds the backgrounds for a scene. Holds methods for reading
@@ -168,5 +169,57 @@ public class SceneLayout {
 				}
 			}
 		}
+	}
+
+	public boolean terrainRightOfWindow() {
+		for (List<Block> row : terrain) {
+			for (Block b : row) {
+				if (b != null) {
+					if (b.getX() > MainApplication.WINDOW_WIDTH) {
+						return true;
+					} 
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean terrainLeftOfWindow() {
+		for (List<Block> row : terrain) {
+			for (Block b : row) {
+				if (b != null) {
+					if (b.getX() < 0) {
+						return true;
+					} 
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean terrainBelowWindow() {
+		for (List<Block> row : terrain) {
+			for (Block b : row) {
+				if (b != null) {
+					if (b.getY() > MainApplication.WINDOW_HEIGHT) {
+						return true;
+					} 
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean terrainAboveWindow() {
+		for (List<Block> row : terrain) {
+			for (Block b : row) {
+				if (b != null) {
+					if (b.getY() < 0) {
+						return true;
+					} 
+				}
+			}
+		}
+		return false;
 	}
 }

@@ -9,6 +9,7 @@ import menus.MenuPane;
 import menus.PauseMenu;
 import menus.Settings;
 import menus.Controls;
+import menus.GameOver;
 import menus.pauseControlsMenu;
 
 public class MainApplication extends GraphicsApplication {
@@ -21,6 +22,7 @@ public class MainApplication extends GraphicsApplication {
 	private GraphicsPane settings;
 	private GraphicsPane controls;
 	private GraphicsPane pauseControls;
+	private GraphicsPane gameOver;
 	
 	private boolean musicIsOn = true;
 	private boolean soundIsOn = true;
@@ -38,6 +40,7 @@ public class MainApplication extends GraphicsApplication {
 		settings = new Settings(this);
 		controls = new Controls(this);
 		pauseControls = new pauseControlsMenu(this);
+		gameOver = new GameOver(this);
 		setupInteractions();
 		switchToMenu();
 	}
@@ -79,6 +82,11 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void switchToPauseControlsMenu(){
 		switchToScreen(pauseControls);
+	}
+	
+	public void switchToGameOver(String methodOfDeath) {
+		((GameOver) gameOver).setDeath(methodOfDeath);
+		switchToScreen(gameOver);
 	}
 
 	public boolean isMusicOn() {

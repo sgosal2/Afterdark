@@ -7,14 +7,15 @@ import acm.program.GraphicsProgram;
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
-	public static final double MOVEMENT = 4;
-	public static final double GRAVITY = 3;
-	public static final double FRICTION = 1;
-	public static final int HEALTH_VALUE = 100;
-	public static final double JUMP_VELOCITY = 20;
-	private static final double MAX_GRAVITY = 50;
-	private static final double MAX_SPEED = 7;
+	public final double MOVEMENT = 4;
+	public final double GRAVITY = 3;
+	public final double FRICTION = 1;
+	public final int HEALTH_VALUE = 100;
+	public final double JUMP_VELOCITY = 20;
+	private final double MAX_GRAVITY = 50;
+	private final double MAX_SPEED = 7;
 	
+	protected Direction directionFacing;
 	protected String imageName;
 	protected boolean amIJumping;
 	protected boolean amIWalking;
@@ -36,6 +37,7 @@ public class Entity {
 		dy = 0;
 		dx = 0;
 		health = HEALTH_VALUE;
+		directionFacing = Direction.EAST;
 	}
 	
 	public boolean amIJumping() {
@@ -47,8 +49,9 @@ public class Entity {
 	}
 
 	public void move(double x, double y) {
-		if (x != 0 || y != 0)
-			System.out.println("dx: " + x + ", dy: " + y);
+		if (x != 0 || y != 0) {
+			//System.out.println("dx: " + x + ", dy: " + y);
+		}
 		sprite.move(x, y);
 		if(x != 0) {
 			currentStep++;
@@ -62,7 +65,7 @@ public class Entity {
 	}
 	
 	public void jump() {
-		System.out.println("Jump");
+//		System.out.println("Jump");
 		dy = -JUMP_VELOCITY;
 		setJumping(true);
 		move(dx, -0.1);
@@ -101,7 +104,8 @@ public class Entity {
 //	}
 	
 	public void walk(Direction d) {
-		System.out.println("Walk");
+//		System.out.println("Walk");
+		directionFacing = d;
 		if(d == Direction.EAST) {
 //			System.out.println("dx: " + dx);
 			dx += MOVEMENT;
@@ -121,11 +125,15 @@ public class Entity {
 //			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
+			directionFacing = Direction.EAST;
 		}else if(dx < 0) {
 			//System.out.println("Decay");
 //			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
+			directionFacing = Direction.WEST;
+		} else {
+			//Standing still
 		}
 		if (amIJumping) {
 			dy += GRAVITY;
@@ -174,5 +182,25 @@ public class Entity {
 	
 	public int getHealth() {
 		return health;
+	}
+	
+	public void damage(int d) {
+		health = Math.max(-1, health - d);
+	}
+	
+	public Direction isDirectionFacing() {
+		return directionFacing;
+	}
+
+	public void setDirectionFacing(Direction directionFacing) {
+		this.directionFacing = directionFacing;
+	}
+	
+	public boolean belowLevel() {
+		if (getY() < 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
