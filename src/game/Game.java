@@ -78,7 +78,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
 			if(program.isSoundOn()){
-				music.playSound("../sounds", "shoot_sound.wav");
+				music.playSound("../sounds/shoot_sound.wav");
 			}
 			else{
 				music.stopSound("../sounds", "shoot_sound.wav");
@@ -96,7 +96,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 				if(program.isSoundOn()){
-					music.playSound("../sounds", "jumping_sound.wav");
+					music.playSound("../sounds/jumping_sound.wav");
 				}
 				else{
 					music.stopSound("../sounds", "jumping_sound.wav");
@@ -138,6 +138,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		
 		gameLoop.start();
+		
 		
 		//adding in the music
 		if(program.isMusicOn()){
