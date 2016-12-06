@@ -157,7 +157,7 @@ public class PauseMenu extends GraphicsPane {
 			program.switchToMenu();
 		}
 		
-		if(e.getKeyCode() == KeyEvent.VK_E){
+		if(e.getKeyCode() == KeyEvent.VK_G){
 			System.exit(0);
 		}
 		
