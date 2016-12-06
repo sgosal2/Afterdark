@@ -23,8 +23,6 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
 	private static final double VERTICAL_SCROLL_RATIO = 8;
 	private static final double HORIZONTAL_SCROLL_RATIO = 3;
-	private static final String BULLET_EAST = "bullet_east.png";
-	private static final String BULLET_WEST = "bullet_west.png";
 	
 	private MainApplication program;
 	private Timer gameLoop;
@@ -83,7 +81,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			else{
 				music.stopSound("../sounds", "shoot_sound.wav");
 			}
-			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;

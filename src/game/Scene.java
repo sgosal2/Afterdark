@@ -31,6 +31,8 @@ public class Scene implements ActionListener {
 	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+	private static final String BULLET_EAST = "bullet_east.png";
+	private static final String BULLET_WEST = "bullet_west.png";
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
@@ -186,7 +188,13 @@ public class Scene implements ActionListener {
 		return enemy;
 	}
 	
-	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
+	public Bullet addBullet(Entity owner, double x, double y, Direction d) {
+		String sprite;
+		if (d == Direction.WEST) {
+			sprite = BULLET_WEST;
+		} else {
+			sprite = BULLET_EAST;
+		}
 		Bullet bullet = new Bullet(sprite, owner, d);
 		GImage b = bullet.getSprite();
 		b.setLocation(x, y);
