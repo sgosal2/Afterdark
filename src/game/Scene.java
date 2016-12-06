@@ -31,8 +31,9 @@ public class Scene implements ActionListener {
 	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
-	
 	private AudioPlayer music;
+	private static final String BULLET_EAST = "bullet_east.png";
+	private static final String BULLET_WEST = "bullet_west.png";
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
@@ -81,10 +82,10 @@ public class Scene implements ActionListener {
 		handleScrolling();
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
-			System.out.println("Player below level.");
+//			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 0) {
-			System.out.println("Player is dead.");
+//			System.out.println("Player is dead.");
 			playerKill("You were crushed by the fall.");
 		}
 	}
@@ -208,7 +209,13 @@ public class Scene implements ActionListener {
 	/*
 	 * This will add a bullet to the screen starting from particular locations and move it.
 	 */
-	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
+	public Bullet addBullet(Entity owner, double x, double y, Direction d) {
+		String sprite;
+		if (d == Direction.WEST) {
+			sprite = BULLET_WEST;
+		} else {
+			sprite = BULLET_EAST;
+		}
 		Bullet bullet = new Bullet(sprite, owner, d);
 		GImage b = bullet.getSprite();
 		b.setLocation(x, y);
@@ -282,6 +289,21 @@ public class Scene implements ActionListener {
 	
 	public Entity getNPCAtIndex(int i) {
 		return npcs.get(i);
+	}
+	
+	public void drawScene() {
+		program.add(player.getSprite());
+		if (getNPCAtIndex(0).getSprite() != null) {
+			System.out.print("Enemy added");
+			program.add(addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
+		}
+		for (List<Block> row: getTerrain()) {
+			for (Block b: row) {
+				if (b != null) {
+					program.add(b);
+				}
+			}
+		}
 	}
 
 	@Override

@@ -23,8 +23,6 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
 	private static final double VERTICAL_SCROLL_RATIO = 8;
 	private static final double HORIZONTAL_SCROLL_RATIO = 3;
-	private static final String BULLET_EAST = "bullet_east.png";
-	private static final String BULLET_WEST = "bullet_west.png";
 	
 	private MainApplication program;
 	private Timer gameLoop;
@@ -83,7 +81,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			else{
 				music.stopSound("../sounds", "shoot_sound.wav");
 			}
-			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
@@ -122,23 +120,8 @@ public class Game extends GraphicsPane implements ActionListener {
 	 * Adding the various items to the screen
 	 */
 	public void showContents() {
-		Scene curScene = scenes.get(sceneNum);
-		Entity player = curScene.getPlayer();
-		program.add(curScene.getPlayer().getSprite());
-		if (curScene.getNPCAtIndex(0).getSprite() != null) {
-			System.out.print("Enemy added");
-			program.add(curScene.addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
-		}
-		for (List<Block> row: curScene.getTerrain()) {
-			for (Block b: row) {
-				if (b != null) {
-					program.add(b);
-				}
-			}
-		}
-		
+		scenes.get(sceneNum).drawScene();
 		gameLoop.start();
-		
 		
 		//adding in the music
 		if(program.isMusicOn()){
@@ -156,7 +139,4 @@ public class Game extends GraphicsPane implements ActionListener {
 		gameLoop.stop();
 	}
 	
-	public void restartGame() {
-		sceneNum = 0;
-	}
 }
