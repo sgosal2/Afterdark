@@ -34,7 +34,8 @@ public class Scene implements ActionListener {
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
-	public Scene(int tileWidth, int tileHeight) {
+	public Scene(int tileWidth, int tileHeight, MainApplication app) {
+		program = app;
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
@@ -72,8 +73,10 @@ public class Scene implements ActionListener {
 		handleScrolling();
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
+			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 0) {
+			System.out.println("Player is dead.");
 			playerKill("You were crushed by the fall.");
 		}
 	}

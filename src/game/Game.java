@@ -38,7 +38,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		this.program = app;
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
-		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
+		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT, program));
 		gameLoop = new Timer(20, this);
 		walk = Direction.NO_DIRECTION;
 		music = AudioPlayer.getInstance();
@@ -154,5 +154,9 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void hideContents() {
 		program.removeAll();
 		gameLoop.stop();
+	}
+	
+	public void restartGame() {
+		sceneNum = 0;
 	}
 }

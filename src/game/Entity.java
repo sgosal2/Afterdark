@@ -3,6 +3,7 @@ import java.awt.Rectangle;
 
 import acm.graphics.GImage;
 import acm.program.GraphicsProgram;
+import utilities.MainApplication;
 
 public class Entity {
 	public static final String PATH = "../media/images/";
@@ -197,7 +198,7 @@ public class Entity {
 	}
 	
 	public boolean belowLevel() {
-		if (getY() < 0) {
+		if (getY() > MainApplication.WINDOW_HEIGHT) {
 			return true;
 		} else {
 			return false;
