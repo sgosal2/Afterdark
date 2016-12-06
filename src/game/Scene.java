@@ -71,11 +71,15 @@ public class Scene implements ActionListener {
 		e.walkMovement();
 		handleScrolling();
 		if (player.belowLevel()) {
-			player.damage(10000000);
+			player.damage(10000000); //More than enough to kill something.
 		}
 		if (player.getHealth() < 0) {
-			//Game over
+			playerKill("You were crushed by the fall.");
 		}
+	}
+	
+	private void playerKill(String methodOfDeath) {
+		program.switchToGameOver(methodOfDeath);
 	}
 	
 //	private boolean checkRightLeft(List<Integer> keysDown) {
