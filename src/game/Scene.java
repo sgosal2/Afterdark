@@ -73,10 +73,10 @@ public class Scene implements ActionListener {
 		handleScrolling();
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
-			System.out.println("Player below level.");
+//			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 0) {
-			System.out.println("Player is dead.");
+//			System.out.println("Player is dead.");
 			playerKill("You were crushed by the fall.");
 		}
 	}
