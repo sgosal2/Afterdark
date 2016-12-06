@@ -50,11 +50,15 @@ public class Scene implements ActionListener {
 
 	public void tick(Direction walk) {
 		Block ground = findGround(player);
+		Entity e = npcs.get(0);
 		if(ground == null) {
 			player.setJumping(true);
+			e.setJumping(true);
 		} else {
 			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
 			player.setJumping(false);
+			e.setLocation((int) e.getX(), (int) (ground.getY() - e.getHeight()));
+			e.setJumping(false);
 		}
 		if (walk == Direction.WEST) {
 			player.walk(walk);
@@ -62,7 +66,9 @@ public class Scene implements ActionListener {
 			player.walk(walk);
 		}
 		checkTerrainCollisions(player);
+		checkTerrainCollisions(e);
 		player.walkMovement();
+		e.walkMovement();
 		handleScrolling();
 	}
 	
