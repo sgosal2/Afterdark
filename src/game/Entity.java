@@ -13,26 +13,38 @@ public class Entity {
 	public final double FRICTION = 1;
 	public final int HEALTH_VALUE = 100;
 	public final double JUMP_VELOCITY = 20;
-	private final double MAX_GRAVITY = 50;
+	private final double MAX_GRAVITY = 30;
 	private final double MAX_SPEED = 7;
+	
+	private double height;
+	private double width;
+	
+	private boolean idle;
 	
 	protected Direction directionFacing;
 	protected String imageName;
 	protected boolean amIJumping;
 	protected boolean amIWalking;
 	protected int currentStep;
-	protected int numImages;
+	protected int currentIdle;
+	protected int walkImages;
+	protected int idleImages;
 	protected GImage sprite;
 	protected double dy;
 	protected double dx;
 	protected int health;
 	
-	public Entity(String sprite, int startX, int startY, int imagesInAnimation) {
+	public Entity(String sprite, int startX, int startY, int imagesInWalk, int imagesInIdle) {
+		idle = true;
 		imageName = sprite;
 		currentStep = 0;
-		numImages = imagesInAnimation;
+		currentIdle = 0;
+		walkImages = imagesInWalk;
+		idleImages = imagesInIdle;
+		this.height = 16;
+		this.width = 16;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
-		this.sprite.setSize(16, 16);
+		this.sprite.setSize(height, width);
 		amIJumping = true;
 		amIWalking = false;
 		dy = 0;
@@ -41,6 +53,25 @@ public class Entity {
 		directionFacing = Direction.EAST;
 	}
 	
+	public Entity(String sprite, int startX, int startY, double height, double width, int imagesInWalk, int imagesInIdle) {
+		idle = true;
+		imageName = sprite;
+		currentStep = 0;
+		currentIdle = 0;
+		walkImages = imagesInWalk;
+		idleImages = imagesInIdle;
+		this.height = height;
+		this.width = width;
+		this.sprite = new GImage(getCorrectSprite(), startX, startY);
+		this.sprite.setSize(width, height);
+		amIJumping = true;
+		amIWalking = false;
+		dy = 0;
+		dx = 0;
+		health = HEALTH_VALUE;
+		directionFacing = Direction.EAST;
+	}
+
 	public boolean amIJumping() {
 		return amIJumping;
 	}
@@ -58,11 +89,34 @@ public class Entity {
 			currentStep++;
 		}
 		sprite.setImage(getCorrectSprite());
+		sprite.setSize(width, height);
+	}
+	
+	public void incrementIdle() {
+		currentIdle++;
 	}
 	
 	private String getCorrectSprite() {
-		int imgToGet = currentStep % numImages;
-		return PATH + imageName+imgToGet+EXTENSION;
+		if (idleImages == 0) {
+			int imgToGet = currentStep % walkImages;
+			return PATH + imageName+imgToGet+EXTENSION;
+		} else {
+			if (idle) {
+				int imgToGet = currentIdle % idleImages;
+				if (directionFacing == Direction.WEST) {
+					return PATH + imageName + "/idle/left/" + imageName + imgToGet + ".gif";
+				} else {
+					return PATH + imageName + "/idle/right/" + imageName + imgToGet + ".gif";
+				}
+			} else {
+				int imgToGet = currentStep % walkImages;
+				if (directionFacing == Direction.WEST) {
+					return PATH + imageName + "/walk/left/" + imageName + imgToGet + ".gif";
+				} else {
+					return PATH + imageName + "/walk/right/" + imageName + imgToGet + ".gif";
+				}
+			}
+		}
 	}
 	
 	public void jump() {
@@ -116,10 +170,12 @@ public class Entity {
 			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
+		idle = false;
 		amIWalking = true;
 	}
 	
 	public void walkMovement() {
+		System.out.println("DY: " + dy);
 		move(dx, dy);
 		if(dx > 0) {
 			//System.out.println("Decay");
@@ -134,9 +190,13 @@ public class Entity {
 			dx = Math.min(dx, 0);
 			directionFacing = Direction.WEST;
 		} else {
-			//Standing still
+			idle = true;
+			amIWalking = false;
+			sprite.setImage(getCorrectSprite());
+			sprite.setSize(width, height);
 		}
 		if (amIJumping) {
+			System.out.println("Am jumping");
 			dy += GRAVITY;
 			dy = Math.min(dy, MAX_GRAVITY);
 			dy = Math.max(dy, -JUMP_VELOCITY);
@@ -161,8 +221,12 @@ public class Entity {
 		sprite.move(0, distance);
 	}
 
-	public double getHeight() {
+	public double getSpriteHeight() {
 		return sprite.getHeight();
+	}
+	
+	public double getSpriteWidth() {
+		return sprite.getWidth();
 	}
 	
 	public GImage getSprite() {
@@ -203,5 +267,29 @@ public class Entity {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean getAmIJumping() {
+		return amIJumping;
+	}
+	
+	public void setAmIJumping(boolean b) {
+		amIJumping = b;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
 	}
 }

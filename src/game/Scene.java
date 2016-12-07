@@ -28,7 +28,6 @@ public class Scene implements ActionListener {
 	private Entity player;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
-	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	private AudioPlayer music;
@@ -42,13 +41,12 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
-		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
+		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
 		npcs.add(e);
-		timerNum = 0;
 		enemyMovementTimer.start();
 		music = AudioPlayer.getInstance();
 	}
@@ -59,15 +57,19 @@ public class Scene implements ActionListener {
 	 * character and its various properties.
 	 */
 	public void tick(Direction walk) {
-		Block ground = findGround(player);
-		Entity e = npcs.get(0);
-		if(ground == null) {
+		Enemy e = (Enemy) npcs.get(0);
+		Block playerGround = findGround(player);
+		Block enemyGround = findGround(e);
+		if(playerGround == null) {
 			player.setJumping(true);
+		} else {
+			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
+			player.setJumping(false);
+		}
+		if(enemyGround == null) {
 			e.setJumping(true);
 		} else {
-			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
-			player.setJumping(false);
-			e.setLocation((int) e.getX(), (int) (ground.getY() - e.getHeight()));
+			e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
 			e.setJumping(false);
 		}
 		if (walk == Direction.WEST) {
@@ -75,9 +77,11 @@ public class Scene implements ActionListener {
 		} else if (walk == Direction.EAST) {
 			player.walk(walk);
 		}
+		player.incrementIdle();
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(e);
 		player.walkMovement();
+		e.setAmIJumping(true);
 		e.walkMovement();
 		handleScrolling();
 		if (player.belowLevel()) {
@@ -198,10 +202,9 @@ public class Scene implements ActionListener {
 	 * This will add enemies with specific characteristics in different locations.
 	 */
 	public Enemy addEnemy(String sprite, int startX, int startY, int imgsToAnimate) {
-		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
+		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate, 0);
 		GImage e = enemy.getSprite();
 		e.setLocation(startX, startY);
-		enemy.move();
 		npcs.add(enemy);
 		return enemy;
 	}

@@ -6,32 +6,24 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import javax.swing.*;
 
-public class Enemy extends Entity implements ActionListener{
+public class Enemy extends Entity{
 	
-	Timer movementTimer = new Timer(10, this);
 	private int timerNum;
-	
-	public Enemy(String imgName, int startX, int startY, int imagesInAnimation) {
-		super(imgName, startX, startY, imagesInAnimation);
+
+	public Enemy(String imgName, int startX, int startY, int imagesInWalk, int imagesInIdle) {
+		super(imgName, startX, startY, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(24, 24);
+		timerNum = 0;
+		dx = 1;
 	}
 	
-	public void attack() {
-		
-	}
-	
-	public void actionPerformed(ActionEvent e) {
+	public void walkMovement() {
+		super.walkMovement();
+		System.out.print("Enemy");
 		timerNum++;
-		if (timerNum % 400 < 200) {
-			sprite.move(1, 0);
-		}
-		else {
-			sprite.move(-1, 0);
+		if ((timerNum % 20) == 1) {
+			dx = dx * -1;
 		}
 	}
-	
-	public void move() {
-		movementTimer.start();
-	}
-	
+
 }
