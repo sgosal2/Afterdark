@@ -1,4 +1,5 @@
 package game;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -123,6 +124,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	 * Adding the various items to the screen
 	 */
 	public void showContents() {
+		program.setBackground(Color.DARK_GRAY);
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
 		program.add(curScene.getPlayer().getSprite());

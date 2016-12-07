@@ -37,12 +37,13 @@ public class GameWon extends GraphicsPane {
 	public void showContents() {
 		program.add(returnToMain);
 		program.add(congratMessage);
-		program.setBackground(Color.decode("#e23fff"));
+		program.setBackground(Color.DARK_GRAY);
 		
 	}
 
 	@Override
 	public void hideContents() {
+		program.setBackground(null);
 		program.remove(returnToMain);
 		program.remove(congratMessage);
 		

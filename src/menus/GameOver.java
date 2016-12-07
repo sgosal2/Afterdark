@@ -22,8 +22,10 @@ public class GameOver extends GraphicsPane {
 		returnToHome.setColor(Color.WHITE);
 		methodOfDeath = new GLabel("", MainApplication.WINDOW_WIDTH / 3 - 40, MainApplication.WINDOW_HEIGHT / 3);
 		methodOfDeath.setFont("Sans Serif-30");
+		methodOfDeath.setColor(Color.WHITE);
 		gameOver = new GLabel("Game Over!", MainApplication.WINDOW_WIDTH / 3 + 20, MainApplication.WINDOW_HEIGHT / 2 + 20);
 		gameOver.setFont("Comic Sans MS-60");
+		gameOver.setColor(Color.WHITE);
 		
 		
 	}
@@ -55,6 +57,7 @@ public class GameOver extends GraphicsPane {
 
 	@Override
 	public void hideContents() {
+		program.setBackground(null);
 		program.remove(methodOfDeath);
 		program.remove(gameOver);
 		program.remove(returnToHome);
