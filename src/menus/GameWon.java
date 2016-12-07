@@ -19,10 +19,11 @@ public class GameWon extends GraphicsPane {
 	
 	public GameWon(MainApplication main){
 		program = main;
-		returnToMain = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 5 + 100, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.decode("#e23fff"));
-		returnToMain.setColor(Color.BLACK);
+		returnToMain = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 5 + 100, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
+		returnToMain.setColor(Color.WHITE);
 		congratMessage = new GLabel("Congratulations you beat the Level!", MainApplication.WINDOW_WIDTH / 5, MainApplication.WINDOW_HEIGHT / 3 + 20);
 		congratMessage.setFont("Comic Sans MS-36");
+		congratMessage.setColor(Color.WHITE);
 	}
 
 	public void mousePressed(MouseEvent e){
