@@ -28,7 +28,6 @@ public class Scene implements ActionListener {
 	private Entity player;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
-	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
 	private static final String BULLET_EAST = "bullet_east.png";
@@ -47,7 +46,6 @@ public class Scene implements ActionListener {
 		npcs = new ArrayList<Entity>();
 		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
 		npcs.add(e);
-		timerNum = 0;
 		enemyMovementTimer.start();
 	}
 
