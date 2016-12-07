@@ -21,16 +21,17 @@ public class Entity {
 	protected boolean amIJumping;
 	protected boolean amIWalking;
 	protected int currentStep;
-	protected int numImages;
+	protected int walkImages;
+	protected int idleImages;
 	protected GImage sprite;
 	protected double dy;
 	protected double dx;
 	protected int health;
 	
-	public Entity(String sprite, int startX, int startY, int imagesInAnimation) {
+	public Entity(String sprite, int startX, int startY, int imagesInWalk, int imagesInIdle) {
 		imageName = sprite;
 		currentStep = 0;
-		numImages = imagesInAnimation;
+		walkImages = imagesInWalk;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		this.sprite.setSize(16, 16);
 		amIJumping = true;
@@ -61,7 +62,7 @@ public class Entity {
 	}
 	
 	private String getCorrectSprite() {
-		int imgToGet = currentStep % numImages;
+		int imgToGet = currentStep % walkImages;
 		return PATH + imageName+imgToGet+EXTENSION;
 	}
 	

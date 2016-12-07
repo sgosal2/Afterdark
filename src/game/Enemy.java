@@ -11,8 +11,8 @@ public class Enemy extends Entity implements ActionListener{
 	Timer movementTimer = new Timer(10, this);
 	private int timerNum;
 	
-	public Enemy(String imgName, int startX, int startY, int imagesInAnimation) {
-		super(imgName, startX, startY, imagesInAnimation);
+	public Enemy(String imgName, int startX, int startY, int imagesInWalk, int imagesInIdle) {
+		super(imgName, startX, startY, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(24, 24);
 	}
 	
