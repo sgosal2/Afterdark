@@ -11,12 +11,16 @@ import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
-
+/*
+ * This is a pane that shows up when the player has won the game! The only way the user can win the game is 
+ * if the user passes the level.
+ */
 public class GameWon extends GraphicsPane {
 	private GButton returnToMain;
 	private GLabel congratMessage;
 	private MainApplication program;
 	
+//	Adds buttons and labels on the screen that is shows
 	public GameWon(MainApplication main){
 		program = main;
 		returnToMain = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 5 + 100, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
@@ -26,6 +30,8 @@ public class GameWon extends GraphicsPane {
 		congratMessage.setColor(Color.WHITE);
 	}
 
+//	If the user clicks on the button, it takes it to the location it needs to go
+//	In this case, it goes back to menu
 	public void mousePressed(MouseEvent e){
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == returnToMain){
@@ -34,6 +40,8 @@ public class GameWon extends GraphicsPane {
 		}
 	}
 
+	
+//	Shows all buttons and labels made for this class
 	@Override
 	public void showContents() {
 		program.add(returnToMain);
@@ -42,6 +50,7 @@ public class GameWon extends GraphicsPane {
 		
 	}
 
+//	Hides all buttons and labels made for this class
 	@Override
 	public void hideContents() {
 		program.setBackground(null);
