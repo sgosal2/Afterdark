@@ -18,9 +18,14 @@ public class GameOver extends GraphicsPane {
 	
 	public GameOver(MainApplication main) {
 		program = main;
-		gameOver = new GLabel("Game Over", MainApplication.WINDOW_WIDTH / 2 - 10, MainApplication.WINDOW_HEIGHT / 2 + 20);
-		methodOfDeath = new GLabel("", MainApplication.WINDOW_WIDTH / 2 - 10, MainApplication.WINDOW_HEIGHT / 2);
-		returnToHome = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 2 - 10, (double) MainApplication.WINDOW_HEIGHT / 10, 20.0, 12.0, Color.BLUE);
+		returnToHome = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 4 + 50, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
+		returnToHome.setColor(Color.WHITE);
+		methodOfDeath = new GLabel("", MainApplication.WINDOW_WIDTH / 3 - 40, MainApplication.WINDOW_HEIGHT / 3);
+		methodOfDeath.setFont("Sans Serif-30");
+		gameOver = new GLabel("Game Over!", MainApplication.WINDOW_WIDTH / 3 + 20, MainApplication.WINDOW_HEIGHT / 2 + 20);
+		gameOver.setFont("Comic Sans MS-60");
+		
+		
 	}
 	
 	public void setDeath(String death) {

@@ -90,6 +90,9 @@ public class Game extends GraphicsPane implements ActionListener {
 			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
+		else if(e.getKeyCode() == KeyEvent.VK_W){
+			program.switchToGameWon();
+		}
 		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
