@@ -16,11 +16,14 @@ public class Entity {
 	private final double MAX_GRAVITY = 50;
 	private final double MAX_SPEED = 7;
 	
+	private boolean idle;
+	
 	protected Direction directionFacing;
 	protected String imageName;
 	protected boolean amIJumping;
 	protected boolean amIWalking;
 	protected int currentStep;
+	protected int currentIdle;
 	protected int walkImages;
 	protected int idleImages;
 	protected GImage sprite;
@@ -29,9 +32,12 @@ public class Entity {
 	protected int health;
 	
 	public Entity(String sprite, int startX, int startY, int imagesInWalk, int imagesInIdle) {
+		idle = true;
 		imageName = sprite;
 		currentStep = 0;
+		currentIdle = 0;
 		walkImages = imagesInWalk;
+		idleImages = imagesInIdle;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
 		this.sprite.setSize(16, 16);
 		amIJumping = true;
@@ -61,9 +67,31 @@ public class Entity {
 		sprite.setImage(getCorrectSprite());
 	}
 	
+	public void incrementIdle() {
+		currentIdle++;
+	}
+	
 	private String getCorrectSprite() {
-		int imgToGet = currentStep % walkImages;
-		return PATH + imageName+imgToGet+EXTENSION;
+		if (idleImages == 0) {
+			int imgToGet = currentStep % walkImages;
+			return PATH + imageName+imgToGet+EXTENSION;
+		} else {
+			if (idle) {
+				int imgToGet = currentIdle % idleImages;
+				if (directionFacing == Direction.WEST) {
+					return PATH + imageName + "/idle/left/" + imageName + imgToGet + ".gif";
+				} else {
+					return PATH + imageName + "/idle/right/" + imageName + imgToGet + ".gif";
+				}
+			} else {
+				int imgToGet = currentStep % walkImages;
+				if (directionFacing == Direction.WEST) {
+					return PATH + imageName + "/walk/left/" + imageName + imgToGet + ".gif";
+				} else {
+					return PATH + imageName + "/walk/right/" + imageName + imgToGet + ".gif";
+				}
+			}
+		}
 	}
 	
 	public void jump() {
@@ -117,6 +145,7 @@ public class Entity {
 			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
+		idle = false;
 		amIWalking = true;
 	}
 	
@@ -135,7 +164,8 @@ public class Entity {
 			dx = Math.min(dx, 0);
 			directionFacing = Direction.WEST;
 		} else {
-			//Standing still
+			idle = true;
+			amIWalking = false;
 		}
 		if (amIJumping) {
 			dy += GRAVITY;

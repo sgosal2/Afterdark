@@ -41,7 +41,7 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 8, 20);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 8, 20);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
@@ -73,6 +73,7 @@ public class Scene implements ActionListener {
 		} else if (walk == Direction.EAST) {
 			player.walk(walk);
 		}
+		player.incrementIdle();
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(e);
 		player.walkMovement();
