@@ -23,8 +23,6 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
 	private static final double VERTICAL_SCROLL_RATIO = 8;
 	private static final double HORIZONTAL_SCROLL_RATIO = 3;
-	private static final String BULLET_EAST = "bullet_east.png";
-	private static final String BULLET_WEST = "bullet_west.png";
 	
 	private MainApplication program;
 	private Timer gameLoop;
@@ -38,7 +36,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		this.program = app;
 		sceneNum = 0;
 		scenes = new ArrayList<Scene>();
-		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT));
+		scenes.add(new Scene(TILE_WIDTH, TILE_HEIGHT, program));
 		gameLoop = new Timer(20, this);
 		walk = Direction.NO_DIRECTION;
 		music = AudioPlayer.getInstance();
@@ -78,12 +76,12 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
 			if(program.isSoundOn()){
-				music.playSound("../sounds", "shoot_sound.wav");
+				music.playSound("../sounds/shoot_sound.wav");
 			}
 			else{
 				music.stopSound("../sounds", "shoot_sound.wav");
 			}
-			program.add(curScene.addBullet(BULLET_EAST, curScene.getPlayer(), player.getX(), player.getY(), Direction.EAST).getSprite());
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
@@ -96,7 +94,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
 				if(program.isSoundOn()){
-					music.playSound("../sounds", "jumping_sound.wav");
+					music.playSound("../sounds/jumping_sound.wav");
 				}
 				else{
 					music.stopSound("../sounds", "jumping_sound.wav");
@@ -136,7 +134,7 @@ public class Game extends GraphicsPane implements ActionListener {
 				}
 			}
 		}
-		
+		scenes.get(sceneNum).drawScene();
 		gameLoop.start();
 		
 		//adding in the music
@@ -154,4 +152,5 @@ public class Game extends GraphicsPane implements ActionListener {
 		program.removeAll();
 		gameLoop.stop();
 	}
+	
 }

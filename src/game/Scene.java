@@ -17,7 +17,7 @@ import acm.graphics.GObject;
 
 import java.awt.event.KeyEvent;
 
-
+import utilities.AudioPlayer;
 import utilities.MainApplication;
 
 public class Scene implements ActionListener {
@@ -28,26 +28,34 @@ public class Scene implements ActionListener {
 	private Entity player;
 	private List<Entity> npcs;
 	private Direction playerWalkDirection;
-	private int timerNum;
 	public static int TILE_WIDTH;
 	public static int TILE_HEIGHT;
+	private AudioPlayer music;
+	private static final String BULLET_EAST = "bullet_east.png";
+	private static final String BULLET_WEST = "bullet_west.png";
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
-	public Scene(int tileWidth, int tileHeight) {
+	public Scene(int tileWidth, int tileHeight, MainApplication app) {
+		program = app;
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
-		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
+		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
 		npcs.add(e);
-		timerNum = 0;
 		enemyMovementTimer.start();
+		music = AudioPlayer.getInstance();
 	}
 
+	/*
+	 * This method is called whenever the timer ticks from game.java.
+	 * It performs multiple operations every 20ms to keep track of the
+	 * character and its various properties.
+	 */
 	public void tick(Direction walk) {
 		Enemy e = (Enemy) npcs.get(0);
 		Block playerGround = findGround(player);
@@ -69,6 +77,7 @@ public class Scene implements ActionListener {
 		} else if (walk == Direction.EAST) {
 			player.walk(walk);
 		}
+		player.incrementIdle();
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(e);
 		player.walkMovement();
@@ -77,13 +86,23 @@ public class Scene implements ActionListener {
 		handleScrolling();
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
+//			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 0) {
+//			System.out.println("Player is dead.");
 			playerKill("You were crushed by the fall.");
 		}
 	}
 	
+	/*
+	 * This will switch to the game over screen when the character dies
+	 * and it will play the appropriate sound as well.
+	 */
 	private void playerKill(String methodOfDeath) {
+		if(program.isMusicOn()){
+			music.stopSound("../sounds", "game_music.mp3");
+			music.playSound("../sounds/gameOver_sound.wav");
+		}
 		program.switchToGameOver(methodOfDeath);
 	}
 	
@@ -179,15 +198,27 @@ public class Scene implements ActionListener {
 		return layout.getTerrain();
 	}
 	
+	/*
+	 * This will add enemies with specific characteristics in different locations.
+	 */
 	public Enemy addEnemy(String sprite, int startX, int startY, int imgsToAnimate) {
-		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
+		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate, 0);
 		GImage e = enemy.getSprite();
 		e.setLocation(startX, startY);
 		npcs.add(enemy);
 		return enemy;
 	}
 	
-	public Bullet addBullet(String sprite, Entity owner, double x, double y, Direction d) {
+	/*
+	 * This will add a bullet to the screen starting from particular locations and move it.
+	 */
+	public Bullet addBullet(Entity owner, double x, double y, Direction d) {
+		String sprite;
+		if (d == Direction.WEST) {
+			sprite = BULLET_WEST;
+		} else {
+			sprite = BULLET_EAST;
+		}
 		Bullet bullet = new Bullet(sprite, owner, d);
 		GImage b = bullet.getSprite();
 		b.setLocation(x, y);
@@ -261,6 +292,21 @@ public class Scene implements ActionListener {
 	
 	public Entity getNPCAtIndex(int i) {
 		return npcs.get(i);
+	}
+	
+	public void drawScene() {
+		program.add(player.getSprite());
+		if (getNPCAtIndex(0).getSprite() != null) {
+			System.out.print("Enemy added");
+			program.add(addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
+		}
+		for (List<Block> row: getTerrain()) {
+			for (Block b: row) {
+				if (b != null) {
+					program.add(b);
+				}
+			}
+		}
 	}
 
 	@Override

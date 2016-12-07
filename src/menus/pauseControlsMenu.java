@@ -23,12 +23,15 @@ public class pauseControlsMenu extends GraphicsPane{
 	private final double X_YCORD = program.WINDOW_HEIGHT/X_YCORD_FACTOR;
 	private final double X_SIZEX = program.WINDOW_WIDTH/X_WIDTH_FACTOR;
 	private final double X_SIZEY = program.WINDOW_HEIGHT/X_HEIGHT_FACTOR;
+	private static final String MUSIC_KEY = "Music/Sound On or Off = M";
+
 	
 	private GButton leftKeyButton;
 	private GButton rightKeyButton;
 	private GButton jumpKeyButton;
 	private GButton attackKeyButton;
 	private GButton pauseKeyButton;
+	private GButton musicOnOffButton;
 	
 	private static final String MOVE_LEFT_KEY = "Left Arrow/A";
 	private static final String MOVE_RIGHT_KEY = "Right Arrow/D";
@@ -36,7 +39,7 @@ public class pauseControlsMenu extends GraphicsPane{
 	private static final String ATTACK_KEY = "Enter/V";
 	private static final String PAUSE_KEY = "P/Esc";
 	
-	private static final double BUTTON_WIDTH_FACTOR = 5.54;
+	private static final double BUTTON_WIDTH_FACTOR = 5;
 	private static final double BUTTON_HEIGHT_FACTOR = 17.07;
 	private static final double BUTTON_XCORD_FACTOR = 2.84;
 	private static final double BUTTON_YCORD_FACTOR = 3.77;
@@ -62,6 +65,8 @@ public class pauseControlsMenu extends GraphicsPane{
 		jumpKeyButton = new GButton(JUMP_KEY, BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		attackKeyButton = new GButton(ATTACK_KEY, BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		pauseKeyButton = new GButton(PAUSE_KEY, BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+		musicOnOffButton = new GButton(MUSIC_KEY, BUTTON_XCORD, (BUTTON_YCORD + (5*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
+
 	}
 	
 	@Override
@@ -76,6 +81,7 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.add(jumpKeyButton);
 		program.add(attackKeyButton);
 		program.add(pauseKeyButton);
+		program.add(musicOnOffButton);
 	}
 
 	@Override
@@ -87,6 +93,7 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.remove(jumpKeyButton);
 		program.remove(attackKeyButton);
 		program.remove(pauseKeyButton);
+		program.remove(musicOnOffButton);
 	}
 
 	/*

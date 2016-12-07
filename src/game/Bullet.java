@@ -45,6 +45,9 @@ public class Bullet implements ActionListener {
 		}
 	}
 	
+	/*
+	 * These are the getters and setters for the sprite, damage, and direction.
+	 */
 	public GImage getSprite() {
 		return sprite;
 	}
@@ -79,7 +82,9 @@ public class Bullet implements ActionListener {
 		}
 	}
 */
-	
+	/*
+	 * This method makes the actual bullet image move across the screen.
+	 */
 	public void move() {
 		someTimer.start();
 	}

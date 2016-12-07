@@ -9,12 +9,12 @@ import javax.swing.*;
 public class Enemy extends Entity{
 	
 	private int timerNum;
-	
-	public Enemy(String imgName, int startX, int startY, int imagesInAnimation) {
-		super(imgName, startX, startY, imagesInAnimation);
-		super.dx = 1;
+
+	public Enemy(String imgName, int startX, int startY, int imagesInWalk, int imagesInIdle) {
+		super(imgName, startX, startY, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(24, 24);
 		timerNum = 0;
+		dx = 1;
 	}
 	
 	public void walkMovement() {

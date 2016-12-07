@@ -34,6 +34,7 @@ public class AudioPlayer {
 			mPlayer.seek(Duration.ZERO);
 		}
 		mPlayer.play();
+		mPlayer.setCycleCount(mPlayer.INDEFINITE);
 	}
 	
 	public void playSound(String filepath) {
