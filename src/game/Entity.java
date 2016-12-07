@@ -13,8 +13,11 @@ public class Entity {
 	public final double FRICTION = 1;
 	public final int HEALTH_VALUE = 100;
 	public final double JUMP_VELOCITY = 20;
-	private final double MAX_GRAVITY = 50;
+	private final double MAX_GRAVITY = 30;
 	private final double MAX_SPEED = 7;
+	
+	private double height;
+	private double width;
 	
 	private boolean idle;
 	
@@ -38,8 +41,10 @@ public class Entity {
 		currentIdle = 0;
 		walkImages = imagesInWalk;
 		idleImages = imagesInIdle;
+		this.height = 16;
+		this.width = 16;
 		this.sprite = new GImage(getCorrectSprite(), startX, startY);
-		this.sprite.setSize(16, 16);
+		this.sprite.setSize(height, width);
 		amIJumping = true;
 		amIWalking = false;
 		dy = 0;
@@ -48,6 +53,25 @@ public class Entity {
 		directionFacing = Direction.EAST;
 	}
 	
+	public Entity(String sprite, int startX, int startY, double height, double width, int imagesInWalk, int imagesInIdle) {
+		idle = true;
+		imageName = sprite;
+		currentStep = 0;
+		currentIdle = 0;
+		walkImages = imagesInWalk;
+		idleImages = imagesInIdle;
+		this.height = height;
+		this.width = width;
+		this.sprite = new GImage(getCorrectSprite(), startX, startY);
+		this.sprite.setSize(width, height);
+		amIJumping = true;
+		amIWalking = false;
+		dy = 0;
+		dx = 0;
+		health = HEALTH_VALUE;
+		directionFacing = Direction.EAST;
+	}
+
 	public boolean amIJumping() {
 		return amIJumping;
 	}
@@ -65,6 +89,7 @@ public class Entity {
 			currentStep++;
 		}
 		sprite.setImage(getCorrectSprite());
+		sprite.setSize(width, height);
 	}
 	
 	public void incrementIdle() {
@@ -166,6 +191,8 @@ public class Entity {
 		} else {
 			idle = true;
 			amIWalking = false;
+			sprite.setImage(getCorrectSprite());
+			sprite.setSize(width, height);
 		}
 		if (amIJumping) {
 			dy += GRAVITY;
@@ -192,8 +219,12 @@ public class Entity {
 		sprite.move(0, distance);
 	}
 
-	public double getHeight() {
+	public double getSpriteHeight() {
 		return sprite.getHeight();
+	}
+	
+	public double getSpriteWidth() {
+		return sprite.getWidth();
 	}
 	
 	public GImage getSprite() {
@@ -234,5 +265,21 @@ public class Entity {
 		} else {
 			return false;
 		}
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public void setWidth(double width) {
+		this.width = width;
 	}
 }

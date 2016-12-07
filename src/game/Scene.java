@@ -41,7 +41,7 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 8, 20);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
@@ -63,9 +63,9 @@ public class Scene implements ActionListener {
 			player.setJumping(true);
 			e.setJumping(true);
 		} else {
-			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
+			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getSpriteHeight()));
 			player.setJumping(false);
-			e.setLocation((int) e.getX(), (int) (ground.getY() - e.getHeight()));
+			e.setLocation((int) e.getX(), (int) (ground.getY() - e.getSpriteHeight()));
 			e.setJumping(false);
 		}
 		if (walk == Direction.WEST) {
