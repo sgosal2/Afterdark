@@ -127,7 +127,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		program.add(curScene.getPlayer().getSprite());
 		if (curScene.getNPCAtIndex(0).getSprite() != null) {
 			System.out.print("Enemy added");
-			program.add(curScene.addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
+			program.add(curScene.addEnemy("sprite", (int) player.getX() + 50, (int) player.getY(), 3).getSprite());
 		}
 		for (List<Block> row: curScene.getTerrain()) {
 			for (Block b: row) {

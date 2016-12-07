@@ -119,6 +119,7 @@ public class Entity {
 	}
 	
 	public void walkMovement() {
+		System.out.println("DY: " + dy);
 		move(dx, dy);
 		if(dx > 0) {
 			//System.out.println("Decay");
@@ -136,6 +137,7 @@ public class Entity {
 			//Standing still
 		}
 		if (amIJumping) {
+			System.out.println("Am jumping");
 			dy += GRAVITY;
 			dy = Math.min(dy, MAX_GRAVITY);
 			dy = Math.max(dy, -JUMP_VELOCITY);
@@ -202,5 +204,13 @@ public class Entity {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean getAmIJumping() {
+		return amIJumping;
+	}
+	
+	public void setAmIJumping(boolean b) {
+		amIJumping = b;
 	}
 }

@@ -49,15 +49,19 @@ public class Scene implements ActionListener {
 	}
 
 	public void tick(Direction walk) {
-		Block ground = findGround(player);
-		Entity e = npcs.get(0);
-		if(ground == null) {
+		Enemy e = (Enemy) npcs.get(0);
+		Block playerGround = findGround(player);
+		Block enemyGround = findGround(e);
+		if(playerGround == null) {
 			player.setJumping(true);
+		} else {
+			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
+			player.setJumping(false);
+		}
+		if(enemyGround == null) {
 			e.setJumping(true);
 		} else {
-			player.setLocation((int) player.getX(), (int) (ground.getY() - player.getHeight()));
-			player.setJumping(false);
-			e.setLocation((int) e.getX(), (int) (ground.getY() - e.getHeight()));
+			e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
 			e.setJumping(false);
 		}
 		if (walk == Direction.WEST) {
@@ -68,6 +72,7 @@ public class Scene implements ActionListener {
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(e);
 		player.walkMovement();
+		e.setAmIJumping(true);
 		e.walkMovement();
 		handleScrolling();
 		if (player.belowLevel()) {
@@ -178,7 +183,6 @@ public class Scene implements ActionListener {
 		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
 		GImage e = enemy.getSprite();
 		e.setLocation(startX, startY);
-		enemy.move();
 		npcs.add(enemy);
 		return enemy;
 	}
