@@ -44,7 +44,7 @@ public class Scene implements ActionListener {
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
-		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
+		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
 		npcs.add(e);
 		enemyMovementTimer.start();
 	}
@@ -178,7 +178,7 @@ public class Scene implements ActionListener {
 	}
 	
 	public Enemy addEnemy(String sprite, int startX, int startY, int imgsToAnimate) {
-		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate);
+		Enemy enemy = new Enemy(sprite, startX, startY, imgsToAnimate, 0);
 		GImage e = enemy.getSprite();
 		e.setLocation(startX, startY);
 		enemy.move();
