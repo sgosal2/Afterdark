@@ -128,7 +128,7 @@ public class Scene implements ActionListener {
 			death = "You were crushed by the fall.";
 //			System.out.println("Player below level.");
 		}
-		if (player.getHealth() < 0) {
+		if (player.getHealth() < 1) {
 //			System.out.println("Player is dead.");
 			playerKill(death);
 		}
