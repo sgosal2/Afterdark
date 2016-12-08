@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class Enemy extends Entity{
 	
-	public static final int MOVEMENT_SPEED = 10;
+	public static final int MOVEMENT_SPEED = 1;
 	
 	private int timerNum;
 
@@ -16,7 +16,6 @@ public class Enemy extends Entity{
 		super(imgName, startX, startY, 64, 64, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(64, 64);
 		timerNum = 0;
-		dx = 1;
 	}
 	
 	public void walkMovement() {

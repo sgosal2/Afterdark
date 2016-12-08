@@ -85,7 +85,7 @@ public class Scene implements ActionListener {
 //			e.setAmIJumping(true);
 			e.walkMovement();
 			if (enemyCollision(e)) {
-				player.damage(1);
+				player.damage(5);
 				death = "You were mauled by a goon!";
 			}
 			if (e.belowLevel()) {
