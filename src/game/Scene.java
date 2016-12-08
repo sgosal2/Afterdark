@@ -97,12 +97,14 @@ public class Scene implements ActionListener {
 			e.walkMovement();
 			if (enemyCollision(e)) {
 				if (!player.isInvulnerable()) {
-					switch (program.getDifficulty()) {
-					case EASY:
+					if (program.getDifficulty() == Difficulty.EASY) {
+//						System.out.println("Damage: " + 10);
 						player.damage(10);
-					case MEDIUM:
+					} else if (program.getDifficulty() == Difficulty.MEDIUM) {
+//						System.out.println("Damage: " + 25);
 						player.damage(25);
-					case HARD:
+					} else if (program.getDifficulty() == Difficulty.HARD) {
+//						System.out.println("Damage: " + 50);
 						player.damage(50);
 					}
 					player.makeInvulnerable();

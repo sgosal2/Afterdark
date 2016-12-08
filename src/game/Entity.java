@@ -15,7 +15,7 @@ public class Entity {
 	public final double JUMP_VELOCITY = 30;
 	private final double MAX_GRAVITY = 30;
 	private final double MAX_SPEED = 7;
-	private final int MAX_INVULERABILITY = 100;
+	private final int MAX_INVULERABILITY = 50;
 	
 	private double height;
 	private double width;
