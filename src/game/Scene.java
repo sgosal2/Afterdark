@@ -273,7 +273,7 @@ public class Scene implements ActionListener {
 		}
 		for (Entity e : npcs) {
 			if (e != null) {
-				e.move(0.0, distance);
+				e.move(0.0, distance); 
 			}
 		}
 		layout.vertScroll(distance);
