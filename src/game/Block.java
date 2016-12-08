@@ -46,10 +46,7 @@ public class Block extends GImage {
 //			System.out.println("N");
 			return Direction.NORTH;
 		}
-		if(character.intersectsLine(getX(), getY()+getHeight(), getX()+getWidth(), getY()+getHeight())) {
-//			System.out.println("S");
-			return Direction.SOUTH;
-		}
+		
 		if(character.intersectsLine(getX()+getWidth(), getY(), getX()+getWidth(), getY()+getHeight())) {
 //			System.out.println("E");
 			return Direction.EAST;
@@ -58,6 +55,11 @@ public class Block extends GImage {
 		if(character.intersectsLine(getX(), getY(), getX(), getY()+getHeight())) {
 //			System.out.println("W");
 			return Direction.WEST;
+		}
+		
+		if(character.intersectsLine(getX(), getY()+getHeight(), getX()+getWidth(), getY()+getHeight())) {
+//			System.out.println("S");
+			return Direction.SOUTH;
 		}
 		
 		return Direction.NO_DIRECTION;
