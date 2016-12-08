@@ -22,7 +22,7 @@ public class Block extends GImage {
 	private static final int BUFFER_X = 0;
 	private static final int BUFFER_Y = 0;
 
-	private boolean isBlockSolid;
+	protected boolean isBlockSolid;
 	
 	public Block(String imageName, double x, double y) {
 		super(imageName, x, y);

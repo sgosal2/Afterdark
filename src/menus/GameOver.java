@@ -10,6 +10,10 @@ import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
+/*
+ * This is the pane that shows up if the player has lost the game
+ * Ways to lose the game: Fall of an edge and fall to your death or have an enemy hit you until you die
+ */
 public class GameOver extends GraphicsPane {
 	private GLabel methodOfDeath;
 	private GLabel gameOver;
@@ -20,14 +24,18 @@ public class GameOver extends GraphicsPane {
 	 * This is the constructor that adds the various buttons and labels to
 	 * our screen in the correct positions.
 	 */
+	
+//	Makes new buttons and labels for this pane
 	public GameOver(MainApplication main) {
 		program = main;
 		returnToHome = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 4 + 50, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
 		returnToHome.setColor(Color.WHITE);
 		methodOfDeath = new GLabel("", MainApplication.WINDOW_WIDTH / 3 - 40, MainApplication.WINDOW_HEIGHT / 3);
 		methodOfDeath.setFont("Sans Serif-30");
+		methodOfDeath.setColor(Color.WHITE);
 		gameOver = new GLabel("Game Over!", MainApplication.WINDOW_WIDTH / 3 + 20, MainApplication.WINDOW_HEIGHT / 2 + 20);
 		gameOver.setFont("Comic Sans MS-60");
+		gameOver.setColor(Color.WHITE);
 		
 		
 	}
@@ -40,6 +48,8 @@ public class GameOver extends GraphicsPane {
 		return methodOfDeath.getLabel();
 	}
 	
+	
+//	Shows the content for this pane
 	@Override
 	public void showContents() {
 		program.setBackground(Color.DARK_GRAY);
@@ -48,11 +58,14 @@ public class GameOver extends GraphicsPane {
 		program.add(returnToHome);
 	}
 	
+
 	/*
 	 * This method will take in the click of the mouse, find its location
 	 * and then see if it is on a particular button. If the mouse clicks
 	 * on the button then the screen will change.
 	 */
+	
+//	If the user presses this butotn, it will take them to the menu
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
@@ -62,8 +75,10 @@ public class GameOver extends GraphicsPane {
 		}
 	}
 
+//	Hides the contents when you leave the page.
 	@Override
 	public void hideContents() {
+		program.setBackground(null);
 		program.remove(methodOfDeath);
 		program.remove(gameOver);
 		program.remove(returnToHome);

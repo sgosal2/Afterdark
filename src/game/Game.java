@@ -1,4 +1,5 @@
 package game;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,8 +22,8 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int GROUND_Y = HEIGHT - GROUND_HEIGHT;
 	public static final int BLOCK_HEIGHT = GROUND_HEIGHT/7;
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
-	private static final double VERTICAL_SCROLL_RATIO = 8;
-	private static final double HORIZONTAL_SCROLL_RATIO = 3;
+	private static final double VERTICAL_SCROLL_RATIO = 2;
+	private static final double HORIZONTAL_SCROLL_RATIO = 2;
 	
 	private MainApplication program;
 	private Timer gameLoop;
@@ -70,23 +71,33 @@ public class Game extends GraphicsPane implements ActionListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		Entity player = curScene.getPlayer();
+//		Entity player = curScene.getPlayer();
+		if(e.getKeyCode() == KeyEvent.VK_M){
+			if(program.isMusicOn() == true){
+				program.setMusicIsOn(false);
+				music.stopSound("../sounds", "game_music.mp3");
+			}
+			else{
+				program.setMusicIsOn(true);
+				music.playSound("../sounds", "game_music.mp3");
+			}
+			
+			if(program.isSoundOn() == true){
+				program.setSoundIsOn(false);
+			}
+			else{
+				program.setSoundIsOn(true);
+			}
+		}
 		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			program.switchToPauseMenu();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
-			if(program.isSoundOn()){
-				music.playSound("../sounds/shoot_sound.wav");
-			}
-			else{
-				music.stopSound("../sounds", "shoot_sound.wav");
-			}
-			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
-		}
+		
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
@@ -108,8 +119,21 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
+		Scene curScene = scenes.get(sceneNum);
+		Entity player = curScene.getPlayer();
+
 		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.NO_DIRECTION;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
+			if(program.isSoundOn()){
+				music.playSound("../sounds/shoot_sound.wav");
+			}
+			else{
+				music.stopSound("../sounds", "shoot_sound.wav");
+			}
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX()+15, player.getY()+25, curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 	}
 	
@@ -123,12 +147,12 @@ public class Game extends GraphicsPane implements ActionListener {
 	 * Adding the various items to the screen
 	 */
 	public void showContents() {
+		program.setBackground(Color.DARK_GRAY);
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
 		program.add(curScene.getPlayer().getSprite());
-		if (curScene.getNPCAtIndex(0).getSprite() != null) {
-			System.out.print("Enemy added");
-			program.add(curScene.addEnemy("sprite", (int) player.getX() + 50, (int) player.getY(), 3).getSprite());
+		for (Entity e: curScene.getNPCs()) {
+			program.add(e.getSprite());
 		}
 		for (List<Block> row: curScene.getTerrain()) {
 			for (Block b: row) {

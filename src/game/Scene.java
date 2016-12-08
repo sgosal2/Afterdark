@@ -41,14 +41,14 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
-		center(player);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 63.0, 63.0, 8, 20);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
 		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
 		npcs.add(e);
 		enemyMovementTimer.start();
 		music = AudioPlayer.getInstance();
+		center(player);
 	}
 
 	/*
@@ -57,21 +57,14 @@ public class Scene implements ActionListener {
 	 * character and its various properties.
 	 */
 	public void tick(Direction walk) {
-		Enemy e = (Enemy) npcs.get(0);
 		Block playerGround = findGround(player);
-		Block enemyGround = findGround(e);
 		if(playerGround == null) {
 			player.setJumping(true);
 		} else {
 			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
-		if(enemyGround == null) {
-			e.setJumping(true);
-		} else {
-			e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
-			e.setJumping(false);
-		}
+		
 		if (walk == Direction.WEST) {
 			player.walk(walk);
 		} else if (walk == Direction.EAST) {
@@ -79,11 +72,23 @@ public class Scene implements ActionListener {
 		}
 		player.incrementIdle();
 		checkTerrainCollisions(player);
-		checkTerrainCollisions(e);
+		for (Entity e : npcs) {
+			Block enemyGround = findGround(e);
+			if(enemyGround == null) {
+				e.setJumping(true);
+			} else {
+				e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
+				e.setJumping(false);
+			}
+			checkTerrainCollisions(e);
+//			e.setAmIJumping(true);
+			e.walkMovement();
+		}
 		player.walkMovement();
-		e.setAmIJumping(true);
-		e.walkMovement();
 		handleScrolling();
+		if (wasGoalHit()) {
+			program.switchToGameWon();
+		}
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
 //			System.out.println("Player below level.");
@@ -240,6 +245,11 @@ public class Scene implements ActionListener {
 				}
 			} 
 		}
+		for (Entity e : npcs) {
+			if (e != null) {
+				e.move(0.0, distance);
+			}
+		}
 		layout.horzScroll(distance);
 	}
 	
@@ -251,6 +261,11 @@ public class Scene implements ActionListener {
 					b.move(0.0, distance);
 				}
 			} 
+		}
+		for (Entity e : npcs) {
+			if (e != null) {
+				e.move(0.0, distance);
+			}
 		}
 		layout.vertScroll(distance);
 	}
@@ -352,6 +367,15 @@ public class Scene implements ActionListener {
 			
 		}
 		return false;
+	}
+
+	
+	public List<Entity> getNPCs() {
+		return npcs;
+	}
+	
+	public boolean wasGoalHit() {
+		return layout.wasGoalHit();
 	}
 
 	@Override

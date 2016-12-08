@@ -25,16 +25,18 @@ import utilities.MainApplication;
  * @author jackthias
  */
 public class SceneLayout {
-	public static int TILE_WIDTH = 32;
-	public static int TILE_HEIGHT = 32;
+	public static int TILE_WIDTH = 64;
+	public static int TILE_HEIGHT = 64;
 	private static final boolean PRINT_CONTENTS = false;
 	public static final String LEVEL_PREFIX = "../media/levels/";
 	public static final String SPRITE_PREFIX = "../media/images/";
 	private List<List<Block>> terrain = new ArrayList<List<Block>>();
 	private ArrayList<GImage> backgrounds;
+	private boolean goalHit;
 	
 	public SceneLayout(int tileWidth, int tileHeight) {
 		backgrounds = new ArrayList<GImage>();
+		goalHit = false;
 		readInData(LEVEL_PREFIX + "prototype1.csv");
 	}
 	
@@ -80,7 +82,11 @@ public class SceneLayout {
 			terrain.add(new ArrayList<Block>());
 			for (int j = 0; j < data.get(i).length; j++) {
 				if (!data.get(i)[j].equals("-1")) {
-					terrain.get(i).add(new Block(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", j*TILE_HEIGHT, i*TILE_WIDTH));
+					if (!(data.get(i)[j].equals("11") || data.get(i)[j].equals("12"))) {
+						terrain.get(i).add(new Block(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", j*TILE_HEIGHT, i*TILE_WIDTH));
+					} else {
+						terrain.get(i).add(new EndBlock(SPRITE_PREFIX + "terrain_" + data.get(i)[j] + ".png", j*TILE_HEIGHT, i*TILE_WIDTH));
+					}
 					terrain.get(i).get(j).setSize(TILE_WIDTH, TILE_HEIGHT);
 				} else {
 					terrain.get(i).add(null);
@@ -108,6 +114,9 @@ public class SceneLayout {
 				if (b != null) {
 					Direction d = b.getDirectionComingFrom(personRect);
 					if (d != Direction.NO_DIRECTION) {
+						if (b instanceof EndBlock) {
+							goalHit = true;
+						}
 						changeCharacter(e, d);
 						//changeBlock(b);
 						return d;
@@ -221,5 +230,13 @@ public class SceneLayout {
 			}
 		}
 		return false;
+	}
+
+	public boolean wasGoalHit() {
+		return goalHit;
+	}
+
+	public void setGoalHit(boolean goalHit) {
+		this.goalHit = goalHit;
 	}
 }

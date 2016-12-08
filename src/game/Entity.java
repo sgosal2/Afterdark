@@ -9,10 +9,10 @@ public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
 	public final double MOVEMENT = 4;
-	public final double GRAVITY = 3;
+	public final double GRAVITY = 2;
 	public final double FRICTION = 1;
 	public final int HEALTH_VALUE = 100;
-	public final double JUMP_VELOCITY = 20;
+	public final double JUMP_VELOCITY = 30;
 	private final double MAX_GRAVITY = 30;
 	private final double MAX_SPEED = 7;
 	
@@ -81,9 +81,6 @@ public class Entity {
 	}
 
 	public void move(double x, double y) {
-		if (x != 0 || y != 0) {
-			//System.out.println("dx: " + x + ", dy: " + y);
-		}
 		sprite.move(x, y);
 		if(x != 0) {
 			currentStep++;
@@ -123,7 +120,7 @@ public class Entity {
 //		System.out.println("Jump");
 		dy = -JUMP_VELOCITY;
 		setJumping(true);
-		move(dx, -0.1);
+		move(dx, -MOVEMENT);
 	}
 	
 	public void reflectHorizontally() {
@@ -150,23 +147,12 @@ public class Entity {
 		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
 	}
 
-//	public void fall(Scene s) {
-//		move(0, dy);
-//		
-//		dy += GRAVITY;
-//		dy = Math.min(dy, MAX_GRAVITY);
-//		dy = Math.max(dy, -JUMP_VELOCITY);
-//	}
-	
 	public void walk(Direction d) {
-//		System.out.println("Walk");
 		directionFacing = d;
 		if(d == Direction.EAST) {
-//			System.out.println("dx: " + dx);
 			dx += MOVEMENT;
 			dx = Math.min(dx, MAX_SPEED);
 		}else if(d == Direction.WEST) {
-//			System.out.println("dx: " + dx);
 			dx -= MOVEMENT;
 			dx = Math.max(dx, -MAX_SPEED);
 		}
@@ -178,14 +164,10 @@ public class Entity {
 		System.out.println("DY: " + dy);
 		move(dx, dy);
 		if(dx > 0) {
-			//System.out.println("Decay");
-//			System.out.println("dx: " + dx);
 			dx -= FRICTION;
 			dx = Math.max(dx, 0);
 			directionFacing = Direction.EAST;
 		}else if(dx < 0) {
-			//System.out.println("Decay");
-//			System.out.println("dx: " + dx);
 			dx += FRICTION;
 			dx = Math.min(dx, 0);
 			directionFacing = Direction.WEST;
