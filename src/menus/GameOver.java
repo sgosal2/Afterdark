@@ -16,6 +16,10 @@ public class GameOver extends GraphicsPane {
 	private GButton returnToHome;
 	private MainApplication program;
 	
+	/*
+	 * This is the constructor that adds the various buttons and labels to
+	 * our screen in the correct positions.
+	 */
 	public GameOver(MainApplication main) {
 		program = main;
 		returnToHome = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 4 + 50, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
@@ -44,6 +48,11 @@ public class GameOver extends GraphicsPane {
 		program.add(returnToHome);
 	}
 	
+	/*
+	 * This method will take in the click of the mouse, find its location
+	 * and then see if it is on a particular button. If the mouse clicks
+	 * on the button then the screen will change.
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());

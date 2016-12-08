@@ -308,6 +308,51 @@ public class Scene implements ActionListener {
 			}
 		}
 	}
+	public boolean enemyCollision(List<Entity> npcs){
+		int i = 0;
+		double enemyXPos = 0;
+		double enemyYPos = 0;
+		double enemyXRegion = 0;
+		double enemyYRegion = 0;
+		double playerLeftPos = 0;
+		double playerRightPos = 0;
+		
+		for(;i<npcs.size();i++){
+			enemyXPos = npcs.get(i).getX();
+			enemyYPos = npcs.get(i).getY();
+			enemyXRegion = enemyXPos + npcs.get(i).getWidth();
+			enemyYRegion = enemyYPos + npcs.get(i).getHeight();
+			
+			playerLeftPos = player.getX();
+			playerRightPos = player.getX() + player.getWidth();
+			
+			double playerFeetPos = player.getY();
+			double playerHeadPos = player.getY() + player.getHeight();
+			
+			if(playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion &&
+			   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerRightPos>enemyXPos && playerRightPos<enemyXRegion &&
+			   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
+			   playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
+			   playerRightPos>enemyXPos && playerRightPos<enemyXRegion ){
+				System.out.println("Collision");
+				return true;
+			}
+			
+		}
+		return false;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
