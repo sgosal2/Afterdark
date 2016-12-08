@@ -84,6 +84,10 @@ public class Scene implements ActionListener {
 				e.setJumping(false);
 			}
 			checkTerrainCollisions(e);
+			Entity entityToRemove = bulletCollision();
+			if (entityToRemove != null) {
+				System.out.println("Bullet collision");
+			}
 //			e.setAmIJumping(true);
 			e.walkMovement();
 			if (enemyCollision(e)) {
@@ -340,7 +344,7 @@ public class Scene implements ActionListener {
 		double playerLeftPos = 0;
 		double playerRightPos = 0;
 		
-		enemyXPos =npc.getX();
+		enemyXPos = npc.getX();
 		enemyYPos = npc.getY();
 		enemyXRegion = enemyXPos + npc.getWidth();
 		enemyYRegion = enemyYPos + npc.getHeight();
@@ -353,70 +357,64 @@ public class Scene implements ActionListener {
 		
 		if(playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion &&
 		   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
-			System.out.println("Collision");
 			return true;
 		}
 		if(playerRightPos>enemyXPos && playerRightPos<enemyXRegion &&
 		   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
-			System.out.println("Collision");
 			return true;
 		}
 		if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
 		   playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion){
-			System.out.println("Collision");
 			return true;
 		}
 		if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
 		   playerRightPos>enemyXPos && playerRightPos<enemyXRegion ){
-			System.out.println("Collision");
 			return true;
-			
 		}
 		return false;
 	}
 
-//	public boolean bulletCollision(Bullet b) {
-//		double bulletXPos = 0;
-//		double bulletYPos = 0;
-//		double bulletXRegion = 0;
-//		double bulletYRegion = 0;
-//		double playerLeftPos = 0;
-//		double playerRightPos = 0;
-//		
-//		bulletXPos = b.getSprite().getX();
-//		bulletYPos = b.getSprite().getY();
-////		bulletXRegion = bulletXPos + b.getWidth();
-////		bulletYRegion = bulletYPos + b.getHeight();
-//		
-//		playerLeftPos = player.getX();
-//		playerRightPos = player.getX() + player.getWidth();
-//		
-//		double playerFeetPos = player.getY();
-//		double playerHeadPos = player.getY() + player.getHeight();
-//		
-//		if(playerLeftPos>bulletXPos && playerLeftPos<bulletXRegion &&
-//		   playerFeetPos > bulletYPos && playerFeetPos < bulletYRegion){
-//			System.out.println("Collision");
-//			return true;
-//		}
-//		if(playerRightPos>bulletXPos && playerRightPos<bulletXRegion &&
-//		   playerFeetPos > bulletYPos && playerFeetPos < bulletYRegion){
-//			System.out.println("Collision");
-//			return true;
-//		}
-//		if(playerHeadPos>bulletYPos && playerHeadPos<bulletYRegion &&
-//		   playerLeftPos>bulletXPos && playerLeftPos<bulletXRegion){
-//			System.out.println("Collision");
-//			return true;
-//		}
-//		if(playerHeadPos>bulletYPos && playerHeadPos<bulletYRegion &&
-//		   playerRightPos>bulletXPos && playerRightPos<bulletXRegion ){
-//			System.out.println("Collision");
-//			return true;
-//			
-//		}
-//		return false;
-//	}
+	public Entity bulletCollision() {
+		double bulletXPos = 0;
+		double bulletYPos = 0;
+		double bulletXRegion = 0;
+		double bulletYRegion = 0;
+		double enemyLeftPos = 0;
+		double enemyRightPos = 0;
+		
+		for(Bullet b : bullets) {
+			for(Entity e : npcs) {
+				bulletXPos = b.getSprite().getX();
+				bulletYPos = b.getSprite().getY();
+		//		bulletXRegion = bulletXPos + b.getWidth();
+		//		bulletYRegion = bulletYPos + b.getHeight();
+				
+				enemyLeftPos = e.getX();
+				enemyRightPos = e.getX() + e.getWidth();
+				
+				double enemyFeetPos = e.getY();
+				double enemyHeadPos = e.getY() + e.getHeight();
+				
+				if(enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion &&
+				   enemyFeetPos > bulletYPos && enemyFeetPos < bulletYRegion){
+					return e;
+				}
+				if(enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion &&
+				   enemyFeetPos > bulletYPos && enemyFeetPos < bulletYRegion){
+					return e;
+				}
+				if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
+				   enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion){
+					return e;
+				}
+				if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
+				   enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion ){
+					return e;
+				}
+			}
+		}
+		return null;
+	}
 	
 	public List<Entity> getNPCs() {
 		return npcs;
