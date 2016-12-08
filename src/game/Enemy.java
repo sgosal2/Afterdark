@@ -12,7 +12,7 @@ public class Enemy extends Entity{
 
 	public Enemy(String imgName, int startX, int startY, int imagesInWalk, int imagesInIdle) {
 		super(imgName, startX, startY, imagesInWalk, imagesInIdle);
-		this.sprite.setSize(24, 24);
+		this.sprite.setSize(64, 64);
 		timerNum = 0;
 		dx = 10;
 	}

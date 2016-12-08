@@ -41,14 +41,14 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
-		center(player);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 63.0, 63.0, 8, 20);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
 		Enemy e = new Enemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
 		npcs.add(e);
 		enemyMovementTimer.start();
 		music = AudioPlayer.getInstance();
+		center(player);
 	}
 
 	/*
@@ -242,6 +242,11 @@ public class Scene implements ActionListener {
 				}
 			} 
 		}
+		for (Entity e : npcs) {
+			if (e != null) {
+				e.move(0.0, distance);
+			}
+		}
 		layout.horzScroll(distance);
 	}
 	
@@ -253,6 +258,11 @@ public class Scene implements ActionListener {
 					b.move(0.0, distance);
 				}
 			} 
+		}
+		for (Entity e : npcs) {
+			if (e != null) {
+				e.move(0.0, distance);
+			}
 		}
 		layout.vertScroll(distance);
 	}
@@ -309,6 +319,10 @@ public class Scene implements ActionListener {
 				}
 			}
 		}
+	}
+	
+	public List<Entity> getNPCs() {
+		return npcs;
 	}
 	
 	public boolean wasGoalHit() {

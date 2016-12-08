@@ -9,10 +9,10 @@ public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
 	public final double MOVEMENT = 4;
-	public final double GRAVITY = 3;
+	public final double GRAVITY = 2;
 	public final double FRICTION = 1;
 	public final int HEALTH_VALUE = 100;
-	public final double JUMP_VELOCITY = 20;
+	public final double JUMP_VELOCITY = 30;
 	private final double MAX_GRAVITY = 30;
 	private final double MAX_SPEED = 7;
 	
@@ -123,7 +123,7 @@ public class Entity {
 //		System.out.println("Jump");
 		dy = -JUMP_VELOCITY;
 		setJumping(true);
-		move(dx, -0.1);
+		move(dx, -MOVEMENT);
 	}
 	
 	public void reflectHorizontally() {

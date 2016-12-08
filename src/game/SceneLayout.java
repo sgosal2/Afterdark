@@ -25,8 +25,8 @@ import utilities.MainApplication;
  * @author jackthias
  */
 public class SceneLayout {
-	public static int TILE_WIDTH = 32;
-	public static int TILE_HEIGHT = 32;
+	public static int TILE_WIDTH = 64;
+	public static int TILE_HEIGHT = 64;
 	private static final boolean PRINT_CONTENTS = false;
 	public static final String LEVEL_PREFIX = "../media/levels/";
 	public static final String SPRITE_PREFIX = "../media/images/";
