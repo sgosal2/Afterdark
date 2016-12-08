@@ -49,7 +49,7 @@ public class Scene implements ActionListener {
 		npcs.add(e);
 		music = AudioPlayer.getInstance();
 		center(player);
-		death = "";
+		death = ""; 
 	}
 
 	/*
