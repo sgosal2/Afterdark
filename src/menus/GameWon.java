@@ -20,7 +20,13 @@ public class GameWon extends GraphicsPane {
 	private GLabel congratMessage;
 	private MainApplication program;
 	
+
+	/*
+	 * This is the constructor that adds the various buttons and labels to
+	 * our screen in the correct positions.
+	 */
 //	Adds buttons and labels on the screen that is shows
+
 	public GameWon(MainApplication main){
 		program = main;
 		returnToMain = new GButton("Return to Main", (double) MainApplication.WINDOW_WIDTH / 5 + 100, (double) MainApplication.WINDOW_HEIGHT / 10, 400, 100, Color.DARK_GRAY);
@@ -29,6 +35,12 @@ public class GameWon extends GraphicsPane {
 		congratMessage.setFont("Comic Sans MS-36");
 		congratMessage.setColor(Color.WHITE);
 	}
+	
+	/*
+	 * This method will take in the click of the mouse, find its location
+	 * and then see if it is on a particular button. If the mouse clicks
+	 * on the button then the screen will change.
+	 */
 
 //	If the user clicks on the button, it takes it to the location it needs to go
 //	In this case, it goes back to menu

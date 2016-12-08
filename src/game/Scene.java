@@ -56,21 +56,14 @@ public class Scene implements ActionListener {
 	 * character and its various properties.
 	 */
 	public void tick(Direction walk) {
-		Enemy e = (Enemy) npcs.get(0);
 		Block playerGround = findGround(player);
-		Block enemyGround = findGround(e);
 		if(playerGround == null) {
 			player.setJumping(true);
 		} else {
 			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
-		if(enemyGround == null) {
-			e.setJumping(true);
-		} else {
-			e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
-			e.setJumping(false);
-		}
+		
 		if (walk == Direction.WEST) {
 			player.walk(walk);
 		} else if (walk == Direction.EAST) {
@@ -78,9 +71,19 @@ public class Scene implements ActionListener {
 		}
 		player.incrementIdle();
 		checkTerrainCollisions(player);
-		checkTerrainCollisions(e);
+		for (Entity e : npcs) {
+			Block enemyGround = findGround(e);
+			if(enemyGround == null) {
+				e.setJumping(true);
+			} else {
+				e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
+				e.setJumping(false);
+			}
+			checkTerrainCollisions(e);
+//			e.setAmIJumping(true);
+			e.walkMovement();
+		}
 		player.walkMovement();
-		e.walkMovement();
 		handleScrolling();
 		if (wasGoalHit()) {
 			program.switchToGameWon();
@@ -319,6 +322,52 @@ public class Scene implements ActionListener {
 			}
 		}
 	}
+	public boolean enemyCollision(List<Entity> npcs){
+		int i = 0;
+		double enemyXPos = 0;
+		double enemyYPos = 0;
+		double enemyXRegion = 0;
+		double enemyYRegion = 0;
+		double playerLeftPos = 0;
+		double playerRightPos = 0;
+		
+		for(;i<npcs.size();i++){
+			enemyXPos = npcs.get(i).getX();
+			enemyYPos = npcs.get(i).getY();
+			enemyXRegion = enemyXPos + npcs.get(i).getWidth();
+			enemyYRegion = enemyYPos + npcs.get(i).getHeight();
+			
+			playerLeftPos = player.getX();
+			playerRightPos = player.getX() + player.getWidth();
+			
+			double playerFeetPos = player.getY();
+			double playerHeadPos = player.getY() + player.getHeight();
+			
+			if(playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion &&
+			   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerRightPos>enemyXPos && playerRightPos<enemyXRegion &&
+			   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
+			   playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion){
+				System.out.println("Collision");
+				return true;
+			}
+			if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
+			   playerRightPos>enemyXPos && playerRightPos<enemyXRegion ){
+				System.out.println("Collision");
+				return true;
+			}
+			
+		}
+		return false;
+	}
+
 	
 	public List<Entity> getNPCs() {
 		return npcs;
