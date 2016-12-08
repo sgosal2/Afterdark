@@ -81,7 +81,6 @@ public class Scene implements ActionListener {
 		checkTerrainCollisions(player);
 		checkTerrainCollisions(e);
 		player.walkMovement();
-		e.setAmIJumping(true);
 		e.walkMovement();
 		handleScrolling();
 		if (wasGoalHit()) {

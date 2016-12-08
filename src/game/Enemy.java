@@ -14,14 +14,15 @@ public class Enemy extends Entity{
 		super(imgName, startX, startY, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(24, 24);
 		timerNum = 0;
-		dx = 1;
+		dx = 10;
 	}
 	
 	public void walkMovement() {
-		super.walkMovement();
+		System.out.println("DX: " + dx);
+		move(dx, dy);
 		System.out.print("Enemy");
 		timerNum++;
-		if ((timerNum % 20) == 1) {
+		if ((timerNum % 400) == 200) {
 			dx = dx * -1;
 		}
 	}
