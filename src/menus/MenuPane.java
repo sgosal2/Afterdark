@@ -56,7 +56,7 @@ public class MenuPane extends GraphicsPane {
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
 						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
-		titleButton = new GButton(TITLE_OFFSET, 0, 520, 75, true);
+		titleButton = new GButton(TITLE_OFFSET, 0, 520, 75, false);
 		music = AudioPlayer.getInstance();
 	}
 	
