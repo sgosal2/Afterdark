@@ -8,6 +8,8 @@ import javax.swing.*;
 
 public class Enemy extends Entity{
 	
+	public static final int MOVEMENT_SPEED = 10;
+	
 	private int timerNum;
 
 	public Enemy(String imgName, int startX, int startY, int imagesInWalk, int imagesInIdle) {
@@ -19,11 +21,18 @@ public class Enemy extends Entity{
 	
 	public void walkMovement() {
 		System.out.println("DX: " + dx);
+		super.walk(this.directionFacing);
+		super.walkMovement();
 		move(dx, dy);
 		System.out.print("Enemy");
 		timerNum++;
-		if ((timerNum % 400) == 200) {
-			dx = dx * -1;
+		if ((timerNum % 400) < 200) {
+			dx = MOVEMENT_SPEED;
+			this.directionFacing = Direction.EAST;
+		}
+		else {
+			dx = -MOVEMENT_SPEED;
+			this.directionFacing = Direction.WEST;
 		}
 	}
 
