@@ -16,7 +16,7 @@ public class Enemy extends Entity{
 		super(imgName, startX, startY, 64, 64, imagesInWalk, imagesInIdle);
 		this.sprite.setSize(64, 64);
 		timerNum = 0;
-		dx = 10;
+		dx = 1;
 	}
 	
 	public void walkMovement() {
