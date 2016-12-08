@@ -34,25 +34,6 @@ public class Entity {
 	protected double dx;
 	protected int health;
 	
-	public Entity(String sprite, int startX, int startY, int imagesInWalk, int imagesInIdle) {
-		idle = true;
-		imageName = sprite;
-		currentStep = 0;
-		currentIdle = 0;
-		walkImages = imagesInWalk;
-		idleImages = imagesInIdle;
-		this.height = 16;
-		this.width = 16;
-		this.sprite = new GImage(getCorrectSprite(), startX, startY);
-		this.sprite.setSize(height, width);
-		amIJumping = true;
-		amIWalking = false;
-		dy = 0;
-		dx = 0;
-		health = HEALTH_VALUE;
-		directionFacing = Direction.EAST;
-	}
-	
 	public Entity(String sprite, int startX, int startY, double height, double width, int imagesInWalk, int imagesInIdle) {
 		idle = true;
 		imageName = sprite;
