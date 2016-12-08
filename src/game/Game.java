@@ -133,7 +133,7 @@ public class Game extends GraphicsPane implements ActionListener {
 			else{
 				music.stopSound("../sounds", "shoot_sound.wav");
 			}
-			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX()+15, player.getY()+25, curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 	}
 	
