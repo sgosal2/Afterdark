@@ -21,6 +21,8 @@ public class Bullet implements ActionListener {
 	private Entity sender;
 	private Direction direction;
 	private int damage;
+	private int height;
+	private int width;
 	private MainApplication program;
 	private static final int DAMAGE = 1;
 	private static final int SPEED = 6;
@@ -74,6 +76,22 @@ public class Bullet implements ActionListener {
 	
 	public void setDirection(Direction d) {
 		direction = d;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setHeight(int h) {
+		height = h;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public void setWidth(int w) {
+		width = w;
 	}
 	
 /*	private Boolean destroy(Entity e) {
