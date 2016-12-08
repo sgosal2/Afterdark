@@ -19,6 +19,8 @@ public class MenuPane extends GraphicsPane {
 	private GButton playButton;
 	private GButton settingsButton;
 	private GButton controlsButton;
+	private GButton titleButton;
+	
 	private static final double WIDTH_FACTOR = 25.6;
 	private static final double PLAY_HEIGHT_FACTOR = 24;
 	private static final double SETTINGS_HEIGHT_FACTOR = 7.45;
@@ -27,6 +29,7 @@ public class MenuPane extends GraphicsPane {
 	private static final double PLAY_SIZE_HEIGHT = 10.97;
 	private static final double OTHER_SIZE_HEIGHT = 19.2;
 	private static final double OTHER_SIZE_WIDTH = 4.57;
+	private static final double TITLE_OFFSET = 500;
 	
 	private final double WIDTH_OFFSET= program.WINDOW_WIDTH/WIDTH_FACTOR;
 	private final double PLAY_HEIGHT_OFFSET = program.WINDOW_HEIGHT/PLAY_HEIGHT_FACTOR;
@@ -53,6 +56,7 @@ public class MenuPane extends GraphicsPane {
 		controlsButton = new GButton(WIDTH_OFFSET, CONTROLS_HEIGHT_OFFSET,
 						program.WINDOW_WIDTH/OTHER_SIZE_WIDTH,
 						program.WINDOW_HEIGHT/OTHER_SIZE_HEIGHT, false);
+		titleButton = new GButton(TITLE_OFFSET, 0, 520, 75, true);
 		music = AudioPlayer.getInstance();
 	}
 	
@@ -65,6 +69,7 @@ public class MenuPane extends GraphicsPane {
 		program.add(playButton);
 		program.add(settingsButton);
 		program.add(controlsButton);
+		program.add(titleButton);
 		
 		//make sure to put ../ in front of sounds so that we get out of the
 		//menus folder and then go to the sounds folder
@@ -83,6 +88,7 @@ public class MenuPane extends GraphicsPane {
 		program.remove(playButton);
 		program.remove(settingsButton);
 		program.remove(controlsButton);
+		program.remove(titleButton);
 	}
 	
 	/*
@@ -141,6 +147,9 @@ public class MenuPane extends GraphicsPane {
 		}
 		if(obj == controlsButton){
 			program.switchToControlsMenu();
+		}
+		if(obj == titleButton){
+			
 		}
 	}
 }
