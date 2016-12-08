@@ -60,6 +60,7 @@ public class Scene implements ActionListener {
 	 * character and its various properties.
 	 */
 	public void tick(Direction walk) {
+		player.tick();
 		Block playerGround = findGround(player);
 		if(playerGround == null) {
 			player.setJumping(true);
@@ -95,15 +96,18 @@ public class Scene implements ActionListener {
 //			e.setAmIJumping(true);
 			e.walkMovement();
 			if (enemyCollision(e)) {
-				switch (program.getDifficulty()) {
-				case EASY:
-					player.damage(10);
-				case MEDIUM:
-					player.damage(25);
-				case HARD:
-					player.damage(50);
+				if (!player.isInvulnerable()) {
+					switch (program.getDifficulty()) {
+					case EASY:
+						player.damage(10);
+					case MEDIUM:
+						player.damage(25);
+					case HARD:
+						player.damage(50);
+					}
+					player.makeInvulnerable();
+					death = "You were mauled by a goon!";
 				}
-				death = "You were mauled by a goon!";
 			}
 			if (e.belowLevel()) {
 				e.damage(100000);
