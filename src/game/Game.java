@@ -71,7 +71,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
-		Entity player = curScene.getPlayer();
+//		Entity player = curScene.getPlayer();
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			if(program.isMusicOn() == true){
 				program.setMusicIsOn(false);
@@ -92,19 +92,12 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			program.switchToPauseMenu();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
-			if(program.isSoundOn()){
-				music.playSound("../sounds/shoot_sound.wav");
-			}
-			else{
-				music.stopSound("../sounds", "shoot_sound.wav");
-			}
-			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
-		}
+		
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
-		}else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
 		}
@@ -126,8 +119,21 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	@Override
 	public void keyReleased(KeyEvent e) {
+		Scene curScene = scenes.get(sceneNum);
+		Entity player = curScene.getPlayer();
+
 		if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.NO_DIRECTION;
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
+			if(program.isSoundOn()){
+				music.playSound("../sounds/shoot_sound.wav");
+			}
+			else{
+				music.stopSound("../sounds", "shoot_sound.wav");
+			}
+			program.add(curScene.addBullet(curScene.getPlayer(), player.getX(), player.getY(), curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 	}
 	
