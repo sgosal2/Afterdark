@@ -165,6 +165,11 @@ public class SceneLayout {
 				}
 				if (d == Direction.EAST || d == Direction.WEST) {
 					e.reflectHorizontally();
+					if (d == Direction.EAST) {
+						e.move(5, 0);
+					} else {
+						e.move(0, 5);
+					}
 				} 
 			}
 		}
