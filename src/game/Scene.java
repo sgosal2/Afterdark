@@ -45,8 +45,10 @@ public class Scene implements ActionListener {
 		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 63.0, 63.0, 8, 20);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();
-		Enemy e = new Enemy("sprite", 1000, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
-		npcs.add(e);
+		for (int i = 2000; i < 8001; i = i + 2000) {
+			Enemy e = new Enemy("sprite", i, MainApplication.WINDOW_HEIGHT - 200, 3, 0);
+			npcs.add(e);
+		}
 		music = AudioPlayer.getInstance();
 		center(player);
 		death = ""; 
@@ -320,10 +322,6 @@ public class Scene implements ActionListener {
 	
 	public void drawScene() {
 		program.add(player.getSprite());
-		if (getNPCAtIndex(0).getSprite() != null) {
-			System.out.print("Enemy added");
-			program.add(addEnemy("sprite", (int) player.getX(), (int) player.getY(), 3).getSprite());
-		}
 		for (List<Block> row: getTerrain()) {
 			for (Block b: row) {
 				if (b != null) {
@@ -332,6 +330,7 @@ public class Scene implements ActionListener {
 			}
 		}
 	}
+	
 	public boolean enemyCollision(Entity npc){
 		int i = 0;
 		double enemyXPos = 0;
@@ -341,7 +340,7 @@ public class Scene implements ActionListener {
 		double playerLeftPos = 0;
 		double playerRightPos = 0;
 		
-		enemyXPos = npc.getX();
+		enemyXPos =npc.getX();
 		enemyYPos = npc.getY();
 		enemyXRegion = enemyXPos + npc.getWidth();
 		enemyYRegion = enemyYPos + npc.getHeight();
@@ -376,6 +375,48 @@ public class Scene implements ActionListener {
 		return false;
 	}
 
+//	public boolean bulletCollision(Bullet b) {
+//		double bulletXPos = 0;
+//		double bulletYPos = 0;
+//		double bulletXRegion = 0;
+//		double bulletYRegion = 0;
+//		double playerLeftPos = 0;
+//		double playerRightPos = 0;
+//		
+//		bulletXPos = b.getSprite().getX();
+//		bulletYPos = b.getSprite().getY();
+////		bulletXRegion = bulletXPos + b.getWidth();
+////		bulletYRegion = bulletYPos + b.getHeight();
+//		
+//		playerLeftPos = player.getX();
+//		playerRightPos = player.getX() + player.getWidth();
+//		
+//		double playerFeetPos = player.getY();
+//		double playerHeadPos = player.getY() + player.getHeight();
+//		
+//		if(playerLeftPos>bulletXPos && playerLeftPos<bulletXRegion &&
+//		   playerFeetPos > bulletYPos && playerFeetPos < bulletYRegion){
+//			System.out.println("Collision");
+//			return true;
+//		}
+//		if(playerRightPos>bulletXPos && playerRightPos<bulletXRegion &&
+//		   playerFeetPos > bulletYPos && playerFeetPos < bulletYRegion){
+//			System.out.println("Collision");
+//			return true;
+//		}
+//		if(playerHeadPos>bulletYPos && playerHeadPos<bulletYRegion &&
+//		   playerLeftPos>bulletXPos && playerLeftPos<bulletXRegion){
+//			System.out.println("Collision");
+//			return true;
+//		}
+//		if(playerHeadPos>bulletYPos && playerHeadPos<bulletYRegion &&
+//		   playerRightPos>bulletXPos && playerRightPos<bulletXRegion ){
+//			System.out.println("Collision");
+//			return true;
+//			
+//		}
+//		return false;
+//	}
 	
 	public List<Entity> getNPCs() {
 		return npcs;

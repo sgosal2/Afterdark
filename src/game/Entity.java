@@ -143,7 +143,6 @@ public class Entity {
 	}
 	
 	public void walkMovement() {
-		System.out.println("DY: " + dy);
 		move(dx, dy);
 		if(dx > 0) {
 			dx -= FRICTION;
@@ -160,7 +159,6 @@ public class Entity {
 			sprite.setSize(width, height);
 		}
 		if (amIJumping) {
-			System.out.println("Am jumping");
 			dy += GRAVITY;
 			dy = Math.min(dy, MAX_GRAVITY);
 			dy = Math.max(dy, -JUMP_VELOCITY);
