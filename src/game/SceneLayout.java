@@ -115,7 +115,9 @@ public class SceneLayout {
 					Direction d = b.getDirectionComingFrom(personRect);
 					if (d != Direction.NO_DIRECTION) {
 						if (b instanceof EndBlock) {
-							goalHit = true;
+							if (e instanceof Player) {
+								goalHit = true;
+							}
 						}
 						changeCharacter(e, d);
 						//changeBlock(b);

@@ -88,6 +88,9 @@ public class Scene implements ActionListener {
 				player.damage(1);
 				death = "You were mauled by a goon!";
 			}
+			if (e.belowLevel()) {
+				e.damage(100000);
+			}
 		}
 		player.walkMovement();
 		handleScrolling();
