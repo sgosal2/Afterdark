@@ -4,6 +4,7 @@ package utilities;
  * This is my second commit.
  */
 
+import game.Difficulty;
 import game.Game;
 import menus.MenuPane;
 import menus.PauseMenu;
@@ -30,6 +31,7 @@ public class MainApplication extends GraphicsApplication {
 	
 	private boolean musicIsOn = true;
 	private boolean soundIsOn = true;
+	private Difficulty difficultySetting;
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -47,6 +49,7 @@ public class MainApplication extends GraphicsApplication {
 		gameOver = new GameOver(this);
 		gameWon = new GameWon(this);
 		credits = new Credits(this);
+		setDifficulty(Difficulty.EASY);
 		setupInteractions();
 		switchToMenu();
 	}
@@ -70,6 +73,7 @@ public class MainApplication extends GraphicsApplication {
 	public void switchToCredits(){
 		switchToScreen(credits);
 	}
+	
 	public void switchToMenu() {
 		switchToScreen(menu);
 	}
@@ -121,5 +125,13 @@ public class MainApplication extends GraphicsApplication {
 	
 	public void resetGame() {
 		game = new Game(this);
+	}
+	
+	public Difficulty getDifficulty() {
+		return difficultySetting;
+	}
+	
+	public void setDifficulty(Difficulty difficultySetting) {
+		this.difficultySetting = difficultySetting;
 	}
 }

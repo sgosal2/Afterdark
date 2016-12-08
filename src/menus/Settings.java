@@ -7,6 +7,7 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
+import game.Difficulty;
 import utilities.AudioPlayer;
 import utilities.GButton;
 import utilities.GraphicsPane;
@@ -33,7 +34,6 @@ public class Settings extends GraphicsPane {
 	private GButton controlsButton;
 	private GButton playButton;
 	private GButton xButton;
-	private boolean isSoundOn;
 	
 	private static final String PURPLE = ("#e23fff");
 	
@@ -214,16 +214,19 @@ public class Settings extends GraphicsPane {
 			easyButton.setFillColor(Color.decode("#e23fff"));
 			mediumButton.setFillColor(Color.DARK_GRAY);
 			hardButton.setFillColor(Color.DARK_GRAY);
+			program.setDifficulty(Difficulty.EASY);
 		}
 		if(obj == mediumButton){
 			mediumButton.setFillColor(Color.decode("#e23fff"));
 			easyButton.setFillColor(Color.DARK_GRAY);
 			hardButton.setFillColor(Color.DARK_GRAY);
+			program.setDifficulty(Difficulty.MEDIUM);
 		}
 		if(obj == hardButton){
 			hardButton.setFillColor(Color.decode("#e23fff"));
 			easyButton.setFillColor(Color.DARK_GRAY);
 			mediumButton.setFillColor(Color.DARK_GRAY);
+			program.setDifficulty(Difficulty.HARD);
 		}
 		
 	}
