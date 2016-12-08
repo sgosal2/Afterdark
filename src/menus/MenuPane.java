@@ -149,7 +149,9 @@ public class MenuPane extends GraphicsPane {
 			program.switchToControlsMenu();
 		}
 		if(obj == titleButton){
-			
+			program.switchToCredits();
 		}
+		
+		
 	}
 }

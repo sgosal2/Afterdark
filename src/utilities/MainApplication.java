@@ -11,6 +11,7 @@ import menus.Settings;
 import menus.Controls;
 import menus.GameOver;
 import menus.GameWon;
+import menus.Credits;
 import menus.pauseControlsMenu;
 
 public class MainApplication extends GraphicsApplication {
@@ -25,6 +26,7 @@ public class MainApplication extends GraphicsApplication {
 	private GraphicsPane pauseControls;
 	private GraphicsPane gameOver;
 	private GraphicsPane gameWon;
+	private GraphicsPane credits;
 	
 	private boolean musicIsOn = true;
 	private boolean soundIsOn = true;
@@ -44,6 +46,7 @@ public class MainApplication extends GraphicsApplication {
 		pauseControls = new pauseControlsMenu(this);
 		gameOver = new GameOver(this);
 		gameWon = new GameWon(this);
+		credits = new Credits(this);
 		setupInteractions();
 		switchToMenu();
 	}
@@ -63,6 +66,10 @@ public class MainApplication extends GraphicsApplication {
 	 * The various methods below call other methods that actually change
 	 * the screen in the game.
 	 */
+	
+	public void switchToCredits(){
+		switchToScreen(credits);
+	}
 	public void switchToMenu() {
 		switchToScreen(menu);
 	}
