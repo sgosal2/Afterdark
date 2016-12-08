@@ -84,6 +84,9 @@ public class Scene implements ActionListener {
 		e.setAmIJumping(true);
 		e.walkMovement();
 		handleScrolling();
+		if (wasGoalHit()) {
+			program.switchToGameWon();
+		}
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
 //			System.out.println("Player below level.");
@@ -307,6 +310,10 @@ public class Scene implements ActionListener {
 				}
 			}
 		}
+	}
+	
+	public boolean wasGoalHit() {
+		return layout.wasGoalHit();
 	}
 
 	@Override
