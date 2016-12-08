@@ -118,6 +118,16 @@ public class Scene implements ActionListener {
 		if (entityToRemove != null) {
 			npcs.remove(entityToRemove);
 		}
+		List<Bullet> bulletsToBeRemoved = new ArrayList<Bullet>();
+		for (Bullet b: bullets) {
+			if (layout.checkBulletCollisions(b) != Direction.NO_DIRECTION) {
+				program.remove(b.getSprite());
+				bulletsToBeRemoved.add(b);
+			}
+		}
+		for (Bullet b: bulletsToBeRemoved) {
+			bullets.remove(b);
+		}
 		player.walkMovement();
 		handleScrolling();
 		if (wasGoalHit()) {

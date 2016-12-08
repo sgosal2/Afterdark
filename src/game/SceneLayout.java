@@ -123,6 +123,33 @@ public class SceneLayout {
 		return Direction.NO_DIRECTION;
 	}
 	
+	public Direction checkBulletCollisions(Bullet m) {
+		Rectangle personRect = m.getBox();
+		for(List<Block> row:terrain) {
+			for (Block b:row) {
+				if (b != null) {
+					Direction d = b.getDirectionComingFrom(personRect);
+					if (d != Direction.NO_DIRECTION) {
+						changeBullet(m, b);
+						changeBlock(b, m);
+						return d;
+					} 
+				} 
+			}
+		}
+		return Direction.NO_DIRECTION;
+	}
+	
+	private void changeBullet(Bullet m, Block b) {
+		if (b.isSolid()) {
+			//Exists for future expansion.
+		}
+	}
+
+	private void changeBlock(Block b, Bullet m) {
+		//Exists for future expansion.
+	}
+
 	public void changeBlock(Block b, Entity e) {
 		
 	}

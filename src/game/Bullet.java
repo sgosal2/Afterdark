@@ -112,5 +112,9 @@ public class Bullet implements ActionListener {
 	public void move(double x, double y) {
 		sprite.move(x, y);
 	}
+
+	public Rectangle getBox() {
+		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
+	}
 	
 }
