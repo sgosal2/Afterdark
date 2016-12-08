@@ -256,7 +256,7 @@ public class Scene implements ActionListener {
 		}
 		for (Entity e : npcs) {
 			if (e != null) {
-				e.move(0.0, distance);
+				e.move(distance, 0.0);
 			}
 		}
 		layout.horzScroll(distance);
