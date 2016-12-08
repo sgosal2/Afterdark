@@ -57,21 +57,14 @@ public class Scene implements ActionListener {
 	 * character and its various properties.
 	 */
 	public void tick(Direction walk) {
-		Enemy e = (Enemy) npcs.get(0);
 		Block playerGround = findGround(player);
-		Block enemyGround = findGround(e);
 		if(playerGround == null) {
 			player.setJumping(true);
 		} else {
 			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
-		if(enemyGround == null) {
-			e.setJumping(true);
-		} else {
-			e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
-			e.setJumping(false);
-		}
+		
 		if (walk == Direction.WEST) {
 			player.walk(walk);
 		} else if (walk == Direction.EAST) {
@@ -79,10 +72,19 @@ public class Scene implements ActionListener {
 		}
 		player.incrementIdle();
 		checkTerrainCollisions(player);
-		checkTerrainCollisions(e);
+		for (Entity e : npcs) {
+			Block enemyGround = findGround(e);
+			if(enemyGround == null) {
+				e.setJumping(true);
+			} else {
+				e.setLocation((int) e.getX(), (int) (enemyGround.getY() - e.getHeight())); 
+				e.setJumping(false);
+			}
+			checkTerrainCollisions(e);
+//			e.setAmIJumping(true);
+			e.walkMovement();
+		}
 		player.walkMovement();
-		e.setAmIJumping(true);
-		e.walkMovement();
 		handleScrolling();
 		if (wasGoalHit()) {
 			program.switchToGameWon();
