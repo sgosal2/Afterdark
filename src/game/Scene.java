@@ -353,22 +353,22 @@ public class Scene implements ActionListener {
 		
 		if(playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion &&
 		   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
-			System.out.println("Collision");
+//			System.out.println("Collision");
 			return true;
 		}
 		if(playerRightPos>enemyXPos && playerRightPos<enemyXRegion &&
 		   playerFeetPos > enemyYPos && playerFeetPos < enemyYRegion){
-			System.out.println("Collision");
+//			System.out.println("Collision");
 			return true;
 		}
 		if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
 		   playerLeftPos>enemyXPos && playerLeftPos<enemyXRegion){
-			System.out.println("Collision");
+//			System.out.println("Collision");
 			return true;
 		}
 		if(playerHeadPos>enemyYPos && playerHeadPos<enemyYRegion &&
 		   playerRightPos>enemyXPos && playerRightPos<enemyXRegion ){
-			System.out.println("Collision");
+//			System.out.println("Collision");
 			return true;
 			
 		}

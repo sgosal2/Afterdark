@@ -119,6 +119,9 @@ public class SceneLayout {
 								goalHit = true;
 							}
 						}
+//						if (d != Direction.NORTH) {
+//							System.out.println("Block collision: " + d);
+//						}
 						changeCharacter(e, d);
 						//changeBlock(b);
 						return d;
