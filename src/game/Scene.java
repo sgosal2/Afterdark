@@ -41,7 +41,7 @@ public class Scene implements ActionListener {
 		TILE_WIDTH = tileWidth;
 		TILE_HEIGHT = tileHeight;
 		layout = new SceneLayout(tileWidth, tileHeight);
-		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 31.0, 31.0, 8, 20);
+		player = new Player("girl", 1000, MainApplication.WINDOW_HEIGHT - 200, 63.0, 63.0, 8, 20);
 		center(player);
 		bullets = new ArrayList<Bullet>();
 		npcs = new ArrayList<Entity>();

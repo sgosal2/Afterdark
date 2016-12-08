@@ -22,8 +22,8 @@ public class Game extends GraphicsPane implements ActionListener {
 	public static final int GROUND_Y = HEIGHT - GROUND_HEIGHT;
 	public static final int BLOCK_HEIGHT = GROUND_HEIGHT/7;
 	public static final int BLOCK_WIDTH = GROUND_HEIGHT;
-	private static final double VERTICAL_SCROLL_RATIO = 8;
-	private static final double HORIZONTAL_SCROLL_RATIO = 3;
+	private static final double VERTICAL_SCROLL_RATIO = 2;
+	private static final double HORIZONTAL_SCROLL_RATIO = 2;
 	
 	private MainApplication program;
 	private Timer gameLoop;
