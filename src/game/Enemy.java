@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class Enemy extends Entity{
 	
-	public static final int MOVEMENT_SPEED = 1;
+	public static final double MOVEMENT_SPEED = 1;
 	
 	private int timerNum;
 
@@ -19,13 +19,10 @@ public class Enemy extends Entity{
 	}
 	
 	public void walkMovement() {
-		System.out.println("DX: " + dx);
 		super.walk(this.directionFacing);
 		super.walkMovement();
-		move(dx, dy);
-		System.out.print("Enemy");
 		timerNum++;
-		if ((timerNum % 400) < 200) {
+		if ((timerNum % 126) < 63) {
 			dx = MOVEMENT_SPEED;
 			this.directionFacing = Direction.EAST;
 		}
