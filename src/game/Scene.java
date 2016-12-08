@@ -33,6 +33,7 @@ public class Scene implements ActionListener {
 	private AudioPlayer music;
 	private static final String BULLET_EAST = "bullet_east.png";
 	private static final String BULLET_WEST = "bullet_west.png";
+	private String death;
 	
 	Timer enemyMovementTimer = new Timer(10, this);
 	
@@ -48,6 +49,7 @@ public class Scene implements ActionListener {
 		npcs.add(e);
 		music = AudioPlayer.getInstance();
 		center(player);
+		death = "";
 	}
 
 	/*
@@ -82,7 +84,13 @@ public class Scene implements ActionListener {
 			checkTerrainCollisions(e);
 //			e.setAmIJumping(true);
 			e.walkMovement();
-			enemyCollision(e);
+			if (enemyCollision(e)) {
+				player.damage(1);
+				death = "You were mauled by a goon!";
+			}
+			if (e.belowLevel()) {
+				e.damage(100000);
+			}
 		}
 		player.walkMovement();
 		handleScrolling();
@@ -91,11 +99,12 @@ public class Scene implements ActionListener {
 		}
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
+			death = "You were crushed by the fall.";
 //			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 0) {
 //			System.out.println("Player is dead.");
-			playerKill("You were crushed by the fall.");
+			playerKill(death);
 		}
 	}
 	
