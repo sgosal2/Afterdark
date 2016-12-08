@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import utilities.AudioPlayer;
 import utilities.GButton;
 import utilities.GraphicsPane;
@@ -32,6 +33,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	private int sceneNum;
 	private Direction walk;
 	private GButton healthButton;
+	private GLabel healthLabel;
 	private AudioPlayer music;
 	
 	public Game(MainApplication app) {
@@ -42,7 +44,10 @@ public class Game extends GraphicsPane implements ActionListener {
 		gameLoop = new Timer(20, this);
 		walk = Direction.NO_DIRECTION;
 		music = AudioPlayer.getInstance();
-		healthButton = new GButton("", 100, 25, 200, 20, Color.red);
+		healthButton = new GButton("", 100, 50, 200, 20, Color.red);
+		healthLabel = new GLabel("Health", 100, 40);
+		healthLabel.setColor(Color.red);
+		healthLabel.setFont("Comic Sans MS-30");
 		
 	}
 	
@@ -180,6 +185,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	    	music.stopSound("../sounds", "game_music.mp3");
 	    }
 		program.add(healthButton);
+		program.add(healthLabel);
 	}
 
 	@Override
