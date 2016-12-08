@@ -33,7 +33,7 @@ public class Bullet implements ActionListener {
 		direction = d;
 		damage = DAMAGE;
 		this.sprite = new GImage(SPRITE_PREFIX + imageName, se.getX(), se.getY());
-		this.sprite.setSize(20, 15);
+		this.sprite.setSize(30, 15);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
