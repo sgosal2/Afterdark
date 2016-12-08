@@ -75,6 +75,7 @@ public class Scene implements ActionListener {
 		}
 		player.incrementIdle();
 		checkTerrainCollisions(player);
+		Entity entityToRemove = null;
 		for (Entity e : npcs) {
 			Block enemyGround = findGround(e);
 			if(enemyGround == null) {
@@ -84,9 +85,13 @@ public class Scene implements ActionListener {
 				e.setJumping(false);
 			}
 			checkTerrainCollisions(e);
-			Entity entityToRemove = bulletCollision();
-			if (entityToRemove != null) {
+			Bullet bulletToRemove = bulletCollision(e);
+			if (bulletToRemove != null) {
 				System.out.println("Bullet collision");
+				program.remove(bulletToRemove.getSprite());
+				bullets.remove(bulletToRemove);
+				program.remove(e.getSprite());
+				entityToRemove = e;
 			}
 //			e.setAmIJumping(true);
 			e.walkMovement();
@@ -97,6 +102,9 @@ public class Scene implements ActionListener {
 			if (e.belowLevel()) {
 				e.damage(100000);
 			}
+		}
+		if (entityToRemove != null) {
+			npcs.remove(entityToRemove);
 		}
 		player.walkMovement();
 		handleScrolling();
@@ -374,43 +382,42 @@ public class Scene implements ActionListener {
 		return false;
 	}
 
-	public Entity bulletCollision() {
+	public Bullet bulletCollision(Entity e) {
 		double bulletXPos = 0;
 		double bulletYPos = 0;
 		double bulletXRegion = 0;
 		double bulletYRegion = 0;
 		double enemyLeftPos = 0;
 		double enemyRightPos = 0;
+		double enemyFeetPos = 0;
+		double enemyHeadPos = 0;
 		
 		for(Bullet b : bullets) {
-			for(Entity e : npcs) {
-				bulletXPos = b.getSprite().getX();
-				bulletYPos = b.getSprite().getY();
-		//		bulletXRegion = bulletXPos + b.getWidth();
-		//		bulletYRegion = bulletYPos + b.getHeight();
-				
-				enemyLeftPos = e.getX();
-				enemyRightPos = e.getX() + e.getWidth();
-				
-				double enemyFeetPos = e.getY();
-				double enemyHeadPos = e.getY() + e.getHeight();
-				
-				if(enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion &&
-				   enemyFeetPos > bulletYPos && enemyFeetPos < bulletYRegion){
-					return e;
-				}
-				if(enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion &&
-				   enemyFeetPos > bulletYPos && enemyFeetPos < bulletYRegion){
-					return e;
-				}
-				if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
-				   enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion){
-					return e;
-				}
-				if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
-				   enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion ){
-					return e;
-				}
+			bulletXPos = b.getSprite().getX();
+			bulletYPos = b.getSprite().getY();
+			bulletXRegion = bulletXPos + b.getWidth();
+			bulletYRegion = bulletYPos + b.getHeight();
+			
+			enemyLeftPos = e.getX();
+			enemyRightPos = e.getX() + e.getWidth();
+			enemyHeadPos = e.getY();
+			enemyFeetPos = e.getY() + e.getHeight();
+			
+			if(enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion &&
+			   enemyHeadPos < bulletYRegion && enemyFeetPos > bulletYPos){
+				return b;
+			}
+			if(enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion &&
+			   enemyFeetPos > bulletYPos && enemyFeetPos < bulletYRegion){
+				return b;
+			}
+			if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
+			   enemyLeftPos>bulletXPos && enemyLeftPos<bulletXRegion){
+				return b;
+			}
+			if(enemyHeadPos>bulletYPos && enemyHeadPos<bulletYRegion &&
+			   enemyRightPos>bulletXPos && enemyRightPos<bulletXRegion ){
+				return b;
 			}
 		}
 		return null;

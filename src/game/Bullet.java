@@ -36,6 +36,8 @@ public class Bullet implements ActionListener {
 		damage = DAMAGE;
 		this.sprite = new GImage(SPRITE_PREFIX + imageName, se.getX(), se.getY());
 		this.sprite.setSize(30, 15);
+		height = 15;
+		width = 30;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
