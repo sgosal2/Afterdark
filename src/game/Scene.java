@@ -87,7 +87,6 @@ public class Scene implements ActionListener {
 			checkTerrainCollisions(e);
 			Bullet bulletToRemove = bulletCollision(e);
 			if (bulletToRemove != null) {
-				System.out.println("Bullet collision");
 				program.remove(bulletToRemove.getSprite());
 				bullets.remove(bulletToRemove);
 				program.remove(e.getSprite());
