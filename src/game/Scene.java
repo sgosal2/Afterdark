@@ -47,7 +47,6 @@ public class Scene implements ActionListener {
 		npcs = new ArrayList<Entity>();
 		Enemy e = addEnemy("sprite", 1001, MainApplication.WINDOW_HEIGHT - 200, 3);
 		npcs.add(e);
-		enemyMovementTimer.start();
 		music = AudioPlayer.getInstance();
 		center(player);
 		death = "";
