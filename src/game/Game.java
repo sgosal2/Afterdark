@@ -32,6 +32,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	private List<Scene> scenes;
 	private int sceneNum;
 	private Direction walk;
+	private GButton healthShell;
 	private GButton healthButton;
 	private GLabel healthLabel;
 	private AudioPlayer music;
@@ -44,11 +45,12 @@ public class Game extends GraphicsPane implements ActionListener {
 		gameLoop = new Timer(20, this);
 		walk = Direction.NO_DIRECTION;
 		music = AudioPlayer.getInstance();
-		healthButton = new GButton("", 100, 50, 200, 20, Color.red);
+		healthShell = new GButton("", 100, 50, 200, 20, Color.white);
+		healthButton = new GButton("100", 100, 50, 200, 20, Color.red);
+		healthButton.setColor(Color.black);
 		healthLabel = new GLabel("Health", 100, 40);
 		healthLabel.setColor(Color.red);
 		healthLabel.setFont("Comic Sans MS-30");
-		
 	}
 	
 	static int leftThreshold() {
@@ -152,6 +154,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	
 	public void updateHealthBar(){
 		healthButton.setSize(scenes.get(sceneNum).getPlayer().getHealth()*2, 20);
+		healthButton.setLabel(Integer.toString(scenes.get(sceneNum).getPlayer().getHealth()));
 	}
 
 	@Override
@@ -184,6 +187,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	    else{
 	    	music.stopSound("../sounds", "game_music.mp3");
 	    }
+		program.add(healthShell);
 		program.add(healthButton);
 		program.add(healthLabel);
 	}
