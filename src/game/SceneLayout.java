@@ -101,12 +101,6 @@ public class SceneLayout {
 		terrain.get(x).set(y, b);
 	}
 	
-	
-//	public static void main(String[] args) {
-//		SceneLayout instance = new SceneLayout();
-//		instance.readInData(LEVEL_PREFIX + "prototype.csv");
-//	}
-	
 	public Direction checkCollisions(Entity e) {
 		Rectangle personRect = e.getBox();
 		for(List<Block> row:terrain) {
@@ -119,11 +113,8 @@ public class SceneLayout {
 								goalHit = true;
 							}
 						}
-//						if (d != Direction.NORTH) {
-//							System.out.println("Block collision: " + d);
-//						}
-						changeCharacter(e, d);
-						//changeBlock(b);
+						changeCharacter(e, d, b);
+						changeBlock(b, e);
 						return d;
 					} 
 				} 
@@ -132,21 +123,23 @@ public class SceneLayout {
 		return Direction.NO_DIRECTION;
 	}
 	
-//	public void changeBlock(Block b) {
-//		b.setColor(Color.RED);
-//	}
+	public void changeBlock(Block b, Entity e) {
+		
+	}
 	
-	public void changeCharacter(Entity e, Direction d) {
-		if(d == Direction.NORTH) {
-			e.setJumping(false);
-		}
-		
-		if(d == Direction.SOUTH) {
-			e.reflectVertically();
-		}
-		
-		if(d == Direction.EAST || d == Direction.WEST) {
-			e.reflectHorizontally();
+	public void changeCharacter(Entity e, Direction d, Block b) {
+		if (b instanceof Block) {
+			if (b.isSolid()) {
+				if (d == Direction.NORTH) {
+					e.setJumping(false);
+				}
+				if (d == Direction.SOUTH) {
+					e.reflectVertically();
+				}
+				if (d == Direction.EAST || d == Direction.WEST) {
+					e.reflectHorizontally();
+				} 
+			}
 		}
 	}
 
