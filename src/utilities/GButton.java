@@ -56,6 +56,10 @@ public class GButton extends GCompound {
 		add(rect);
 	}
 	
+	public void setSize(double x, double y) {
+		rect.setSize(x, y);
+	}
+	
 	private void sizeLabelFont(GLabel label, double width, double height) {
 		int size, style;
 		String name;
