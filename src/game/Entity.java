@@ -106,6 +106,7 @@ public class Entity {
 	
 	public void reflectHorizontally() {
 		dx = -1 * dx;
+		move(dx, 0);
 	}
 	
 	public void reflectVertically() {
