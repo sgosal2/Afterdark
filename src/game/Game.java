@@ -81,6 +81,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
 //		Entity player = curScene.getPlayer();
+		// User presses M: turns music on or off
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			if(program.isMusicOn() == true){
 				program.setMusicIsOn(false);
@@ -98,14 +99,16 @@ public class Game extends GraphicsPane implements ActionListener {
 				program.setSoundIsOn(true);
 			}
 		}
+		// User presses P or Esc: pauses game
 		if(e.getKeyCode() == KeyEvent.VK_P || e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 			program.switchToPauseMenu();
 		}
-		
+		// User presses Right or D: moves character right
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) {
 			walk = Direction.EAST;
 			curScene.playerWalk(Direction.EAST);
 		}
+		// User presses Left or A: moves character left
 		else if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) {
 			walk = Direction.WEST;
 			curScene.playerWalk(Direction.WEST);
@@ -113,6 +116,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		else if(e.getKeyCode() == KeyEvent.VK_W){
 			program.switchToGameWon();
 		}
+		// User presses Space, Up, or W: character jumps up
 		if(e.getKeyCode() == KeyEvent.VK_SPACE || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
 			if(!curScene.isPlayerJumping()) {
 				curScene.playerJump();
@@ -127,6 +131,9 @@ public class Game extends GraphicsPane implements ActionListener {
 	}
 	
 	@Override
+	/* When user lets go of key, character begins to stop moving
+	 * and friction begins
+	 */
 	public void keyReleased(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
 		Entity player = curScene.getPlayer();
