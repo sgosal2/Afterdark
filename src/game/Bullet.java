@@ -15,6 +15,11 @@ import utilities.MainApplication;
 import java.awt.Rectangle;
 import acm.graphics.*;
 
+/*
+ * This sets the bullet image, gets facts about where it was sent from, who sent it,
+ * at what specific height it was released at, and actually moves it across the
+ * screen.
+ */
 public class Bullet implements ActionListener {
 	
 	private GImage sprite;
@@ -96,12 +101,7 @@ public class Bullet implements ActionListener {
 		width = w;
 	}
 	
-/*	private Boolean destroy(Entity e) {
-		if (sprite.getElementAt(e.getX(), e.getY()) == ) {
-			return true;
-		}
-	}
-*/
+	
 	/*
 	 * This method makes the actual bullet image move across the screen.
 	 */
