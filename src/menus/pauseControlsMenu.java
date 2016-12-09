@@ -1,5 +1,12 @@
 package menus;
 
+/*
+ * This is the pause controls menu screen. It is different than regular controls. The difference is the background 
+ * of it. It shows the same stuff as controls but just the background image changes. This screen can only be accessed
+ * by the pause menu
+ * 
+ */
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -11,7 +18,6 @@ import utilities.MainApplication;
 
 public class pauseControlsMenu extends GraphicsPane{
 	private MainApplication program; //you will use program to get access to all of the GraphicsProgram calls
-	private Settings setting;
 	private GImage background;
 	
 	private GButton xButton;

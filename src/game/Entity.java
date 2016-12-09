@@ -72,6 +72,7 @@ public class Entity {
 		sprite.setSize(width, height);
 	}
 	
+	
 	public void incrementIdle() {
 		currentIdle++;
 	}
