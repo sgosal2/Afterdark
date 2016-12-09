@@ -68,7 +68,7 @@ public class Scene implements ActionListener {
 			player.setLocation((int) player.getX(), (int) (playerGround.getY() - player.getHeight()));
 			player.setJumping(false);
 		}
-		
+		// Move character in specified direction
 		if (walk == Direction.WEST) {
 			player.walk(walk);
 		} else if (walk == Direction.EAST) {
@@ -77,6 +77,7 @@ public class Scene implements ActionListener {
 		player.incrementIdle();
 		checkTerrainCollisions(player);
 		Entity entityToRemove = null;
+		// Move all enemies and handle all bullet collisions
 		for (Entity e : npcs) {
 			Block enemyGround = findGround(e);
 			if(enemyGround == null) {
@@ -93,18 +94,16 @@ public class Scene implements ActionListener {
 				program.remove(e.getSprite());
 				entityToRemove = e;
 			}
-//			e.setAmIJumping(true);
+			// Handle physics of enemy movement
 			e.walkMovement();
+			// Damage enemy if hit by bullet
 			if (enemyCollision(e)) {
 				if (!player.isInvulnerable()) {
 					if (program.getDifficulty() == Difficulty.EASY) {
-//						System.out.println("Damage: " + 10);
 						player.damage(10);
 					} else if (program.getDifficulty() == Difficulty.MEDIUM) {
-//						System.out.println("Damage: " + 25);
 						player.damage(25);
 					} else if (program.getDifficulty() == Difficulty.HARD) {
-//						System.out.println("Damage: " + 50);
 						player.damage(50);
 					}
 					player.makeInvulnerable();
@@ -118,6 +117,7 @@ public class Scene implements ActionListener {
 		if (entityToRemove != null) {
 			npcs.remove(entityToRemove);
 		}
+		// Remove bullet from screen if it collides with wall
 		List<Bullet> bulletsToBeRemoved = new ArrayList<Bullet>();
 		for (Bullet b: bullets) {
 			if (layout.checkBulletCollisions(b) != Direction.NO_DIRECTION) {
@@ -128,6 +128,7 @@ public class Scene implements ActionListener {
 		for (Bullet b: bulletsToBeRemoved) {
 			bullets.remove(b);
 		}
+		// Handle physics and side scrolling based on character movement
 		player.walkMovement();
 		handleScrolling();
 		if (wasGoalHit()) {
@@ -136,10 +137,8 @@ public class Scene implements ActionListener {
 		if (player.belowLevel()) {
 			player.damage(10000000); //More than enough to kill something.
 			death = "You were crushed by the fall.";
-//			System.out.println("Player below level.");
 		}
 		if (player.getHealth() < 1) {
-//			System.out.println("Player is dead.");
 			playerKill(death);
 		}
 	}
@@ -156,34 +155,21 @@ public class Scene implements ActionListener {
 		program.switchToGameOver(methodOfDeath);
 	}
 	
-//	private boolean checkRightLeft(List<Integer> keysDown) {
-//		if (keysDown.contains(KeyEvent.VK_LEFT)) {
-//			return true;
-//		}
-//		if (keysDown.contains(KeyEvent.VK_RIGHT)) {
-//			return true;
-//		}
-//		return false;
-//	}
-	
 	private void handleScrolling() {
 		if (checkForVerticalScrolling() == Direction.NORTH) {
-//			System.out.println("Scroll up!");
 			vertScroll(amountToScroll(Direction.NORTH));
-			
 		} else if (checkForVerticalScrolling() == Direction.SOUTH) {
-//			System.out.println("Scroll down!");
 			vertScroll(amountToScroll(Direction.SOUTH));
 		}
 		if (checkForHorizontalScrolling() == Direction.WEST) {
-//			System.out.println("Scroll left!");
 			horzScroll(amountToScroll(Direction.WEST));
 		} else if (checkForHorizontalScrolling() == Direction.EAST) {
-//			System.out.println("Scroll right!");
 			horzScroll(amountToScroll(Direction.EAST));
 		}
 	}
 	
+	// Determine how much to scroll screen based on
+	// player movement and position
 	private double amountToScroll(Direction d) {
 		if (d == Direction.WEST) {
 			return Game.leftThreshold() - player.getX() - 1;
@@ -354,6 +340,7 @@ public class Scene implements ActionListener {
 		return npcs.get(i);
 	}
 	
+	// Adds blocks (terrain) to scene level
 	public void drawScene() {
 		program.add(player.getSprite());
 		for (List<Block> row: getTerrain()) {
@@ -365,6 +352,7 @@ public class Scene implements ActionListener {
 		}
 	}
 	
+	// Detect enemy collision with player
 	public boolean enemyCollision(Entity npc){
 		int i = 0;
 		double enemyXPos = 0;
@@ -404,6 +392,7 @@ public class Scene implements ActionListener {
 		return false;
 	}
 
+	// Detects bullet collision with enemy
 	public Bullet bulletCollision(Entity e) {
 		double bulletXPos = 0;
 		double bulletYPos = 0;
