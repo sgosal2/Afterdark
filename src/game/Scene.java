@@ -91,6 +91,9 @@ public class Scene implements ActionListener {
 				program.remove(bulletToRemove.getSprite());
 				bullets.remove(bulletToRemove);
 				program.remove(e.getSprite());
+				if(program.isSoundOn()){
+					music.playSound("../sounds/explosion.wav");
+				}
 				entityToRemove = e;
 			}
 //			e.setAmIJumping(true);
