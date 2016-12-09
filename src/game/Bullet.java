@@ -25,7 +25,7 @@ public class Bullet implements ActionListener {
 	private int width;
 	private MainApplication program;
 	private static final int DAMAGE = 1;
-	private static final int SPEED = 6;
+	private static final int SPEED = 15;
 	public static final String SPRITE_PREFIX = "../media/images/";
 	
 	Timer someTimer = new Timer(10, this);
