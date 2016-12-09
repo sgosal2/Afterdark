@@ -1,4 +1,8 @@
 package menus;
+/*
+ * This is a credits screen. All this class has is a few GLabels, a GImage, and a GButton that sends you back to the menu.
+ * The GLabels are just the contributors names and the GImage is a picture of our group.
+ */
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -26,6 +30,7 @@ public class Credits extends GraphicsPane{
 	private GImage background;
 
 	
+//	Constructor that sets up all GLabels, background, GImage, and GButton for this screen.
 	public Credits(MainApplication app) {
 		program = app;
 		background = new GImage("images/Group picture.jpg", 450, 200);
@@ -48,6 +53,7 @@ public class Credits extends GraphicsPane{
 		returnToMenu = new GButton("Return to Main Menu", (double) MainApplication.WINDOW_WIDTH / 5 + 100, (double) MainApplication.WINDOW_HEIGHT / 1.25, 400, 100, Color.DARK_GRAY);
 	}
 	
+// If the user presses the return to menu button, it will detect it and change screens
 	public void mousePressed(MouseEvent e){
 		GObject obj = program.getElementAt(e.getX(), e.getY());
 		if(obj == returnToMenu){
