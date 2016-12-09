@@ -1,5 +1,10 @@
 package game;
 
+/* Stores information of Entity objects within a certain scene
+ * Handles bullet and Entity collision
+ * Calls to SceneLayout.java to draw actual scene with blocks
+ */
+
 import java.awt.Rectangle;
 
 import java.awt.event.KeyEvent;
