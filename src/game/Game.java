@@ -143,13 +143,16 @@ public class Game extends GraphicsPane implements ActionListener {
 		}
 		
 		if(e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_V) {
-			if(program.isSoundOn()){
-				music.playSound("../sounds/shoot_sound.wav");
+			if (!((Player) player).isOnCooldown()) {
+				((Player) player).goOnCooldown();
+				if (program.isSoundOn()) {
+					music.playSound("../sounds/shoot_sound.wav");
+				} else {
+					music.stopSound("../sounds", "shoot_sound.wav");
+				}
+				program.add(curScene.addBullet(curScene.getPlayer(), player.getX() + 15, player.getY() + 25,
+						curScene.getPlayer().isDirectionFacing()).getSprite());
 			}
-			else{
-				music.stopSound("../sounds", "shoot_sound.wav");
-			}
-			program.add(curScene.addBullet(curScene.getPlayer(), player.getX()+15, player.getY()+25, curScene.getPlayer().isDirectionFacing()).getSprite());
 		}
 	}
 	

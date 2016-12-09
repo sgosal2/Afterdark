@@ -61,6 +61,7 @@ public class Scene implements ActionListener {
 	 */
 	public void tick(Direction walk) {
 		player.tick();
+		((Player) player).tick();
 		Block playerGround = findGround(player);
 		if(playerGround == null) {
 			player.setJumping(true);
