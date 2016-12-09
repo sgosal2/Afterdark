@@ -76,6 +76,7 @@ public class Entity {
 		currentIdle++;
 	}
 	
+	// Looks for GImage for sprite animation
 	private String getCorrectSprite() {
 		if (idleImages == 0) {
 			int imgToGet = currentStep % walkImages;
@@ -131,6 +132,7 @@ public class Entity {
 		return new Rectangle((int) sprite.getX(), (int) sprite.getY(), (int) sprite.getWidth(), (int) sprite.getHeight());
 	}
 
+	// Moves actual Entity object to new position based on direction
 	public void walk(Direction d) {
 		directionFacing = d;
 		if(d == Direction.EAST) {
@@ -144,6 +146,8 @@ public class Entity {
 		amIWalking = true;
 	}
 	
+	// Applies laws of physics to Entity object, such as applying friction
+	// and gravity
 	public void walkMovement() {
 		move(dx, dy);
 		if(dx > 0) {
@@ -257,6 +261,8 @@ public class Entity {
 		this.width = width;
 	}
 	
+	// Invulnerability is a variable which makes character invulnerable
+	// for short period of time after being hit by enemy
 	public void makeInvulnerable() {
 		invulnerability = MAX_INVULERABILITY;
 	}
