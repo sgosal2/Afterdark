@@ -24,7 +24,7 @@ import utilities.MainApplication;
  * in terrain information from a file.
  * @author jackthias
  */
-public class SceneLayout {
+public class SceneLayout { 
 	public static int TILE_WIDTH = 64;
 	public static int TILE_HEIGHT = 64;
 	private static final boolean PRINT_CONTENTS = false;
