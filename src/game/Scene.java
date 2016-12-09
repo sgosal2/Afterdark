@@ -149,7 +149,7 @@ public class Scene implements ActionListener {
 	 * and it will play the appropriate sound as well.
 	 */
 	private void playerKill(String methodOfDeath) {
-		if(program.isMusicOn()){
+		if(program.isSoundOn()){
 			music.stopSound("../sounds", "game_music.mp3");
 			music.playSound("../sounds/gameOver_sound.wav");
 		}
