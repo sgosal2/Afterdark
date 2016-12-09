@@ -24,7 +24,7 @@ import utilities.MainApplication;
  * in terrain information from a file.
  * @author jackthias
  */
-public class SceneLayout {
+public class SceneLayout { 
 	public static int TILE_WIDTH = 64;
 	public static int TILE_HEIGHT = 64;
 	private static final boolean PRINT_CONTENTS = false;
@@ -52,6 +52,7 @@ public class SceneLayout {
 		this.backgrounds = backgrounds;
 	}
 
+	// Reads in data for setting blocks in scene layout
 	private boolean readInData(String path) {
 		List<String[]> data = new ArrayList<String[]>();
 		String line = "";
@@ -78,6 +79,7 @@ public class SceneLayout {
 			} 
 		}
 		
+		// Reads in data from Block 2 dimensional list and adds to screen
 		for (int i = 0; i < data.size(); i++) {
 			terrain.add(new ArrayList<Block>());
 			for (int j = 0; j < data.get(i).length; j++) {
@@ -101,6 +103,7 @@ public class SceneLayout {
 		terrain.get(x).set(y, b);
 	}
 	
+	// Detects collision of character with terrain in scene layout
 	public Direction checkCollisions(Entity e) {
 		Rectangle personRect = e.getBox();
 		for(List<Block> row:terrain) {
@@ -123,6 +126,7 @@ public class SceneLayout {
 		return Direction.NO_DIRECTION;
 	}
 	
+	// Checks bullet collision with terrain in scene layout
 	public Direction checkBulletCollisions(Bullet m) {
 		Rectangle personRect = m.getBox();
 		for(List<Block> row:terrain) {
@@ -154,6 +158,8 @@ public class SceneLayout {
 		
 	}
 	
+	// Has movement of character reflected based off of collision
+	// with terrain wall
 	public void changeCharacter(Entity e, Direction d, Block b) {
 		if (b instanceof Block) {
 			if (b.isSolid()) {
@@ -175,6 +181,7 @@ public class SceneLayout {
 		}
 	}
 
+	// Looks for ground below Entity
 	public Block findGround(Entity e) {
 		Rectangle personRect = e.getBox();
 		for(List<Block> row:terrain) {

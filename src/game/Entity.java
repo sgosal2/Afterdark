@@ -5,6 +5,10 @@ import acm.graphics.GImage;
 import acm.program.GraphicsProgram;
 import utilities.MainApplication;
 
+/* Stores all characteristics of any Entity object (player and enemies)
+ * Moves Entity objects and handles health
+ */
+
 public class Entity {
 	public static final String PATH = "../media/images/";
 	public static final String EXTENSION = ".png";
@@ -71,6 +75,7 @@ public class Entity {
 		sprite.setImage(getCorrectSprite());
 		sprite.setSize(width, height);
 	}
+	
 	
 	public void incrementIdle() {
 		currentIdle++;

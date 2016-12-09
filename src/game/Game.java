@@ -15,6 +15,11 @@ import utilities.GButton;
 import utilities.GraphicsPane;
 import utilities.MainApplication;
 
+/*
+ * This class creates the various thresholds for the scrolling, it senses the
+ * different keyboard presses and releases, updates the health bar and makes
+ * the character, bullet, enemy, and camera view move along the scene.
+ */
 public class Game extends GraphicsPane implements ActionListener {
 	public static final int TILE_WIDTH = 16;
 	public static final int TILE_HEIGHT = 16;
@@ -52,7 +57,10 @@ public class Game extends GraphicsPane implements ActionListener {
 		healthLabel.setColor(Color.red);
 		healthLabel.setFont("Comic Sans MS-30");
 	}
-	
+	/*
+	 * This maintains the various thresholds, which determines when the 
+	 * screen should actulaly start to scroll.
+	 */
 	static int leftThreshold() {
 		return MainApplication.WINDOW_WIDTH / (int) HORIZONTAL_SCROLL_RATIO;
 	}
@@ -162,6 +170,10 @@ public class Game extends GraphicsPane implements ActionListener {
 		curScene.tick(walk);
 	}
 	
+	/*
+	 * This changes the size of the health bar depending on the amount of
+	 * damage the player is taking and how much health it currently has left.
+	 */
 	public void updateHealthBar(){
 		healthButton.setSize(scenes.get(sceneNum).getPlayer().getHealth()*2, 20);
 		healthButton.setLabel(Integer.toString(scenes.get(sceneNum).getPlayer().getHealth()));
