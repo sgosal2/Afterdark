@@ -1,5 +1,10 @@
 package menus;
 
+/*
+ * This is the main menu. This is the screen the user is first introduced with and interacts with.
+ * From this screen, the user can play/resume game, look at controls or go to settings. The user can also
+ * click on the title and be sent to the credits page.
+ */
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -21,6 +26,9 @@ public class MenuPane extends GraphicsPane {
 	private GButton controlsButton;
 	private GButton titleButton;
 	
+	
+//	These are all the factors for the buttons we put into the menu. 
+//	The buttons are all invisible due to the background.
 	private static final double WIDTH_FACTOR = 25.6;
 	private static final double PLAY_HEIGHT_FACTOR = 24;
 	private static final double SETTINGS_HEIGHT_FACTOR = 7.45;
