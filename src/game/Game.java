@@ -202,7 +202,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	@Override
 	public void hideContents() {
 		program.removeAll();
-		gameLoop.stop();
+		gameLoop.stop(); 
 	}
 	
 }
