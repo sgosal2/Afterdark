@@ -1,5 +1,10 @@
 package menus;
 
+/*
+ * This is the pause menu page. It has options to resume game, go to menu, exit the application, look at controls or change quick settings
+ * 
+ */
+
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;

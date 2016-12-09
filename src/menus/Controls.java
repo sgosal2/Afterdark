@@ -1,5 +1,8 @@
 package menus;
-
+/*
+ * Controls is a page where the user can see what key bindings belong to what movements in the game. It is a straight forward page.
+ * You can not change the key bindings but we made it so that multiple key bindings work for movements and actions
+ */
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
