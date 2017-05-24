@@ -1,10 +1,12 @@
 package utilities;
+
 /*
  * Ali Noorani
  * This is my second commit.
  */
 
 import game.Difficulty;
+
 import game.Game;
 import menus.MenuPane;
 import menus.PauseMenu;

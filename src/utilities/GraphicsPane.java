@@ -1,5 +1,6 @@
 package utilities;
 /* File: GraphicsPane.java
+
  * -----------------------
  * Like you did with your own graphics programs, simply
  * extend from GraphicsPane and implement
@@ -16,6 +17,7 @@ package utilities;
 //Maintained by Jack Thias
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.MouseEvent;
 
 public abstract class GraphicsPane implements Interfaceable {

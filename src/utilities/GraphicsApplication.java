@@ -1,21 +1,8 @@
 package utilities;
-/*
- * Ali Noorani
- * This is my comment on this file and my first commit.
- * 
- * File: GraphicsApplication
- * -------------------------
- * File for subclassing off of to generate the entire
- * GraphicsApplication.  GraphicsApplication is different
- * than GraphicsPane because the Application is responsible
- * for switching between different panes.
- * 
- * In subclassing GraphicsApplication, think of this as the starting
- * point for your entire application.  This is what
- * you can think of as being your initial graphicsprogram.
- */
+
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +12,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import utilities.GraphicsPane;
 
 public abstract class GraphicsApplication extends GraphicsProgram {
 	private GraphicsPane curScreen;
@@ -43,8 +31,6 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 			curScreen.hideContents();
 		}
 		newScreen.showContents();
-		newScreen.run();
-		curScreen = newScreen;
 	}
 	
 	/*
