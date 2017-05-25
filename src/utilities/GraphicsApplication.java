@@ -31,6 +31,8 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 			curScreen.hideContents();
 		}
 		newScreen.showContents();
+		newScreen.run();
+		curScreen = newScreen;
 	}
 	
 	/*
