@@ -83,6 +83,12 @@ public class MenuPane extends GraphicsPane {
 		//menus folder and then go to the sounds folder
 	    if(program.isMusicOn()){
 	    	music.stopSound("../sounds", "game_music.mp3");
+	    /*
+	     * PSUEDO CODE MUSIC CHANGE
+	     * 
+	     * Stop alternative game music	
+	     */
+	    	
 	    	music.playSound("../sounds", "menu_music.mp3");
 	    }
 	    else{

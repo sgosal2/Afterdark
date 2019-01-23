@@ -15,6 +15,16 @@ import utilities.MainApplication;
 
 // Settings class
 
+/*
+ * PSUEDO CODE FOR MUSIC INSTRUCTIONS
+ * 
+ * Create new button for music instructions
+ * 
+ * initalize button with instructions inside
+ * 
+ * show contents of button
+ */
+
 
 /*
  * Settings will hold our settings for the game. 

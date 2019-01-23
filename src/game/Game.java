@@ -89,6 +89,34 @@ public class Game extends GraphicsPane implements ActionListener {
 	public void keyPressed(KeyEvent e) {
 		Scene curScene = scenes.get(sceneNum);
 //		Entity player = curScene.getPlayer();
+		
+	/*
+	 * PSUEDO CODE FOR MUSIC CHANGE
+	 * 
+	 * 1. Add alternative music file to audio folder
+	 * 
+	 * 2. Modify if statement below to the following
+	 * 
+	 * if M key is pressed
+ 	 *		set music status to true
+	 * 		play default game music
+	 * 
+	 * if N key is pressed
+ 	 *		set music status to true
+	 * 		play alternative game music
+	 * 
+	 * if B key is pressed
+	 * 		set music status to false
+	 * 		stop playing music
+	 * 
+	 * if V key is pressed
+	 * 		if sound status is true
+	 * 			set sound status to false
+	 * 			stop playing sound
+	 * 		else
+	 * 			set sound status to true
+	 * 			start playing sound
+	 */
 		// User presses M: turns music on or off
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			if(program.isMusicOn() == true){
