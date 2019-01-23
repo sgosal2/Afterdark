@@ -36,9 +36,9 @@ public class Controls extends GraphicsPane {
 	private static final String MOVE_LEFT_KEY = "Left Arrow/A";
 	private static final String MOVE_RIGHT_KEY = "Right Arrow/D";
 	private static final String JUMP_KEY = "Up arrow/Space/W";
-	private static final String ATTACK_KEY = "Enter/V";
+	private static final String ATTACK_KEY = "Enter";
 	private static final String PAUSE_KEY = "P/esc";
-	private static final String MUSIC_KEY = "Music/Sound On or Off = M";
+	private static final String MUSIC_KEY = "Music 1 = M, No Music = B, Sound On/Off = V";
 	
 
 	private GButton xButton;
