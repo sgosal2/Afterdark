@@ -126,16 +126,20 @@ public class MenuPane extends GraphicsPane {
 			program.switchToControlsMenu();
 		}
 		
+		// User presses M: turns default game music on
 		if(e.getKeyCode() == KeyEvent.VK_M){
-			if(program.isMusicOn() == true){
-				program.setMusicIsOn(false);
-		    	music.stopSound("../sounds", "menu_music.mp3");
-			}
-			else{
-				program.setMusicIsOn(true);
-		    	music.playSound("../sounds", "menu_music.mp3");
-			}
-			
+			program.setMusicIsOn(true);
+			music.playSound("../sounds", "menu_music.mp3");
+		}
+		
+		//User presses B: turns music off
+		if(e.getKeyCode() == KeyEvent.VK_B){
+			program.setMusicIsOn(false);
+			music.stopSound("../sounds", "menu_music.mp3");
+		}
+		
+		// User presses V: turns sound on or off
+		if(e.getKeyCode() == KeyEvent.VK_V){
 			if(program.isSoundOn() == true){
 				program.setSoundIsOn(false);
 			}
@@ -143,7 +147,6 @@ public class MenuPane extends GraphicsPane {
 				program.setSoundIsOn(true);
 			}
 		}
-		
 	}
 
 	@Override

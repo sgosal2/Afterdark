@@ -191,27 +191,30 @@ public class PauseMenu extends GraphicsPane {
 	 * 			set sound status to true
 	 * 			start playing sound
 	 */
+		// User presses M: turns default game music on
 		if(e.getKeyCode() == KeyEvent.VK_M){
-			if(program.isMusicOn() == true){
-				program.setMusicIsOn(false);
-		    	music.stopSound("../sounds", "game_music.mp3");
-		    	music.stopSound("../sounds", "menu_music.mp3");
-			}
-			else{
-				program.setMusicIsOn(true);
-		    	music.playSound("../sounds", "game_music.mp3");
-			}
-			
-			if(program.isSoundOn()== true){
+			program.setMusicIsOn(true);
+			music.playSound("../sounds", "game_music.mp3");
+			program.switchToPauseMenu();
+		}
+		
+		//User presses B: turns music off
+		if(e.getKeyCode() == KeyEvent.VK_B){
+			program.setMusicIsOn(false);
+			music.stopSound("../sounds", "game_music.mp3");
+			program.switchToPauseMenu();
+		}
+		
+		// User presses V: turns sound on or off
+		if(e.getKeyCode() == KeyEvent.VK_V){
+			if(program.isSoundOn() == true){
 				program.setSoundIsOn(false);
 			}
 			else{
 				program.setSoundIsOn(true);
 			}
-			
 			program.switchToPauseMenu();
 		}
-		
 	}
 
 	/*

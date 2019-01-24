@@ -119,7 +119,7 @@ public class Game extends GraphicsPane implements ActionListener {
 	 */
 		// User presses M: turns default game music on
 		if(e.getKeyCode() == KeyEvent.VK_M){
-			program.setMusicIsOn(false);
+			program.setMusicIsOn(true);
 			music.playSound("../sounds", "game_music.mp3");
 		}
 		
