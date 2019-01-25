@@ -194,7 +194,7 @@ public class PauseMenu extends GraphicsPane {
 		// User presses M: turns default game music on
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			program.setMusicIsOn(true);
-			music.stopSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "Alt_music.mp3");
 			music.playSound("../sounds", "game_music.mp3");
 			program.switchToPauseMenu();
 		}
@@ -203,14 +203,15 @@ public class PauseMenu extends GraphicsPane {
 		if(e.getKeyCode() == KeyEvent.VK_N){
 			program.setMusicIsOn(true);
 			music.stopSound("../sounds", "game_music.mp3");
-			music.playSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "menu_music.mp3");
+			music.playSound("../sounds", "Alt_music.mp3");
 			program.switchToPauseMenu();
 		}
 		
 		//User presses B: turns music off
 		if(e.getKeyCode() == KeyEvent.VK_B){
 			program.setMusicIsOn(false);
-			music.stopSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "Alt_music.mp3");
 			music.stopSound("../sounds", "game_music.mp3");
 			program.switchToPauseMenu();
 		}
@@ -260,7 +261,7 @@ public class PauseMenu extends GraphicsPane {
 			musicButtonOFF.setFillColor(Color.decode("#e23fff"));
 			musicButtonON.setFillColor(Color.DARK_GRAY);
 			music.stopSound("../sounds", "game_music.mp3");
-			music.stopSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "Alt_music.mp3");
 			program.setMusicIsOn(false);
 		}
 

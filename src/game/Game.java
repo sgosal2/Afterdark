@@ -120,7 +120,7 @@ public class Game extends GraphicsPane implements ActionListener {
 		// User presses M: turns default game music on
 		if(e.getKeyCode() == KeyEvent.VK_M){
 			program.setMusicIsOn(true);
-			music.stopSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "Alt_music.mp3");
 			music.playSound("../sounds", "game_music.mp3");
 		}
 		
@@ -128,13 +128,13 @@ public class Game extends GraphicsPane implements ActionListener {
 		if(e.getKeyCode() == KeyEvent.VK_N){
 			program.setMusicIsOn(true);
 			music.stopSound("../sounds", "game_music.mp3");
-			music.playSound("../sounds", "menu_music.mp3");
+			music.playSound("../sounds", "Alt_music.mp3");
 		}
 		
 		//User presses B: turns music off
 		if(e.getKeyCode() == KeyEvent.VK_B){
 			program.setMusicIsOn(false);
-			music.stopSound("../sounds", "menu_music.mp3");
+			music.stopSound("../sounds", "Alt_music.mp3");
 			music.stopSound("../sounds", "game_music.mp3");
 		}
 		
@@ -245,10 +245,12 @@ public class Game extends GraphicsPane implements ActionListener {
 		//adding in the music
 		if(program.isMusicOn()){
 	    	music.stopSound("../sounds", "menu_music.mp3");
+	    	music.stopSound("../sounds", "Alt_music.mp3");
 			music.playSound("../sounds", "game_music.mp3");
 	    }
 	    else{
 	    	music.stopSound("../sounds", "game_music.mp3");
+	    	music.stopSound("../sounds", "Alt_music.mp3");
 	    }
 		program.add(healthShell);
 		program.add(healthButton);
