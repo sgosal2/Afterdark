@@ -29,7 +29,9 @@ public class pauseControlsMenu extends GraphicsPane{
 	private final double X_YCORD = program.WINDOW_HEIGHT/X_YCORD_FACTOR;
 	private final double X_SIZEX = program.WINDOW_WIDTH/X_WIDTH_FACTOR;
 	private final double X_SIZEY = program.WINDOW_HEIGHT/X_HEIGHT_FACTOR;
-	private static final String MUSIC_KEY = "Music/Sound On or Off = M";
+	private static final String MUSIC_KEY = "Game Music = M, Alternative Music = N";
+	private static final String ALT_MUSIC_KEY = "No Music = B, Sound On/Off = V";
+
 
 	
 	private GButton leftKeyButton;
@@ -38,6 +40,7 @@ public class pauseControlsMenu extends GraphicsPane{
 	private GButton attackKeyButton;
 	private GButton pauseKeyButton;
 	private GButton musicOnOffButton;
+	private GButton soundOnOffButton;
 	
 	private static final String MOVE_LEFT_KEY = "Left Arrow/A";
 	private static final String MOVE_RIGHT_KEY = "Right Arrow/D";
@@ -51,7 +54,7 @@ public class pauseControlsMenu extends GraphicsPane{
 	private static final double BUTTON_YCORD_FACTOR = 3.77;
 	private final double BUTTON_XCORD= program.WINDOW_WIDTH/BUTTON_XCORD_FACTOR;
 	private final double BUTTON_YCORD = program.WINDOW_HEIGHT/BUTTON_YCORD_FACTOR;
-	private final double BUTTON_SIZEX = program.WINDOW_WIDTH/BUTTON_WIDTH_FACTOR;
+	private final double BUTTON_SIZEX = program.WINDOW_WIDTH/BUTTON_WIDTH_FACTOR + 25;
 	private final double BUTTON_SIZEY = program.WINDOW_HEIGHT/BUTTON_HEIGHT_FACTOR;
 	private static final double NEXT_BUTTON_OFFSET = 62;
 
@@ -71,8 +74,8 @@ public class pauseControlsMenu extends GraphicsPane{
 		jumpKeyButton = new GButton(JUMP_KEY, BUTTON_XCORD, (BUTTON_YCORD + (2*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		attackKeyButton = new GButton(ATTACK_KEY, BUTTON_XCORD, (BUTTON_YCORD + (3*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
 		pauseKeyButton = new GButton(PAUSE_KEY, BUTTON_XCORD, (BUTTON_YCORD + (4*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
-		musicOnOffButton = new GButton(MUSIC_KEY, BUTTON_XCORD, (BUTTON_YCORD + (5*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY, true);
-
+		musicOnOffButton = new GButton(MUSIC_KEY, BUTTON_XCORD, (BUTTON_YCORD + (5*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY/1.5, true);
+		soundOnOffButton = new GButton(ALT_MUSIC_KEY, BUTTON_XCORD, (BUTTON_YCORD + (5.5*NEXT_BUTTON_OFFSET)), BUTTON_SIZEX, BUTTON_SIZEY/1.5, true);
 	}
 	
 	@Override
@@ -88,6 +91,7 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.add(attackKeyButton);
 		program.add(pauseKeyButton);
 		program.add(musicOnOffButton);
+		program.add(soundOnOffButton);
 	}
 
 	@Override
@@ -100,6 +104,7 @@ public class pauseControlsMenu extends GraphicsPane{
 		program.remove(attackKeyButton);
 		program.remove(pauseKeyButton);
 		program.remove(musicOnOffButton);
+		program.remove(soundOnOffButton);
 	}
 
 	/*
